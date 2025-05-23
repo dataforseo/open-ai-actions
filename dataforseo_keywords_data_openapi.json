@@ -1,0 +1,53 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "DataForSEO Keywords Data API",
+    "description": "Access to DataForSEO Keywords Data tools for SEO research and analysis",
+    "version": "v1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.dataforseo.com"
+    }
+  ],
+  "paths": {
+    "/v3/keywords_data/google_ads/search_volume/live.ai": {
+      "post": {
+        "description": "Get search volume data for keywords from Google Ads",
+        "operationId": "keywords_data_google_ads_search_volume",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\n        required field\n        in format \"Country\"\n        example:\n        United Kingdom"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "description": "Language code (e.g., 'en')"
+                  },
+                  "keywords": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Array of keywords to get search volume for"
+                  }
+                },
+                "required": [
+                  "language_code",
+                  "keywords"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,1225 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "DataForSEO Dataforseo Labs API",
+    "description": "Access to DataForSEO Dataforseo Labs tools for SEO research and analysis",
+    "version": "v1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.dataforseo.com"
+    }
+  ],
+  "paths": {
+    "/v3/dataforseo_labs/google/ranked_keywords/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with the list of keywords that any domain or webpage is ranking for. You will also get SERP elements related to the keyword position, as well as impressions, monthly searches and other data relevant to the returned keywords.",
+        "operationId": "dataforseo_labs_google_ranked_keywords",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "target": {
+                    "type": "string",
+                    "description": "domain\nrequired field\nthe domain name of the target website\nthe domain should be specified without https:// and www."
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "language code\n        required field\n        example:\n        en"
+                  },
+                  "limit": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 1000,
+                    "default": 10,
+                    "description": "Maximum number of keywords to return"
+                  },
+                  "offset": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords"
+                  },
+                  "filters": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": [
+                              "string",
+                              "number",
+                              "boolean"
+                            ]
+                          },
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "and",
+                            "or"
+                          ]
+                        }
+                      ]
+                    },
+                    "maxItems": 8,
+                    "description": "Array of filter conditions and logical operators. Each filter condition is an array of [field, operator, value].\n        Maximum 8 filters allowed.\n        Available operators: =, <>, <, <=, >, >=, in, not_in, like, not_like, ilike, not_ilike, regex, not_regex, match, not_match\n        Logical operators: \"and\", \"or\"\n        Examples:\n        Simple filter: [[\"ranked_serp_element.serp_item.rank_group\",\"<=\",10]]\n        With logical operator: [[\"ranked_serp_element.serp_item.rank_group\",\"<=\",10],\"or\",[\"ranked_serp_element.serp_item.type\",\"<>\",\"paid\"]]\n        Complex filter: [[\"keyword_data.keyword_info.search_volume\",\"<>\",0],\"and\",[[\"ranked_serp_element.serp_item.type\",\"<>\",\"paid\"],\"or\",[\"ranked_serp_element.serp_item.is_malicious\",\"=\",false]]]"
+                  },
+                  "order_by": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "results sorting rules\n        optional field\n        you can use the same values as in the filters array to sort the results\n        possible sorting types:\n        asc \u2013 results will be sorted in the ascending order\n        desc \u2013 results will be sorted in the descending order\n        you should use a comma to set up a sorting type\n        example:\n        [\"keyword_data.keyword_info.competition,desc\"]\n        default rule:\n        [\"ranked_serp_element.serp_item.rank_group,asc\"]\n        note that you can set no more than three sorting rules in a single request\n        you should use a comma to separate several sorting rules\n        example:\n        [\"keyword_data.keyword_info.search_volume,desc\",\"keyword_data.keyword_info.cpc,desc\"]"
+                  },
+                  "include_subdomains": {
+                    "type": "boolean",
+                    "description": "Include keywords from subdomains"
+                  },
+                  "include_serp_info": {
+                    "type": "boolean",
+                    "description": "Include SERP information"
+                  }
+                },
+                "required": [
+                  "target"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/dataforseo_labs/google/competitors_domain/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with a full overview of ranking and traffic data of the competitor domains from organic and paid search. In addition to that, you will get the metrics specific to the keywords both competitor domains and your domain rank for within the same SERP.",
+        "operationId": "dataforseo_labs_google_competitors_domain",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "target": {
+                    "type": "string",
+                    "description": "target domain"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "language code\n        required field\n        example:\n        en"
+                  },
+                  "ignore_synonyms": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "ignore highly similar keywords, if set to true, results will be more accurate"
+                  },
+                  "limit": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 1000,
+                    "default": 10,
+                    "description": "Maximum number of keywords to return"
+                  },
+                  "offset": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords"
+                  },
+                  "filters": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": [
+                              "string",
+                              "number",
+                              "boolean"
+                            ]
+                          },
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "and",
+                            "or"
+                          ]
+                        }
+                      ]
+                    },
+                    "maxItems": 8,
+                    "description": "you can add several filters at once (8 filters maximum)\n        you should set a logical operator and, or between the conditions\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n        you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n        merge operator must be a string and connect two other arrays, availible values: or, and.\n        example:\n        [\"metrics.organic.count\",\">\",50]\n        [[\"metrics.organic.pos_1\",\"<>\",0],\"and\",[\"metrics.organic.impressions_etv\",\">=\",\"10\"]]\n\n        [[[\"metrics.organic.count\",\">=\",50],\"and\",[\"metrics.organic.pos_1\",\"in\",[1,5]]],\n        \"or\",\n        [\"metrics.organic.etv\",\">=\",\"100\"]]"
+                  },
+                  "order_by": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "results sorting rules\n        optional field\n        you can use the same values as in the filters array to sort the results\n        possible sorting types:\n        asc \u2013 results will be sorted in the ascending order\n        desc \u2013 results will be sorted in the descending order\n        you should use a comma to set up a sorting type\n        example:\n        [\"metrics.paid.etv,asc\"]\n        Note: you can set no more than three sorting rules in a single request\n        you should use a comma to separate several sorting rules\n        example:\n        [\"metrics.organic.etv,desc\",\"metrics.paid.count,asc\"]\n        default rule:\n        [\"metrics.organic.count,desc\"]"
+                  },
+                  "exclude_top_domains": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "indicates whether to exclude world's largest websites\n        optional field\n        default value: false\n        set to true if you want to get highly-relevant competitors excluding the top websites"
+                  }
+                },
+                "required": [
+                  "target"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/dataforseo_labs/google/domain_rank_overview/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with ranking and traffic data from organic and paid search for the specified domain. You will be able to review the domain ranking distribution in SERPs as well as estimated monthly traffic volume for both organic and paid results.",
+        "operationId": "datalabs_google_domain_rank_overview",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "target": {
+                    "type": "string",
+                    "description": "target domain"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "language code\n        required field\n        example:\n        en"
+                  },
+                  "ignore_synonyms": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "ignore highly similar keywords, if set to true, results will be more accurate"
+                  }
+                },
+                "required": [
+                  "target"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/dataforseo_labs/google/keyword_ideas/live.ai": {
+      "post": {
+        "description": "The Keyword Ideas provides search terms that are relevant to the product or service categories of the specified keywords. The algorithm selects the keywords which fall into the same categories as the seed keywords specified in a POST array.\nAs a result, you will get a list of relevant keyword ideas",
+        "operationId": "dataforseo_labs_google_keyword_ideas",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "keywords": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "target keywords"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "language code\n        required field\n        example:\n        en"
+                  },
+                  "limit": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 1000,
+                    "default": 10,
+                    "description": "Maximum number of keywords to return"
+                  },
+                  "offset": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords"
+                  },
+                  "filters": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": [
+                              "string",
+                              "number",
+                              "boolean"
+                            ]
+                          },
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "and",
+                            "or"
+                          ]
+                        }
+                      ]
+                    },
+                    "maxItems": 8,
+                    "description": "you can add several filters at once (8 filters maximum)\n        you should set a logical operator and, or between the conditions\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n        you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n        merge operator must be a string and connect two other arrays, availible values: or, and.\n        example:\n        [\"keyword_info.search_volume\",\">\",0]\n        [[\"keyword_info.search_volume\",\"in\",[0,1000]],\"and\",[\"keyword_info.competition_level\",\"=\",\"LOW\"]]\n        [[\"keyword_info.search_volume\",\">\",100],\"and\",[[\"keyword_info.cpc\",\"<\",0.5],\"or\",[\"keyword_info.high_top_of_page_bid\",\"<=\",0.5]]]"
+                  },
+                  "order_by": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "results sorting rules\n        optional field\n        you can use the same values as in the filters array to sort the results\n        possible sorting types:\n        asc \u2013 results will be sorted in the ascending order\n        desc \u2013 results will be sorted in the descending order\n        you should use a comma to set up a sorting type\n        example:\n        [\"keyword_info.competition,desc\"]\n        default rule:\n        [\"keyword_info.search_volume,desc\"]\n        note that you can set no more than three sorting rules in a single request\n        you should use a comma to separate several sorting rules\n        example:\n        [\"keyword_info.search_volume,desc\",\"keyword_info.cpc,desc\"]"
+                  }
+                },
+                "required": [
+                  "keywords"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/dataforseo_labs/google/related_keywords/live.ai": {
+      "post": {
+        "description": "The Related Keywords endpoint provides keywords appearing in the\n \"searches related to\" SERP element\nYou can get up to 4680 keyword ideas by specifying the search depth. Each related keyword comes with the list of relevant product categories, search volume rate for the last month, search volume tre",
+        "operationId": "dataforseo_labs_google_related_keywords",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "keyword": {
+                    "type": "string",
+                    "description": "target keyword"
+                  },
+                  "depth": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 4,
+                    "default": 1,
+                    "description": "keyword search depth"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "language code\n        required field\n        example:\n        en"
+                  },
+                  "limit": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 1000,
+                    "default": 10,
+                    "description": "Maximum number of keywords to return"
+                  },
+                  "offset": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords"
+                  },
+                  "filters": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": [
+                              "string",
+                              "number",
+                              "boolean"
+                            ]
+                          },
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "and",
+                            "or"
+                          ]
+                        }
+                      ]
+                    },
+                    "maxItems": 8,
+                    "description": "you can add several filters at once (8 filters maximum)\n        you should set a logical operator and, or between the conditions\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n        you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n        merge operator must be a string and connect two other arrays, availible values: or, and.\n        example:\n      [\"keyword_info.search_volume\",\">\",0]\n[[\"keyword_info.search_volume\",\"in\",[0,1000]],\n\"and\",\n[\"keyword_info.competition_level\",\"=\",\"LOW\"]][[\"keyword_info.search_volume\",\">\",100],\n\"and\",\n[[\"keyword_info.cpc\",\"<\",0.5],\n\"or\",\n[\"keyword_info.high_top_of_page_bid\",\"<=\",0.5]]]"
+                  },
+                  "order_by": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "results sorting rules\n        optional field\n        you can use the same values as in the filters array to sort the results\n        possible sorting types:\n        asc \u2013 results will be sorted in the ascending order\n        desc \u2013 results will be sorted in the descending order\n        you should use a comma to set up a sorting type\n        example:\n        [\"keyword_data.keyword_info.competition,desc\"]\n        default rule:\n        [\"ranked_serp_element.serp_item.rank_group,asc\"]\n        note that you can set no more than three sorting rules in a single request\n        you should use a comma to separate several sorting rules\n        example:\n        [\"keyword_data.keyword_info.search_volume,desc\",\"keyword_data.keyword_info.cpc,desc\"]"
+                  }
+                },
+                "required": [
+                  "keyword"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/dataforseo_labs/google/keyword_suggestions/live.ai": {
+      "post": {
+        "description": "The Keyword Suggestions provides search queries that include the specified seed keyword.\n\nThe algorithm is based on the full-text search for the specified keyword and therefore returns only those search terms that contain the keyword you set in the POST array with additional words before, after, or",
+        "operationId": "datalabs_google_keyword_suggestions",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "keyword": {
+                    "type": "string",
+                    "description": "target keyword"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "language code\n        required field\n        example:\n        en"
+                  },
+                  "limit": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 1000,
+                    "default": 10,
+                    "description": "Maximum number of keywords to return"
+                  },
+                  "offset": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords"
+                  },
+                  "filters": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": [
+                              "string",
+                              "number",
+                              "boolean"
+                            ]
+                          },
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "and",
+                            "or"
+                          ]
+                        }
+                      ]
+                    },
+                    "maxItems": 8,
+                    "description": "you can add several filters at once (8 filters maximum)\n        you should set a logical operator and, or between the conditions\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n        you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n        merge operator must be a string and connect two other arrays, availible values: or, and.\n        example:\n      [\"keyword_info.search_volume\",\">\",0]\n[[\"keyword_info.search_volume\",\"in\",[0,1000]],\n\"and\",\n[\"keyword_info.competition_level\",\"=\",\"LOW\"]][[\"keyword_info.search_volume\",\">\",100],\n\"and\",\n[[\"keyword_info.cpc\",\"<\",0.5],\n\"or\",\n[\"keyword_info.high_top_of_page_bid\",\"<=\",0.5]]]"
+                  },
+                  "order_by": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "results sorting rules\n        optional field\n        you can use the same values as in the filters array to sort the results\n        possible sorting types:\n        asc \u2013 results will be sorted in the ascending order\n        desc \u2013 results will be sorted in the descending order\n        you should use a comma to set up a sorting type\n        example:\n        [\"keyword_data.keyword_info.competition,desc\"]\n        default rule:\n        [\"ranked_serp_element.serp_item.rank_group,asc\"]\n        note that you can set no more than three sorting rules in a single request\n        you should use a comma to separate several sorting rules\n        example:\n        [\"keyword_data.keyword_info.search_volume,desc\",\"keyword_data.keyword_info.cpc,desc\"]"
+                  }
+                },
+                "required": [
+                  "keyword"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/dataforseo_labs/google/historical_serp/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with Google SERPs collected within the specified time frame. You will also receive a complete overview of featured snippets and other extra elements that were present within the specified dates. The data will allow you to analyze the dynamics of keyword rankings over ",
+        "operationId": "dataforseo_labs_google_historical_serp",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "keyword": {
+                    "type": "string",
+                    "description": "target keyword"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "language code\n        required field\n        example:\n        en"
+                  }
+                },
+                "required": [
+                  "keyword"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/dataforseo_labs/google/serp_competitors/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with a list of domains ranking for the keywords you specify. You will also get SERP rankings, rating, estimated traffic volume, and visibility values the provided domains gain from the specified keywords.",
+        "operationId": "dataforseo_labs_google_serp_competitors",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "keywords": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "keywords array\nrequired field\nthe results will be based on the keywords you specify in this array\nUTF-8 encoding;\nthe keywords will be converted to lowercase format;\nyou can specify the maximum of 200 keywords"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "language code\n        required field\n        example:\n        en"
+                  },
+                  "limit": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 1000,
+                    "default": 10,
+                    "description": "Maximum number of keywords to return"
+                  },
+                  "offset": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords"
+                  },
+                  "filters": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": [
+                              "string",
+                              "number",
+                              "boolean"
+                            ]
+                          },
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "and",
+                            "or"
+                          ]
+                        }
+                      ]
+                    },
+                    "maxItems": 8,
+                    "description": "you can add several filters at once (8 filters maximum)\n        you should set a logical operator and, or between the conditions\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n        you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n        merge operator must be a string and connect two other arrays, availible values: or, and.\n        example:\n        [\"ranked_serp_element.serp_item.rank_group\",\"<=\",10]\n        [[\"ranked_serp_element.serp_item.rank_group\",\"<=\",10],\"or\",[\"ranked_serp_element.serp_item.type\",\"<>\",\"paid\"]]\n        [[\"keyword_data.keyword_info.search_volume\",\"<>\",0],\"and\",[[\"ranked_serp_element.serp_item.type\",\"<>\",\"paid\"],\"or\",[\"ranked_serp_element.serp_item.is_malicious\",\"=\",false]]]"
+                  },
+                  "order_by": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "results sorting rules\n        optional field\n        you can use the same values as in the filters array to sort the results\n        possible sorting types:\n        asc \u2013 results will be sorted in the ascending order\n        desc \u2013 results will be sorted in the descending order\n        you should use a comma to set up a sorting type\n        example:\n        [\"keyword_data.keyword_info.competition,desc\"]\n        default rule:\n        [\"ranked_serp_element.serp_item.rank_group,asc\"]\n        note that you can set no more than three sorting rules in a single request\n        you should use a comma to separate several sorting rules\n        example:\n        [\"keyword_data.keyword_info.search_volume,desc\",\"keyword_data.keyword_info.cpc,desc\"]"
+                  },
+                  "include_subdomains": {
+                    "type": "boolean",
+                    "description": "Include keywords from subdomains"
+                  }
+                },
+                "required": [
+                  "keywords"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/dataforseo_labs/bulk_keyword_difficulty/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with the Keyword Difficulty metric for a maximum of 1,000 keywords in one API request. Keyword Difficulty stands for the relative difficulty of ranking in the first top-10 organic results for the related keyword. Keyword Difficulty in DataForSEO API responses indicate",
+        "operationId": "datalabs_bulk_keyword_difficulty",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "keywords": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "target keywords\nrequired field\nUTF-8 encoding\nmaximum number of keywords you can specify in this array: 1000"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "language code\n        required field\n        example:\n        en"
+                  }
+                },
+                "required": [
+                  "keywords"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/dataforseo_labs/google/subdomains/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with a list of subdomains of the specified domain, along with the ranking distribution across organic and paid search. In addition to that, you will also get the estimated traffic volume of subdomains based on search volume.",
+        "operationId": "dataforseo_labs_google_subdomains",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "target": {
+                    "type": "string",
+                    "description": "target domain"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "language code\n        required field\n        example:\n        en"
+                  },
+                  "ignore_synonyms": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "ignore highly similar keywords, if set to true, results will be more accurate"
+                  },
+                  "limit": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 1000,
+                    "default": 10,
+                    "description": "Maximum number of keywords to return"
+                  },
+                  "offset": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords"
+                  },
+                  "filters": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": [
+                              "string",
+                              "number",
+                              "boolean"
+                            ]
+                          },
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "and",
+                            "or"
+                          ]
+                        }
+                      ]
+                    },
+                    "maxItems": 8,
+                    "description": "you can add several filters at once (8 filters maximum)\n        you should set a logical operator and, or between the conditions\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n        you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n        merge operator must be a string and connect two other arrays, availible values: or, and.\n        example:\n        [\"metrics.organic.count\",\">\",50]\n        [[\"metrics.organic.pos_1\",\"<>\",0],\"and\",[\"metrics.organic.impressions_etv\",\">=\",\"10\"]]\n        [[[\"metrics.organic.count\",\">=\",50],\"and\",[\"metrics.organic.pos_1\",\"in\",[1,5]]],\"or\",[\"metrics.organic.etv\",\">=\",\"100\"]]"
+                  },
+                  "order_by": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "results sorting rules\n        optional field\n        you can use the same values as in the filters array to sort the results\n        possible sorting types:\n        asc \u2013 results will be sorted in the ascending order\n        desc \u2013 results will be sorted in the descending order\n        you should use a comma to set up a sorting type\n        example:\n        [\"metrics.paid.etv,asc\"]\n        Note: you can set no more than three sorting rules in a single request\n        you should use a comma to separate several sorting rules\n        example:\n        [\"metrics.organic.etv,desc\",\"metrics.paid.count,asc\"]\n        default rule:\n        [\"metrics.organic.count,desc\"]"
+                  },
+                  "item_types": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "item types to return\n        optional field\n        default: ['organic']\n        possible values:\n        organic\n        paid"
+                  }
+                },
+                "required": [
+                  "target"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/dataforseo_labs/google/keyword_overview/live.ai": {
+      "post": {
+        "description": "This endpoint provides Google keyword data for specified keywords. For each keyword, you will receive current cost-per-click, competition values for paid search, search volume, search intent, monthly searches",
+        "operationId": "dataforseo_labs_google_keyword_overview",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "keywords": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "keywords\nrequired field\nThe maximum number of keywords you can specify: 700\nThe maximum number of characters for each keyword: 80\nThe maximum number of words for each keyword phrase: 10\nthe specified keywords will be converted to lowercase format, data will be provided in a separate array\nnote that if some of the keywords specified in this array are omitted in the results you receive, then our database doesn't contain such keywords and cannot return data on them\nyou will not be charged for the keywords omitted in the results"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "language code\n        required field\n        example:\n        en"
+                  }
+                },
+                "required": [
+                  "keywords"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/dataforseo_labs/google/top_searches/live.ai": {
+      "post": {
+        "description": "The Top Searches endpoint of DataForSEO Labs API can provide you with over 7 billion keywords from the DataForSEO Keyword Database. Each keyword in the API response is provided with a set of relevant keyword data with Google Ads metrics",
+        "operationId": "dataforseo_labs_google_top_searches",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "language code\n        required field\n        example:\n        en"
+                  },
+                  "limit": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 1000,
+                    "default": 10,
+                    "description": "Maximum number of keywords to return"
+                  },
+                  "offset": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords"
+                  },
+                  "filters": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": [
+                              "string",
+                              "number",
+                              "boolean"
+                            ]
+                          },
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "and",
+                            "or"
+                          ]
+                        }
+                      ]
+                    },
+                    "maxItems": 8,
+                    "description": "you can add several filters at once (8 filters maximum)\n        you should set a logical operator and, or between the conditions\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n        you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n        merge operator must be a string and connect two other arrays, availible values: or, and.\n        example:\n     [\"keyword_info.search_volume\",\">\",0]\n[[\"keyword_info.search_volume\",\"in\",[0,1000]],\n\"and\",\n[\"keyword_info.competition_level\",\"=\",\"LOW\"]][[\"keyword_info.search_volume\",\">\",100],\n\"and\",\n[[\"keyword_info.cpc\",\"<\",0.5],\n\"or\",\n[\"keyword_info.high_top_of_page_bid\",\"<=\",0.5]]]"
+                  },
+                  "order_by": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "results sorting rules\n        optional field\n        you can use the same values as in the filters array to sort the results\n        possible sorting types:\n        asc \u2013 results will be sorted in the ascending order\n        desc \u2013 results will be sorted in the descending order\n        you should use a comma to set up a sorting type\n        example:\n        [\"keyword_data.keyword_info.competition,desc\"]\n        default rule:\n        [\"ranked_serp_element.serp_item.rank_group,asc\"]\n        note that you can set no more than three sorting rules in a single request\n        you should use a comma to separate several sorting rules\n        example:\n        [\"keyword_data.keyword_info.search_volume,desc\",\"keyword_data.keyword_info.cpc,desc\"]"
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/dataforseo_labs/search_intent/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with search intent data for up to 1,000 keywords. For each keyword that you specify when setting a task, the API will return the keyword's search intent and intent probability. Besides the highest probable search intent, the results will also provide you with other li",
+        "operationId": "datalabs_search_intent",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "keywords": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "target keywords\nrequired field\nUTF-8 encoding\nmaximum number of keywords you can specify in this array: 1000"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "language code\n        required field\n        Note: this endpoint currently supports the following languages only:\nar,\nzh-TW,\ncs,\nda,\nnl,\nen,\nfi,\nfr,\nde,\nhe,\nhi,\nit,\nja,\nko,\nms,\nnb,\npl,\npt,\nro,\nru,\nes,\nsv,\nth,\nuk,\nvi,\nbg,\nhr,\nsr,\nsl,\nbs"
+                  }
+                },
+                "required": [
+                  "keywords"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/dataforseo_labs/google/keywords_for_site/live.ai": {
+      "post": {
+        "description": "The Keywords For Site endpoint will provide you with a list of keywords relevant to the target domain. Each keyword is supplied with relevant, search volume data for the last month, cost-per-click, competition",
+        "operationId": "dataforseo_labs_google_keywords_for_site",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "target": {
+                    "type": "string",
+                    "description": "target domain"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "language code\n        required field\n        example:\n        en"
+                  },
+                  "limit": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 1000,
+                    "default": 10,
+                    "description": "Maximum number of keywords to return"
+                  },
+                  "offset": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords"
+                  },
+                  "filters": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": [
+                              "string",
+                              "number",
+                              "boolean"
+                            ]
+                          },
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "and",
+                            "or"
+                          ]
+                        }
+                      ]
+                    },
+                    "maxItems": 8,
+                    "description": "you can add several filters at once (8 filters maximum)\n        you should set a logical operator and, or between the conditions\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n        you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n        merge operator must be a string and connect two other arrays, availible values: or, and.\n        example:\n      [\"keyword_info.search_volume\",\">\",0]\n[[\"keyword_info.search_volume\",\"in\",[0,1000]],\n\"and\",\n[\"keyword_info.competition_level\",\"=\",\"LOW\"]][[\"keyword_info.search_volume\",\">\",100],\n\"and\",\n[[\"keyword_info.cpc\",\"<\",0.5],\n\"or\",\n[\"keyword_info.high_top_of_page_bid\",\"<=\",0.5]]]"
+                  },
+                  "order_by": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "results sorting rules\n        optional field\n        you can use the same values as in the filters array to sort the results\n        possible sorting types:\n        asc \u2013 results will be sorted in the ascending order\n        desc \u2013 results will be sorted in the descending order\n        you should use a comma to set up a sorting type\n        example:\n        [\"keyword_data.keyword_info.competition,desc\"]\n        default rule:\n        [\"ranked_serp_element.serp_item.rank_group,asc\"]\n        note that you can set no more than three sorting rules in a single request\n        you should use a comma to separate several sorting rules\n        example:\n        [\"keyword_data.keyword_info.search_volume,desc\",\"keyword_data.keyword_info.cpc,desc\"]"
+                  },
+                  "include_subdomains": {
+                    "type": "boolean",
+                    "description": "Include keywords from subdomains"
+                  }
+                },
+                "required": [
+                  "target"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/dataforseo_labs/google/domain_intersection/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with the keywords for which both specified domains rank within the same SERP. You will get search volume, competition, cost-per-click and impressions data on each intersecting keyword. Along with that, you will get data on the first and second domain's SERP element di",
+        "operationId": "dataforseo_labs_google_domain_intersection",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "target1": {
+                    "type": "string",
+                    "description": "target domain 1"
+                  },
+                  "target2": {
+                    "type": "string",
+                    "description": "target domain 2 "
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "language code\n        required field\n        example:\n        en"
+                  },
+                  "ignore_synonyms": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "ignore highly similar keywords, if set to true, results will be more accurate"
+                  },
+                  "limit": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 1000,
+                    "default": 10,
+                    "description": "Maximum number of keywords to return"
+                  },
+                  "offset": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords"
+                  },
+                  "filters": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": [
+                              "string",
+                              "number",
+                              "boolean"
+                            ]
+                          },
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "and",
+                            "or"
+                          ]
+                        }
+                      ]
+                    },
+                    "maxItems": 8,
+                    "description": "you can add several filters at once (8 filters maximum)\n        you should set a logical operator and, or between the conditions\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n        you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n        merge operator must be a string and connect two other arrays, availible values: or, and.\n        example:\n        [\"keyword_data.keyword_info.search_volume\",\"in\",[100,1000]]\n        [[\"first_domain_serp_element.etv\",\">\",0],\"and\",[\"first_domain_serp_element.description\",\"like\",\"%goat%\"]]\n        [[\"keyword_data.keyword_info.search_volume\",\">\",100],\"and\",[[\"first_domain_serp_element.description\",\"like\",\"%goat%\"],\"or\",[\"second_domain_serp_element.type\",\"=\",\"organic\"]]]"
+                  },
+                  "order_by": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "results sorting rules\n        optional field\n        you can use the same values as in the filters array to sort the results\n        possible sorting types:\n        asc \u2013 results will be sorted in the ascending order\n        desc \u2013 results will be sorted in the descending order\n        you should use a comma to set up a sorting type\n        example:\n        [\"keyword_data.keyword_info.competition,desc\"]\n        default rule:\n        [\"keyword_data.keyword_info.search_volume,desc\"]\n        note that you can set no more than three sorting rules in a single request\n        you should use a comma to separate several sorting rules\n        example:\n        [\"keyword_data.keyword_info.search_volume,desc\",\"keyword_data.keyword_info.cpc,desc\"]"
+                  }
+                },
+                "required": [
+                  "target1",
+                  "target2"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/dataforseo_labs/google/historical_domain_rank_overview/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with historical data on rankings and traffic of the specified domain, such as domain ranking distribution in SERPs and estimated monthly traffic volume for both organic and paid results",
+        "operationId": "datalabs_google_historical_domain_rank_overview",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "target": {
+                    "type": "string",
+                    "description": "target domain"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "language code\n        required field\n        example:\n        en"
+                  },
+                  "ignore_synonyms": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "ignore highly similar keywords, if set to true, results will be more accurate"
+                  }
+                },
+                "required": [
+                  "target"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/dataforseo_labs/google/page_intersection/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with the keywords for which specified pages rank within the same SERP. You will get search volume, competition, cost-per-click and impressions data on each intersecting keyword. Along with that, you will get data on SERP elements that specified pages rank for in searc",
+        "operationId": "dataforseo_labs_google_page_intersection",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "pages": {
+                    "type": "object",
+                    "description": "Object containing two page values to compare",
+                    "properties": {
+                      "1": {
+                        "type": "string",
+                        "description": "First page URL or domain"
+                      },
+                      "2": {
+                        "type": "string",
+                        "description": "Second page URL or domain"
+                      }
+                    },
+                    "required": [
+                      "1",
+                      "2"
+                    ],
+                    "example": {
+                      "1": "example1.com",
+                      "2": "example2.com"
+                    }
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "language code\n        required field\n        example:\n        en"
+                  },
+                  "ignore_synonyms": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "ignore highly similar keywords, if set to true, results will be more accurate"
+                  },
+                  "limit": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 1000,
+                    "default": 10,
+                    "description": "Maximum number of keywords to return"
+                  },
+                  "offset": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords"
+                  },
+                  "filters": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": [
+                              "string",
+                              "number",
+                              "boolean"
+                            ]
+                          },
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "and",
+                            "or"
+                          ]
+                        }
+                      ]
+                    },
+                    "maxItems": 8,
+                    "description": "you can add several filters at once (8 filters maximum)\n        you should set a logical operator and, or between the conditions\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n        you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n        merge operator must be a string and connect two other arrays, availible values: or, and.\n        example:\n        [\"keyword_data.keyword_info.search_volume\",\"in\",[100,1000]]\n        [[\"first_domain_serp_element.etv\",\">\",0],\"and\",[\"first_domain_serp_element.description\",\"like\",\"%goat%\"]]\n        [[\"keyword_data.keyword_info.search_volume\",\">\",100],\"and\",[[\"first_domain_serp_element.description\",\"like\",\"%goat%\"],\"or\",[\"second_domain_serp_element.type\",\"=\",\"organic\"]]]"
+                  },
+                  "order_by": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "results sorting rules\n        optional field\n        you can use the same values as in the filters array to sort the results\n        possible sorting types:\n        asc \u2013 results will be sorted in the ascending order\n        desc \u2013 results will be sorted in the descending order\n        you should use a comma to set up a sorting type\n        example:\n        [\"keyword_data.keyword_info.competition,desc\"]\n        default rule:\n        [\"keyword_data.keyword_info.search_volume,desc\"]\n        note that you can set no more than three sorting rules in a single request\n        you should use a comma to separate several sorting rules\n        example:\n        [\"keyword_data.keyword_info.search_volume,desc\",\"keyword_data.keyword_info.cpc,desc\"]"
+                  }
+                },
+                "required": [
+                  "pages"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/dataforseo_labs/available_filters.ai": {
+      "get": {
+        "description": "Here you will find all the necessary information about filters that can be used with DataForSEO Labs API endpoints.\n\nPlease, keep in mind that filters are associated with a certain object in the result array, and should be specified accordingly.",
+        "operationId": "dataforseo_labs_available_filters"
+      }
+    }
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "DataForSEO On Page API",
+    "description": "Access to DataForSEO On Page tools for SEO research and analysis",
+    "version": "v1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.dataforseo.com"
+    }
+  ],
+  "paths": {
+    "/v3/on_page/content_parsing/live.ai": {
+      "post": {
+        "description": "This endpoint allows parsing the content on any page you specify and will return the structured content of the target page, including link URLs, anchors, headings, and textual content.",
+        "operationId": "on_page_content_parsing",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "url": {
+                    "type": "string",
+                    "description": "URL of the page to parse"
+                  },
+                  "enable_javascript": {
+                    "type": "boolean",
+                    "description": "Enable JavaScript rendering"
+                  },
+                  "custom_js": {
+                    "type": "string",
+                    "description": "Custom JavaScript code to execute"
+                  },
+                  "custom_user_agent": {
+                    "type": "string",
+                    "description": "Custom User-Agent header"
+                  },
+                  "accept_language": {
+                    "type": "string",
+                    "description": "Accept-Language header value"
+                  }
+                },
+                "required": [
+                  "url"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/on_page/instant_pages.ai": {
+      "post": {
+        "description": "Using this function you will get page-specific data with detailed information on how well a particular page is optimized for organic search",
+        "operationId": "on_page_instant_pages",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "url": {
+                    "type": "string",
+                    "description": "URL to analyze"
+                  },
+                  "enable_javascript": {
+                    "type": "boolean",
+                    "description": "Enable JavaScript rendering"
+                  },
+                  "custom_js": {
+                    "type": "string",
+                    "description": "Custom JavaScript code to execute"
+                  },
+                  "custom_user_agent": {
+                    "type": "string",
+                    "description": "Custom User-Agent header"
+                  },
+                  "accept_language": {
+                    "type": "string",
+                    "description": "Accept-Language header value"
+                  }
+                },
+                "required": [
+                  "url"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

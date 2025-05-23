@@ -1,0 +1,104 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "DataForSEO Serp Api API",
+    "description": "Access to DataForSEO Serp Api tools for SEO research and analysis",
+    "version": "v1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.dataforseo.com"
+    }
+  ],
+  "paths": {
+    "/v3/serp/{search_engine}/organic/live/advanced.ai": {
+      "post": {
+        "description": "Get organic search results for a keyword in specified search engine",
+        "operationId": "serp_organic_live_advanced",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field\nLocation format - hierarchical, comma-separated (from most specific to least)\n Can be one of:\n 1. Country only: \"United States\"\n 2. Region,Country: \"California,United States\"\n 3. City,Region,Country: \"San Francisco,California,United States\""
+                  },
+                  "depth": {
+                    "type": "number",
+                    "minimum": 10,
+                    "maximum": 700,
+                    "default": 10,
+                    "description": "parsing depth\noptional field\nnumber of results in SERP"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "description": "search engine language code (e.g., 'en')"
+                  },
+                  "keyword": {
+                    "type": "string",
+                    "description": "Search keyword"
+                  }
+                },
+                "required": [
+                  "language_code",
+                  "keyword"
+                ]
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "search_engine",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "google",
+                "bing",
+                "yahoo"
+              ],
+              "description": "search engine name, one of: google, yahoo, bing."
+            }
+          }
+        ]
+      }
+    },
+    "/v3/serp/{search_engine}/locations/{country_code}.ai": {
+      "get": {
+        "description": "Utility tool for serp-organic-live-advanced to get list of availible locations",
+        "operationId": "serp_locations",
+        "parameters": [
+          {
+            "name": "search_engine",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "google",
+                "bing",
+                "yahoo"
+              ],
+              "description": "The search engine to use"
+            }
+          },
+          {
+            "name": "country_code",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "country code (e.g., 'US')"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

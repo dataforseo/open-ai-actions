@@ -1,0 +1,105 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "DataForSEO Business Data API",
+    "description": "Access to DataForSEO Business Data tools for SEO research and analysis",
+    "version": "v1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.dataforseo.com"
+    }
+  ],
+  "paths": {
+    "/v3/business_data/business_listings/search/live.ai": {
+      "post": {
+        "description": "Business Listings Search API provides results containing information about business entities listed on Google Maps in the specified categories. You will receive the address, contacts, rating, working hours, and other relevant data",
+        "operationId": "business_data_business_listings_search",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "description": {
+                    "type": "string",
+                    "description": "description of the element in SERP\noptional field\nthe description of the business entity for which the results are collected;\ncan contain up to 200 characters"
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "title of the element in SERP\noptional field\nthe name of the business entity for which the results are collected;\ncan contain up to 200 characters"
+                  },
+                  "categories": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "business categories\nthe categories you specify are used to search for business listings;\nif you don\u2019t use this field, we will return business listings found in the specified location;\nyou can specify up to 10 categories"
+                  },
+                  "location_coordinate": {
+                    "type": "string",
+                    "description": "GPS coordinates of a location\noptional field\nlocation_coordinate parameter should be specified in the \u201clatitude,longitude,radius\u201d format\nthe maximum number of decimal digits for \u201clatitude\u201d and \u201clongitude\u201d: 7\nthe value of \u201cradius\u201d is specified in kilometres (km)\nthe minimum value for \u201cradius\u201d: 1\nthe maximum value for \u201cradius\u201d: 100000\nexample:\n53.476225,-2.243572,200"
+                  },
+                  "limit": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 1000,
+                    "default": 10,
+                    "description": "the maximum number of returned businesses"
+                  },
+                  "offset": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "offset in the results array of returned businesses\noptional field\ndefault value: 0\nif you specify the 10 value, the first ten entities in the results array will be omitted and the data will be provided for the successive entities"
+                  },
+                  "filters": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": [
+                              "string",
+                              "number",
+                              "boolean"
+                            ]
+                          },
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "and",
+                            "or"
+                          ]
+                        }
+                      ]
+                    },
+                    "maxItems": 8,
+                    "description": "array of results filtering parameters\noptional field\nyou can add several filters at once (8 filters maximum)\nyou should set a logical operator and, or between the conditions\nthe following operators are supported:\nregex, not_regex, <, <=, >, >=, =, <>, in, not_in, like, not_like, match, not_match\nyou can use the % operator with like and not_like to match any string of zero or more characters\nexample:\n[\"rating.value\",\">\",3]"
+                  },
+                  "order_by": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\nexample:\n[\"rating.value,desc\"]note that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"rating.value,desc\",\"rating.votes_count,desc\"]"
+                  },
+                  "is_claimed": {
+                    "type": "boolean",
+                    "description": "indicates whether the business is verified by its owner on Google Maps",
+                    "default": true
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
