@@ -1070,10 +1070,10 @@
         }
       }
     },
-    "/v3/dataforseo_labs/google/historical_domain_rank_overview/live.ai": {
+    "/v3/dataforseo_labs/google/historical_rank_overview/live.ai": {
       "post": {
         "description": "This endpoint will provide you with historical data on rankings and traffic of the specified domain, such as domain ranking distribution in SERPs and estimated monthly traffic volume for both organic and paid results",
-        "operationId": "datalabs_google_historical_domain_rank_overview",
+        "operationId": "datalabs_google_historical_rank_overview",
         "requestBody": {
           "required": true,
           "content": {

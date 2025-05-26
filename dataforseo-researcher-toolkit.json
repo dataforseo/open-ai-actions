@@ -1,0 +1,1806 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "DataForSEO API",
+    "description": "Access to DataForSEO Api tools for SEO research and analysis",
+    "version": "v1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.dataforseo.com"
+    }
+  ],
+  "paths": {
+    "/v3/serp/{search_engine}/organic/live/advanced.ai": {
+      "post": {
+        "description": "Get organic search results for a keyword in specified search engine",
+        "operationId": "serp_organic_live_advanced",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field\nLocation format - hierarchical, comma-separated (from most specific to least)\n Can be one of:\n 1. Country only: \"United States\"\n 2. Region,Country: \"California,United States\"\n 3. City,Region,Country: \"San Francisco,California,United States\""
+                  },
+                  "depth": {
+                    "type": "number",
+                    "minimum": 10,
+                    "maximum": 700,
+                    "default": 10,
+                    "description": "parsing depth\noptional field\nnumber of results in SERP"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "description": "search engine language code (e.g., 'en')"
+                  },
+                  "keyword": {
+                    "type": "string",
+                    "description": "Search keyword"
+                  }
+                },
+                "required": [
+                  "language_code",
+                  "keyword"
+                ]
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "search_engine",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "google",
+                "bing",
+                "yahoo"
+              ],
+              "description": "search engine name, one of: google, yahoo, bing."
+            }
+          }
+        ]
+      }
+    },
+	"/v3/keywords_data/google_ads/search_volume/live.ai": {
+      "post": {
+        "description": "Get search volume data for keywords from Google Ads",
+        "operationId": "keywords_data_google_ads_search_volume",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\n        required field\n        in format \"Country\"\n        example:\n        United Kingdom"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "description": "Language code (e.g., 'en')"
+                  },
+                  "keywords": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Array of keywords to get search volume for"
+                  }
+                },
+                "required": [
+                  "language_code",
+                  "keywords"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+	    "/v3/on_page/content_parsing/live.ai": {
+      "post": {
+        "description": "This endpoint allows parsing the content on any page you specify and will return the structured content of the target page, including link URLs, anchors, headings, and textual content.",
+        "operationId": "on_page_content_parsing",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "url": {
+                    "type": "string",
+                    "description": "URL of the page to parse"
+                  },
+                  "enable_javascript": {
+                    "type": "boolean",
+                    "description": "Enable JavaScript rendering"
+                  },
+                  "custom_js": {
+                    "type": "string",
+                    "description": "Custom JavaScript code to execute"
+                  },
+                  "custom_user_agent": {
+                    "type": "string",
+                    "description": "Custom User-Agent header"
+                  },
+                  "accept_language": {
+                    "type": "string",
+                    "description": "Accept-Language header value"
+                  }
+                },
+                "required": [
+                  "url"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/on_page/instant_pages.ai": {
+      "post": {
+        "description": "Using this function you will get page-specific data with detailed information on how well a particular page is optimized for organic search",
+        "operationId": "on_page_instant_pages",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "url": {
+                    "type": "string",
+                    "description": "URL to analyze"
+                  },
+                  "enable_javascript": {
+                    "type": "boolean",
+                    "description": "Enable JavaScript rendering"
+                  },
+                  "custom_js": {
+                    "type": "string",
+                    "description": "Custom JavaScript code to execute"
+                  },
+                  "custom_user_agent": {
+                    "type": "string",
+                    "description": "Custom User-Agent header"
+                  },
+                  "accept_language": {
+                    "type": "string",
+                    "description": "Accept-Language header value"
+                  }
+                },
+                "required": [
+                  "url"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+	    "/v3/dataforseo_labs/google/ranked_keywords/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with the list of keywords that any domain or webpage is ranking for. You will also get SERP elements related to the keyword position, as well as impressions, monthly searches and other data relevant to the returned keywords.",
+        "operationId": "dataforseo_labs_google_ranked_keywords",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "target": {
+                    "type": "string",
+                    "description": "domain\nrequired field\nthe domain name of the target website\nthe domain should be specified without https:// and www."
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "language code\n        required field\n        example:\n        en"
+                  },
+                  "limit": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 1000,
+                    "default": 10,
+                    "description": "Maximum number of keywords to return"
+                  },
+                  "offset": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords"
+                  },
+                  "filters": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": [
+                              "string",
+                              "number",
+                              "boolean"
+                            ]
+                          },
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "and",
+                            "or"
+                          ]
+                        }
+                      ]
+                    },
+                    "maxItems": 8,
+                    "description": "Array of filter conditions and logical operators. Each filter condition is an array of [field, operator, value].\n        Maximum 8 filters allowed.\n        Available operators: =, <>, <, <=, >, >=, in, not_in, like, not_like, ilike, not_ilike, regex, not_regex, match, not_match\n        Logical operators: \"and\", \"or\"\n        Examples:\n        Simple filter: [[\"ranked_serp_element.serp_item.rank_group\",\"<=\",10]]\n        With logical operator: [[\"ranked_serp_element.serp_item.rank_group\",\"<=\",10],\"or\",[\"ranked_serp_element.serp_item.type\",\"<>\",\"paid\"]]\n        Complex filter: [[\"keyword_data.keyword_info.search_volume\",\"<>\",0],\"and\",[[\"ranked_serp_element.serp_item.type\",\"<>\",\"paid\"],\"or\",[\"ranked_serp_element.serp_item.is_malicious\",\"=\",false]]]"
+                  },
+                  "order_by": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "results sorting rules\n        optional field\n        you can use the same values as in the filters array to sort the results\n        possible sorting types:\n        asc \u2013 results will be sorted in the ascending order\n        desc \u2013 results will be sorted in the descending order\n        you should use a comma to set up a sorting type\n        example:\n        [\"keyword_data.keyword_info.competition,desc\"]\n        default rule:\n        [\"ranked_serp_element.serp_item.rank_group,asc\"]\n        note that you can set no more than three sorting rules in a single request\n        you should use a comma to separate several sorting rules\n        example:\n        [\"keyword_data.keyword_info.search_volume,desc\",\"keyword_data.keyword_info.cpc,desc\"]"
+                  },
+                  "include_subdomains": {
+                    "type": "boolean",
+                    "description": "Include keywords from subdomains"
+                  },
+                  "include_serp_info": {
+                    "type": "boolean",
+                    "description": "Include SERP information"
+                  }
+                },
+                "required": [
+                  "target"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/dataforseo_labs/google/competitors_domain/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with a full overview of ranking and traffic data of the competitor domains from organic and paid search. In addition to that, you will get the metrics specific to the keywords both competitor domains and your domain rank for within the same SERP.",
+        "operationId": "dataforseo_labs_google_competitors_domain",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "target": {
+                    "type": "string",
+                    "description": "target domain"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "language code\n        required field\n        example:\n        en"
+                  },
+                  "ignore_synonyms": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "ignore highly similar keywords, if set to true, results will be more accurate"
+                  },
+                  "limit": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 1000,
+                    "default": 10,
+                    "description": "Maximum number of keywords to return"
+                  },
+                  "offset": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords"
+                  },
+                  "filters": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": [
+                              "string",
+                              "number",
+                              "boolean"
+                            ]
+                          },
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "and",
+                            "or"
+                          ]
+                        }
+                      ]
+                    },
+                    "maxItems": 8,
+                    "description": "you can add several filters at once (8 filters maximum)\n        you should set a logical operator and, or between the conditions\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n        you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n        merge operator must be a string and connect two other arrays, availible values: or, and.\n        example:\n        [\"metrics.organic.count\",\">\",50]\n        [[\"metrics.organic.pos_1\",\"<>\",0],\"and\",[\"metrics.organic.impressions_etv\",\">=\",\"10\"]]\n\n        [[[\"metrics.organic.count\",\">=\",50],\"and\",[\"metrics.organic.pos_1\",\"in\",[1,5]]],\n        \"or\",\n        [\"metrics.organic.etv\",\">=\",\"100\"]]"
+                  },
+                  "order_by": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "results sorting rules\n        optional field\n        you can use the same values as in the filters array to sort the results\n        possible sorting types:\n        asc \u2013 results will be sorted in the ascending order\n        desc \u2013 results will be sorted in the descending order\n        you should use a comma to set up a sorting type\n        example:\n        [\"metrics.paid.etv,asc\"]\n        Note: you can set no more than three sorting rules in a single request\n        you should use a comma to separate several sorting rules\n        example:\n        [\"metrics.organic.etv,desc\",\"metrics.paid.count,asc\"]\n        default rule:\n        [\"metrics.organic.count,desc\"]"
+                  },
+                  "exclude_top_domains": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "indicates whether to exclude world's largest websites\n        optional field\n        default value: false\n        set to true if you want to get highly-relevant competitors excluding the top websites"
+                  }
+                },
+                "required": [
+                  "target"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/dataforseo_labs/google/domain_rank_overview/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with ranking and traffic data from organic and paid search for the specified domain. You will be able to review the domain ranking distribution in SERPs as well as estimated monthly traffic volume for both organic and paid results.",
+        "operationId": "datalabs_google_domain_rank_overview",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "target": {
+                    "type": "string",
+                    "description": "target domain"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "language code\n        required field\n        example:\n        en"
+                  },
+                  "ignore_synonyms": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "ignore highly similar keywords, if set to true, results will be more accurate"
+                  }
+                },
+                "required": [
+                  "target"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/dataforseo_labs/google/keyword_ideas/live.ai": {
+      "post": {
+        "description": "The Keyword Ideas provides search terms that are relevant to the product or service categories of the specified keywords. The algorithm selects the keywords which fall into the same categories as the seed keywords specified in a POST array.\nAs a result, you will get a list of relevant keyword ideas",
+        "operationId": "dataforseo_labs_google_keyword_ideas",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "keywords": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "target keywords"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "language code\n        required field\n        example:\n        en"
+                  },
+                  "limit": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 1000,
+                    "default": 10,
+                    "description": "Maximum number of keywords to return"
+                  },
+                  "offset": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords"
+                  },
+                  "filters": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": [
+                              "string",
+                              "number",
+                              "boolean"
+                            ]
+                          },
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "and",
+                            "or"
+                          ]
+                        }
+                      ]
+                    },
+                    "maxItems": 8,
+                    "description": "you can add several filters at once (8 filters maximum)\n        you should set a logical operator and, or between the conditions\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n        you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n        merge operator must be a string and connect two other arrays, availible values: or, and.\n        example:\n        [\"keyword_info.search_volume\",\">\",0]\n        [[\"keyword_info.search_volume\",\"in\",[0,1000]],\"and\",[\"keyword_info.competition_level\",\"=\",\"LOW\"]]\n        [[\"keyword_info.search_volume\",\">\",100],\"and\",[[\"keyword_info.cpc\",\"<\",0.5],\"or\",[\"keyword_info.high_top_of_page_bid\",\"<=\",0.5]]]"
+                  },
+                  "order_by": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "results sorting rules\n        optional field\n        you can use the same values as in the filters array to sort the results\n        possible sorting types:\n        asc \u2013 results will be sorted in the ascending order\n        desc \u2013 results will be sorted in the descending order\n        you should use a comma to set up a sorting type\n        example:\n        [\"keyword_info.competition,desc\"]\n        default rule:\n        [\"keyword_info.search_volume,desc\"]\n        note that you can set no more than three sorting rules in a single request\n        you should use a comma to separate several sorting rules\n        example:\n        [\"keyword_info.search_volume,desc\",\"keyword_info.cpc,desc\"]"
+                  }
+                },
+                "required": [
+                  "keywords"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/dataforseo_labs/google/historical_serp/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with Google SERPs collected within the specified time frame. You will also receive a complete overview of featured snippets and other extra elements that were present within the specified dates. The data will allow you to analyze the dynamics of keyword rankings over ",
+        "operationId": "dataforseo_labs_google_historical_serp",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "keyword": {
+                    "type": "string",
+                    "description": "target keyword"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "language code\n        required field\n        example:\n        en"
+                  }
+                },
+                "required": [
+                  "keyword"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/dataforseo_labs/bulk_keyword_difficulty/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with the Keyword Difficulty metric for a maximum of 1,000 keywords in one API request. Keyword Difficulty stands for the relative difficulty of ranking in the first top-10 organic results for the related keyword. Keyword Difficulty in DataForSEO API responses indicate",
+        "operationId": "datalabs_bulk_keyword_difficulty",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "keywords": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "target keywords\nrequired field\nUTF-8 encoding\nmaximum number of keywords you can specify in this array: 1000"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "language code\n        required field\n        example:\n        en"
+                  }
+                },
+                "required": [
+                  "keywords"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/dataforseo_labs/google/subdomains/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with a list of subdomains of the specified domain, along with the ranking distribution across organic and paid search. In addition to that, you will also get the estimated traffic volume of subdomains based on search volume.",
+        "operationId": "dataforseo_labs_google_subdomains",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "target": {
+                    "type": "string",
+                    "description": "target domain"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "language code\n        required field\n        example:\n        en"
+                  },
+                  "ignore_synonyms": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "ignore highly similar keywords, if set to true, results will be more accurate"
+                  },
+                  "limit": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 1000,
+                    "default": 10,
+                    "description": "Maximum number of keywords to return"
+                  },
+                  "offset": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords"
+                  },
+                  "filters": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": [
+                              "string",
+                              "number",
+                              "boolean"
+                            ]
+                          },
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "and",
+                            "or"
+                          ]
+                        }
+                      ]
+                    },
+                    "maxItems": 8,
+                    "description": "you can add several filters at once (8 filters maximum)\n        you should set a logical operator and, or between the conditions\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n        you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n        merge operator must be a string and connect two other arrays, availible values: or, and.\n        example:\n        [\"metrics.organic.count\",\">\",50]\n        [[\"metrics.organic.pos_1\",\"<>\",0],\"and\",[\"metrics.organic.impressions_etv\",\">=\",\"10\"]]\n        [[[\"metrics.organic.count\",\">=\",50],\"and\",[\"metrics.organic.pos_1\",\"in\",[1,5]]],\"or\",[\"metrics.organic.etv\",\">=\",\"100\"]]"
+                  },
+                  "order_by": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "results sorting rules\n        optional field\n        you can use the same values as in the filters array to sort the results\n        possible sorting types:\n        asc \u2013 results will be sorted in the ascending order\n        desc \u2013 results will be sorted in the descending order\n        you should use a comma to set up a sorting type\n        example:\n        [\"metrics.paid.etv,asc\"]\n        Note: you can set no more than three sorting rules in a single request\n        you should use a comma to separate several sorting rules\n        example:\n        [\"metrics.organic.etv,desc\",\"metrics.paid.count,asc\"]\n        default rule:\n        [\"metrics.organic.count,desc\"]"
+                  },
+                  "item_types": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "item types to return\n        optional field\n        default: ['organic']\n        possible values:\n        organic\n        paid"
+                  }
+                },
+                "required": [
+                  "target"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/dataforseo_labs/google/keyword_overview/live.ai": {
+      "post": {
+        "description": "This endpoint provides Google keyword data for specified keywords. For each keyword, you will receive current cost-per-click, competition values for paid search, search volume, search intent, monthly searches",
+        "operationId": "dataforseo_labs_google_keyword_overview",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "keywords": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "keywords\nrequired field\nThe maximum number of keywords you can specify: 700\nThe maximum number of characters for each keyword: 80\nThe maximum number of words for each keyword phrase: 10\nthe specified keywords will be converted to lowercase format, data will be provided in a separate array\nnote that if some of the keywords specified in this array are omitted in the results you receive, then our database doesn't contain such keywords and cannot return data on them\nyou will not be charged for the keywords omitted in the results"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "language code\n        required field\n        example:\n        en"
+                  }
+                },
+                "required": [
+                  "keywords"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/dataforseo_labs/google/keywords_for_site/live.ai": {
+      "post": {
+        "description": "The Keywords For Site endpoint will provide you with a list of keywords relevant to the target domain. Each keyword is supplied with relevant, search volume data for the last month, cost-per-click, competition",
+        "operationId": "dataforseo_labs_google_keywords_for_site",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "target": {
+                    "type": "string",
+                    "description": "target domain"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "language code\n        required field\n        example:\n        en"
+                  },
+                  "limit": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 1000,
+                    "default": 10,
+                    "description": "Maximum number of keywords to return"
+                  },
+                  "offset": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords"
+                  },
+                  "filters": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": [
+                              "string",
+                              "number",
+                              "boolean"
+                            ]
+                          },
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "and",
+                            "or"
+                          ]
+                        }
+                      ]
+                    },
+                    "maxItems": 8,
+                    "description": "you can add several filters at once (8 filters maximum)\n        you should set a logical operator and, or between the conditions\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n        you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n        merge operator must be a string and connect two other arrays, availible values: or, and.\n        example:\n      [\"keyword_info.search_volume\",\">\",0]\n[[\"keyword_info.search_volume\",\"in\",[0,1000]],\n\"and\",\n[\"keyword_info.competition_level\",\"=\",\"LOW\"]][[\"keyword_info.search_volume\",\">\",100],\n\"and\",\n[[\"keyword_info.cpc\",\"<\",0.5],\n\"or\",\n[\"keyword_info.high_top_of_page_bid\",\"<=\",0.5]]]"
+                  },
+                  "order_by": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "results sorting rules\n        optional field\n        you can use the same values as in the filters array to sort the results\n        possible sorting types:\n        asc \u2013 results will be sorted in the ascending order\n        desc \u2013 results will be sorted in the descending order\n        you should use a comma to set up a sorting type\n        example:\n        [\"keyword_data.keyword_info.competition,desc\"]\n        default rule:\n        [\"ranked_serp_element.serp_item.rank_group,asc\"]\n        note that you can set no more than three sorting rules in a single request\n        you should use a comma to separate several sorting rules\n        example:\n        [\"keyword_data.keyword_info.search_volume,desc\",\"keyword_data.keyword_info.cpc,desc\"]"
+                  },
+                  "include_subdomains": {
+                    "type": "boolean",
+                    "description": "Include keywords from subdomains"
+                  }
+                },
+                "required": [
+                  "target"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/dataforseo_labs/google/domain_intersection/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with the keywords for which both specified domains rank within the same SERP. You will get search volume, competition, cost-per-click and impressions data on each intersecting keyword. Along with that, you will get data on the first and second domain's SERP element di",
+        "operationId": "dataforseo_labs_google_domain_intersection",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "target1": {
+                    "type": "string",
+                    "description": "target domain 1"
+                  },
+                  "target2": {
+                    "type": "string",
+                    "description": "target domain 2 "
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "language code\n        required field\n        example:\n        en"
+                  },
+                  "ignore_synonyms": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "ignore highly similar keywords, if set to true, results will be more accurate"
+                  },
+                  "limit": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 1000,
+                    "default": 10,
+                    "description": "Maximum number of keywords to return"
+                  },
+                  "offset": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords"
+                  },
+                  "filters": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": [
+                              "string",
+                              "number",
+                              "boolean"
+                            ]
+                          },
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "and",
+                            "or"
+                          ]
+                        }
+                      ]
+                    },
+                    "maxItems": 8,
+                    "description": "you can add several filters at once (8 filters maximum)\n        you should set a logical operator and, or between the conditions\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n        you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n        merge operator must be a string and connect two other arrays, availible values: or, and.\n        example:\n        [\"keyword_data.keyword_info.search_volume\",\"in\",[100,1000]]\n        [[\"first_domain_serp_element.etv\",\">\",0],\"and\",[\"first_domain_serp_element.description\",\"like\",\"%goat%\"]]\n        [[\"keyword_data.keyword_info.search_volume\",\">\",100],\"and\",[[\"first_domain_serp_element.description\",\"like\",\"%goat%\"],\"or\",[\"second_domain_serp_element.type\",\"=\",\"organic\"]]]"
+                  },
+                  "order_by": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "results sorting rules\n        optional field\n        you can use the same values as in the filters array to sort the results\n        possible sorting types:\n        asc \u2013 results will be sorted in the ascending order\n        desc \u2013 results will be sorted in the descending order\n        you should use a comma to set up a sorting type\n        example:\n        [\"keyword_data.keyword_info.competition,desc\"]\n        default rule:\n        [\"keyword_data.keyword_info.search_volume,desc\"]\n        note that you can set no more than three sorting rules in a single request\n        you should use a comma to separate several sorting rules\n        example:\n        [\"keyword_data.keyword_info.search_volume,desc\",\"keyword_data.keyword_info.cpc,desc\"]"
+                  }
+                },
+                "required": [
+                  "target1",
+                  "target2"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/dataforseo_labs/google/historical_domain_rank_overview/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with historical data on rankings and traffic of the specified domain, such as domain ranking distribution in SERPs and estimated monthly traffic volume for both organic and paid results",
+        "operationId": "datalabs_google_historical_domain_rank_overview",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "target": {
+                    "type": "string",
+                    "description": "target domain"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "language code\n        required field\n        example:\n        en"
+                  },
+                  "ignore_synonyms": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "ignore highly similar keywords, if set to true, results will be more accurate"
+                  }
+                },
+                "required": [
+                  "target"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/dataforseo_labs/google/page_intersection/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with the keywords for which specified pages rank within the same SERP. You will get search volume, competition, cost-per-click and impressions data on each intersecting keyword. Along with that, you will get data on SERP elements that specified pages rank for in searc",
+        "operationId": "dataforseo_labs_google_page_intersection",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "pages": {
+                    "type": "object",
+                    "description": "Object containing two page values to compare",
+                    "properties": {
+                      "1": {
+                        "type": "string",
+                        "description": "First page URL or domain"
+                      },
+                      "2": {
+                        "type": "string",
+                        "description": "Second page URL or domain"
+                      }
+                    },
+                    "required": [
+                      "1",
+                      "2"
+                    ],
+                    "example": {
+                      "1": "example1.com",
+                      "2": "example2.com"
+                    }
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "language code\n        required field\n        example:\n        en"
+                  },
+                  "ignore_synonyms": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "ignore highly similar keywords, if set to true, results will be more accurate"
+                  },
+                  "limit": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 1000,
+                    "default": 10,
+                    "description": "Maximum number of keywords to return"
+                  },
+                  "offset": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords"
+                  },
+                  "filters": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": [
+                              "string",
+                              "number",
+                              "boolean"
+                            ]
+                          },
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "and",
+                            "or"
+                          ]
+                        }
+                      ]
+                    },
+                    "maxItems": 8,
+                    "description": "you can add several filters at once (8 filters maximum)\n        you should set a logical operator and, or between the conditions\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n        you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n        merge operator must be a string and connect two other arrays, availible values: or, and.\n        example:\n        [\"keyword_data.keyword_info.search_volume\",\"in\",[100,1000]]\n        [[\"first_domain_serp_element.etv\",\">\",0],\"and\",[\"first_domain_serp_element.description\",\"like\",\"%goat%\"]]\n        [[\"keyword_data.keyword_info.search_volume\",\">\",100],\"and\",[[\"first_domain_serp_element.description\",\"like\",\"%goat%\"],\"or\",[\"second_domain_serp_element.type\",\"=\",\"organic\"]]]"
+                  },
+                  "order_by": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "results sorting rules\n        optional field\n        you can use the same values as in the filters array to sort the results\n        possible sorting types:\n        asc \u2013 results will be sorted in the ascending order\n        desc \u2013 results will be sorted in the descending order\n        you should use a comma to set up a sorting type\n        example:\n        [\"keyword_data.keyword_info.competition,desc\"]\n        default rule:\n        [\"keyword_data.keyword_info.search_volume,desc\"]\n        note that you can set no more than three sorting rules in a single request\n        you should use a comma to separate several sorting rules\n        example:\n        [\"keyword_data.keyword_info.search_volume,desc\",\"keyword_data.keyword_info.cpc,desc\"]"
+                  }
+                },
+                "required": [
+                  "pages"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/dataforseo_labs/available_filters.ai": {
+      "get": {
+        "description": "Here you will find all the necessary information about filters that can be used with DataForSEO Labs API endpoints.\n\nPlease, keep in mind that filters are associated with a certain object in the result array, and should be specified accordingly.",
+        "operationId": "dataforseo_labs_available_filters"
+      }
+    },
+	    "/v3/backlinks/backlinks/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with a list of backlinks and relevant data for the specified domain, subdomain, or webpage",
+        "operationId": "backlinks_backlinks",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "target": {
+                    "type": "string",
+                    "description": "domain, subdomain or webpage to get backlinks for\n        required field\na domain or a subdomain should be specified without https:// and www.\na page should be specified with absolute URL (including http:// or https://)"
+                  },
+                  "mode": {
+                    "type": "string",
+                    "default": "as_is",
+                    "description": "results grouping type\noptional field\npossible grouping types:\nas_is \u2013 returns all backlinks\none_per_domain \u2013 returns one backlink per domain\none_per_anchor \u2013 returns one backlink per anchor\ndefault value: as_is"
+                  },
+                  "limit": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 1000,
+                    "default": 10,
+                    "description": "the maximum number of returned backlinks"
+                  },
+                  "offset": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "offset in the results array of the returned backlinks\noptional field\ndefault value: 0\nif you specify the 10 value, the first ten backlinks in the results array will be omitted and the data will be provided for the successive backlinks"
+                  },
+                  "filters": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": [
+                              "string",
+                              "number",
+                              "boolean"
+                            ]
+                          },
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "and",
+                            "or"
+                          ]
+                        }
+                      ]
+                    },
+                    "maxItems": 8,
+                    "description": "array of results filtering parameters\noptional field\nyou can add several filters at once (8 filters maximum)\nyou should set a logical operator and, or between the conditions\nthe following operators are supported:\n=, <>, in, not_in, like, not_like, ilike, not_ilike, regex, not_regex, match, not_match\nyou can use the % operator with like and not_like to match any string of zero or more characters\nexample:\n[\"rank\",\">\",\"80\"]\n[[\"page_from_rank\",\">\",\"55\"],\n\"and\",\n[\"dofollow\",\"=\",true]]\n\n[[\"first_seen\",\">\",\"2017-10-23 11:31:45 +00:00\"],\n\"and\",\n[[\"anchor\",\"like\",\"%seo%\"],\"or\",[\"text_pre\",\"like\",\"%seo%\"]]]"
+                  },
+                  "order_by": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"rank,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"domain_from_rank,desc\",\"page_from_rank,asc\"]"
+                  }
+                },
+                "required": [
+                  "target"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/backlinks/anchors/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with a detailed overview of anchors used when linking to the specified website with relevant backlink data for each of them",
+        "operationId": "backlinks_anchors",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "target": {
+                    "type": "string",
+                    "description": "domain, subdomain or webpage to get backlinks for\n        required field\na domain or a subdomain should be specified without https:// and www.\na page should be specified with absolute URL (including http:// or https://)"
+                  },
+                  "limit": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 1000,
+                    "default": 10,
+                    "description": "the maximum number of returned anchors"
+                  },
+                  "offset": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "offset in the results array of returned anchors\noptional field\ndefault value: 0\nif you specify the 10 value, the first ten anchors in the results array will be omitted and the data will be provided for the successive anchors"
+                  },
+                  "filters": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": [
+                              "string",
+                              "number",
+                              "boolean"
+                            ]
+                          },
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "and",
+                            "or"
+                          ]
+                        }
+                      ]
+                    },
+                    "maxItems": 8,
+                    "description": "array of results filtering parameters\noptional field\nyou can add several filters at once (8 filters maximum)\nyou should set a logical operator and, or between the conditions\nthe following operators are supported:\n=, <>, in, not_in, like, not_like, ilike, not_ilike, regex, not_regex, match, not_match\nyou can use the % operator with like and not_like to match any string of zero or more characters\nexample:\n[\"rank\",\">\",\"80\"]\n[[\"page_from_rank\",\">\",\"55\"],\n\"and\",\n[\"dofollow\",\"=\",true]]\n\n[[\"first_seen\",\">\",\"2017-10-23 11:31:45 +00:00\"],\n\"and\",\n[[\"anchor\",\"like\",\"%seo%\"],\"or\",[\"text_pre\",\"like\",\"%seo%\"]]]"
+                  },
+                  "order_by": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"rank,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"domain_from_rank,desc\",\"page_from_rank,asc\"]"
+                  }
+                },
+                "required": [
+                  "target"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/backlinks/domain_intersection/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with the list of domains pointing to the specified websites. This endpoint is especially useful for creating a Link Gap feature that shows what domains link to your competitors but do not link out to your website",
+        "operationId": "backlinks_domain_intersection",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "targets": {
+                    "type": "object",
+                    "description": "Object containing two target values to compare",
+                    "properties": {
+                      "1": {
+                        "type": "string",
+                        "description": "First target URL or domain"
+                      },
+                      "2": {
+                        "type": "string",
+                        "description": "Second target URL or domain"
+                      }
+                    },
+                    "required": [
+                      "1",
+                      "2"
+                    ],
+                    "example": {
+                      "1": "example1.com",
+                      "2": "example2.com"
+                    }
+                  },
+                  "limit": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 1000,
+                    "default": 10,
+                    "description": "the maximum number of returned results"
+                  },
+                  "offset": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "offset in the array of returned results\noptional field\ndefault value: 0\nif you specify the 10 value, the first ten backlinks in the results array will be omitted and the data will be provided for the successive backlinks"
+                  },
+                  "filters": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": [
+                              "string",
+                              "number",
+                              "boolean"
+                            ]
+                          },
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "and",
+                            "or"
+                          ]
+                        }
+                      ]
+                    },
+                    "maxItems": 8,
+                    "description": "array of results filtering parameters\noptional field\nyou can add several filters at once (8 filters maximum)\nyou should set a logical operator and, or between the conditions\nthe following operators are supported:\nregex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nyou can use the % operator with like and not_like to match any string of zero or more characters\nexample:\n[\"1.internal_links_count\",\">\",\"1\"]\n[[\"2.referring_pages\",\">\",\"2\"],\n\"and\",\n[\"1.backlinks\",\">\",\"10\"]]\n\n[[\"1.first_seen\",\">\",\"2017-10-23 11:31:45 +00:00\"],\n\"and\",\n[[\"2.target\",\"like\",\"%dataforseo.com%\"],\"or\",[\"1.referring_domains\",\">\",\"10\"]]]"
+                  },
+                  "order_by": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"backlinks,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"backlinks,desc\",\"rank,asc\"]"
+                  }
+                },
+                "required": [
+                  "targets"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/backlinks/domain_pages_summary/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with detailed summary data on all backlinks and related metrics for each page of the target domain or subdomain you specify. If you indicate a single page as a target, you will get comprehensive summary data on all backlinks for that page",
+        "operationId": "backlinks_domain_pages_summary",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "target": {
+                    "type": "string",
+                    "description": "domain, subdomain or webpage to get backlinks for\n        required field\na domain or a subdomain should be specified without https:// and www.\na page should be specified with absolute URL (including http:// or https://)"
+                  },
+                  "limit": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 1000,
+                    "default": 10,
+                    "description": "the maximum number of returned anchors"
+                  },
+                  "offset": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "offset in the results array of returned anchors\noptional field\ndefault value: 0\nif you specify the 10 value, the first ten anchors in the results array will be omitted and the data will be provided for the successive anchors"
+                  },
+                  "filters": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": [
+                              "string",
+                              "number",
+                              "boolean"
+                            ]
+                          },
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "and",
+                            "or"
+                          ]
+                        }
+                      ]
+                    },
+                    "maxItems": 8,
+                    "description": "array of results filtering parameters\noptional field\nyou can add several filters at once (8 filters maximum)\nyou should set a logical operator and, or between the conditions\nthe following operators are supported:\nregex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nyou can use the % operator with like and not_like to match any string of zero or more characters\nexample:\n[\"referring_links_types.anchors\",\">\",\"1\"]\n[[\"broken_pages\",\">\",\"2\"],\n\"and\",\n[\"backlinks\",\">\",\"10\"]]\n\n[[\"first_seen\",\">\",\"2017-10-23 11:31:45 +00:00\"],\n\"and\",\n[[\"anchor\",\"like\",\"%seo%\"],\"or\",[\"referring_domains\",\">\",\"10\"]]]"
+                  },
+                  "order_by": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"backlinks,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"backlinks,desc\",\"rank,asc\"]"
+                  }
+                },
+                "required": [
+                  "target"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/backlinks/domain_pages/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with a detailed overview of domain pages with backlink data for each page",
+        "operationId": "backlinks_domain_pages",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "target": {
+                    "type": "string",
+                    "description": "domain, subdomain or webpage to get backlinks for\n        required field\na domain or a subdomain should be specified without https:// and www.\na page should be specified with absolute URL (including http:// or https://)"
+                  },
+                  "limit": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 1000,
+                    "default": 10,
+                    "description": "the maximum number of returned pages"
+                  },
+                  "offset": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "offset in the results array of returned pages\noptional field\ndefault value: 0\nif you specify the 10 value, the first ten pages in the results array will be omitted and the data will be provided for the successive pages"
+                  },
+                  "filters": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": [
+                              "string",
+                              "number",
+                              "boolean"
+                            ]
+                          },
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "and",
+                            "or"
+                          ]
+                        }
+                      ]
+                    },
+                    "maxItems": 8,
+                    "description": "array of results filtering parameters\noptional field\nyou can add several filters at once (8 filters maximum)\nyou should set a logical operator and, or between the conditions\nthe following operators are supported:\nregex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nyou can use the % operator with like and not_like to match any string of zero or more characters\nexample:\n[\"meta.internal_links_count\",\">\",\"1\"]\n[[\"meta.external_links_count\",\">\",\"2\"],\n\"and\",\n[\"backlinks\",\">\",\"10\"]]\n\n[[\"first_visited\",\">\",\"2017-10-23 11:31:45 +00:00\"],\n\"and\",\n[[\"title\",\"like\",\"%seo%\"],\"or\",[\"referring_domains\",\">\",\"10\"]]]"
+                  },
+                  "order_by": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"page_summary.backlinks,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"page_summary.backlinks,desc\",\"page_summary.rank,asc\"]"
+                  }
+                },
+                "required": [
+                  "target"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/backlinks/page_intersection/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with the list of domains pointing to the specified websites. This endpoint is especially useful for creating a Link Gap feature that shows what domains link to your competitors but do not link out to your website",
+        "operationId": "backlinks_page_intersection",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "targets": {
+                    "type": "object",
+                    "description": "Object containing two target values to compare",
+                    "properties": {
+                      "1": {
+                        "type": "string",
+                        "description": "First target URL or domain"
+                      },
+                      "2": {
+                        "type": "string",
+                        "description": "Second target URL or domain"
+                      }
+                    },
+                    "required": [
+                      "1",
+                      "2"
+                    ],
+                    "example": {
+                      "1": "example1.com",
+                      "2": "example2.com"
+                    }
+                  },
+                  "limit": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 1000,
+                    "default": 10,
+                    "description": "the maximum number of returned results"
+                  },
+                  "offset": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "offset in the array of returned results\noptional field\ndefault value: 0\nif you specify the 10 value, the first ten backlinks in the results array will be omitted and the data will be provided for the successive backlinks"
+                  },
+                  "filters": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": [
+                              "string",
+                              "number",
+                              "boolean"
+                            ]
+                          },
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "and",
+                            "or"
+                          ]
+                        }
+                      ]
+                    },
+                    "maxItems": 8,
+                    "description": "array of results filtering parameters\noptional field\nyou can add several filters at once (8 filters maximum)\nyou should set a logical operator and, or between the conditions\nthe following operators are supported:\nregex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nyou can use the % operator with like and not_like to match any string of zero or more characters\nexample:\n[\"1.rank\",\">\",\"80\"]\n[[\"2.page_from_rank\",\">\",\"55\"],\n\"and\",\n[\"1.original\",\"=\",\"true\"]]\n\n[[\"1.first_seen\",\">\",\"2017-10-23 11:31:45 +00:00\"],\n\"and\",\n[[\"1.anchor\",\"like\",\"%seo%\"],\"or\",[\"1.text_pre\",\"not_like\",\"%seo%\"]]]"
+                  },
+                  "order_by": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"rank,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"domain_from_rank,desc\",\"page_from_rank,asc\"]"
+                  }
+                },
+                "required": [
+                  "targets"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/backlinks/referring_domains/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with a detailed overview of referring domains pointing to the target you specify",
+        "operationId": "backlinks_referring_domains",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "target": {
+                    "type": "string",
+                    "description": "domain, subdomain or webpage to get backlinks for\n        required field\na domain or a subdomain should be specified without https:// and www.\na page should be specified with absolute URL (including http:// or https://)"
+                  },
+                  "limit": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 1000,
+                    "default": 10,
+                    "description": "the maximum number of returned pages"
+                  },
+                  "offset": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "offset in the results array of returned pages\noptional field\ndefault value: 0\nif you specify the 10 value, the first ten pages in the results array will be omitted and the data will be provided for the successive pages"
+                  },
+                  "filters": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": [
+                              "string",
+                              "number",
+                              "boolean"
+                            ]
+                          },
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "and",
+                            "or"
+                          ]
+                        }
+                      ]
+                    },
+                    "maxItems": 8,
+                    "description": "array of results filtering parameters\noptional field\nyou can add several filters at once (8 filters maximum)\nyou should set a logical operator and, or between the conditions\nthe following operators are supported:\nregex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nyou can use the % operator with like and not_like to match any string of zero or more characters\nexample:\n[\"meta.internal_links_count\",\">\",\"1\"]\n[[\"meta.external_links_count\",\">\",\"2\"],\n\"and\",\n[\"backlinks\",\">\",\"10\"]]\n\n[[\"first_visited\",\">\",\"2017-10-23 11:31:45 +00:00\"],\n\"and\",\n[[\"title\",\"like\",\"%seo%\"],\"or\",[\"referring_domains\",\">\",\"10\"]]]"
+                  },
+                  "order_by": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"page_summary.backlinks,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"page_summary.backlinks,desc\",\"page_summary.rank,asc\"]"
+                  }
+                },
+                "required": [
+                  "target"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/backlinks/referring_networks/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with a detailed overview of referring domains pointing to the target you specify",
+        "operationId": "backlinks_referring_networks",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "target": {
+                    "type": "string",
+                    "description": "domain, subdomain or webpage to get backlinks for\n        required field\na domain or a subdomain should be specified without https:// and www.\na page should be specified with absolute URL (including http:// or https://)"
+                  },
+                  "network_address_type": {
+                    "type": "string",
+                    "default": "ip",
+                    "description": "indicates the type of network to get data for\noptional field\npossible values: ip, subnet\ndefault value: ip"
+                  },
+                  "limit": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 1000,
+                    "default": 10,
+                    "description": "the maximum number of returned networks"
+                  },
+                  "offset": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "offset in the results array of returned networks\noptional field\ndefault value: 0\nif you specify the 10 value, the first ten domains in the results array will be omitted and the data will be provided for the successive pages"
+                  },
+                  "filters": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": [
+                              "string",
+                              "number",
+                              "boolean"
+                            ]
+                          },
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "and",
+                            "or"
+                          ]
+                        }
+                      ]
+                    },
+                    "maxItems": 8,
+                    "description": "array of results filtering parameters\noptional field\nyou can add several filters at once (8 filters maximum)\nyou should set a logical operator and, or between the conditions\nthe following operators are supported:\nregex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nyou can use the % operator with like and not_like to match any string of zero or more characters\nexample:\n[\"referring_pages\",\">\",\"1\"]\n[[\"referring_pages\",\">\",\"2\"],\n\"and\",\n[\"backlinks\",\">\",\"10\"]]\n\n[[\"first_seen\",\">\",\"2017-10-23 11:31:45 +00:00\"],\n\"and\",\n[[\"network_address\",\"like\",\"194.1.%\"],\"or\",[\"referring_ips\",\">\",\"10\"]]]"
+                  },
+                  "order_by": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"backlinks,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"backlinks,desc\",\"rank,asc\"]"
+                  }
+                },
+                "required": [
+                  "target"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/backlinks/summary/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with an overview of backlinks data available for a given domain, subdomain, or webpage",
+        "operationId": "backlinks_summary",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "target": {
+                    "type": "string",
+                    "description": "domain, subdomain or webpage to get backlinks for\n        required field\na domain or a subdomain should be specified without https:// and www.\na page should be specified with absolute URL (including http:// or https://)"
+                  },
+                  "include_subdomains": {
+                    "type": "boolean",
+                    "description": "indicates if indirect links to the target will be included in the results\nif set to true, the results will include data on indirect links pointing to a page that either redirects to the target, or points to a canonical page\nif set to false, indirect links will be ignored",
+                    "default": true
+                  },
+                  "exclude_internal_backlinks": {
+                    "type": "boolean",
+                    "description": "indicates if internal backlinks from subdomains to the target will be excluded from the results\nif set to true, the results will not include data on internal backlinks from subdomains of the same domain as target\nif set to false, internal links will be included in the results",
+                    "default": true
+                  }
+                },
+                "required": [
+                  "target"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/backlinks/timeseries_new_lost_summary/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with the number of new and lost backlinks and referring domains for the domain specified in the target field.\nThe results will be provided for a period between the two indicated dates, and metrics will be grouped by the time range that you define: day, week, month, or",
+        "operationId": "backlinks_timeseries_new_lost_summary",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "target": {
+                    "type": "string",
+                    "description": "domain to get data for\nrequired field\na domain should be specified without https:// and www.\nexample:\n\"forbes.com\""
+                  },
+                  "date_from": {
+                    "type": "string",
+                    "description": "starting date of the time range\noptional field\nthis field indicates the date which will be used as a threshold for summary data;\nminimum value: 2019-01-30\nmaximum value shouldn\u2019t exceed the date specified in the date_to\ndate format: \"yyyy-mm-dd\"\nexample:\n\"2021-01-01\""
+                  },
+                  "date_to": {
+                    "type": "string",
+                    "description": "ending date of the time range\noptional field\nif you don\u2019t specify this field, the today\u2019s date will be used by default\nminimum value shouldn\u2019t preceed the date specified in the date_from\nmaximum value: today\u2019s date\ndate format: \"yyyy-mm-dd\"\nexample:\n\"2021-01-15\""
+                  },
+                  "group_range": {
+                    "type": "string",
+                    "description": "time range which will be used to group the results\noptional field\ndefault value: month\npossible values: day, week, month, year\nnote: for day, we will return items corresponding to all dates between and including date_from and date_to;\nfor week/month/year, we will return items corresponding to full weeks/months/years, where each item will indicate the last day of the week/month/year\n\nfor example, if you specify:\n\"group_range\": \"month\",\n\"date_from\": \"2022-03-23\",\n\"date_to\": \"2022-05-13\"\nwe will return items falling between 2022-03-01 and 2022-05-31, namely, three items corresponding to the following dates: 2022-03-31, 2022-04-30, 2022-05-31\n\nif there is no data for a certain day/week/month/year, we will return 0",
+                    "default": "month"
+                  }
+                },
+                "required": [
+                  "target"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/backlinks/timeseries_summary/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with an overview of backlink data for the target domain available during a period between the two indicated dates. Backlink metrics will be grouped by the time range that you define: day, week, month, or year.\nData from this endpoint will be especially helpful for bui",
+        "operationId": "backlinks_timeseries_summary",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "target": {
+                    "type": "string",
+                    "description": "domain to get data for\nrequired field\na domain should be specified without https:// and www.\nexample:\n\"forbes.com\""
+                  },
+                  "date_from": {
+                    "type": "string",
+                    "description": "starting date of the time range\noptional field\nthis field indicates the date which will be used as a threshold for summary data;\nminimum value: 2019-01-30\nmaximum value shouldn\u2019t exceed the date specified in the date_to\ndate format: \"yyyy-mm-dd\"\nexample:\n\"2021-01-01\""
+                  },
+                  "date_to": {
+                    "type": "string",
+                    "description": "ending date of the time range\noptional field\nif you don\u2019t specify this field, the today\u2019s date will be used by default\nminimum value shouldn\u2019t preceed the date specified in the date_from\nmaximum value: today\u2019s date\ndate format: \"yyyy-mm-dd\"\nexample:\n\"2021-01-15\""
+                  },
+                  "group_range": {
+                    "type": "string",
+                    "description": "time range which will be used to group the results\noptional field\ndefault value: month\npossible values: day, week, month, year\nnote: for day, we will return items corresponding to all dates between and including date_from and date_to;\nfor week/month/year, we will return items corresponding to full weeks/months/years, where each item will indicate the last day of the week/month/year\n\nfor example, if you specify:\n\"group_range\": \"month\",\n\"date_from\": \"2022-03-23\",\n\"date_to\": \"2022-05-13\"\nwe will return items falling between 2022-03-01 and 2022-05-31, namely, three items corresponding to the following dates: 2022-03-31, 2022-04-30, 2022-05-31\n\nif there is no data for a certain day/week/month/year, we will return 0",
+                    "default": "month"
+                  }
+                },
+                "required": [
+                  "target"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+	"/v3/backlinks/bulk_pages_summary/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with a comprehensive overview of backlinks and related data for a bulk of up to 1000 pages, domains, or subdomains. If you indicate a single page as a target, you will get comprehensive summary data on all backlinks for that page.",
+        "operationId": "bulk_pages_summary",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "targets": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "domains, subdomains or webpages to get rank for\nrequired field\nyou can set up to 1000 domains, subdomains or webpages\nthe domain or subdomain should be specified without https:// and www.\nthe page should be specified with absolute URL (including http:// or https://)\nexample:\n\"targets\": [\n\"forbes.com\",\n\"cnn.com\",\n\"bbc.com\",\n\"yelp.com\",\n\"https://www.apple.com/iphone/\",\n\"https://ahrefs.com/blog/\",\n\"ibm.com\",\n\"https://variety.com/\",\n\"https://stackoverflow.com/\",\n\"www.trustpilot.com\"\n]"
+                  },
+                  "rank_scale": {
+                    "type": "string",
+                    "description": "defines the scale used for calculating and displaying the rank, domain_from_rank, and page_from_rank values\noptional field\nyou can use this parameter to choose whether rank values are presented on a 0\u2013100 or 0\u20131000 scale\npossible values:\none_hundred \u2014 rank values are displayed on a 0\u2013100 scale\none_thousand \u2014 rank values are displayed on a 0\u20131000 scale",
+                    "default": "one_thousand"
+                  }
+                },
+                "required": [
+                  "targets"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/backlinks/available_filters.ai": {
+      "get": {
+        "description": "Here you will find all the necessary information about filters that can be used with DataForSEO Backlinks API endpoints.\n\nPlease, keep in mind that filters are associated with a certain object in the result array, and should be specified accordingly.",
+        "operationId": "backlinks_available_filters"
+      }
+    }
+  }
+}
