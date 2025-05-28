@@ -10,15 +10,6 @@
       "url": "https://api.dataforseo.com"
     }
   ],
-  "components": {
-  "securitySchemes": {
-    "basicAuth": {
-      "type": "http",
-      "scheme": "basic",
-      "description": "Enter your DataForSEO credentials. The system will encode 'username:password' to Basic Auth format."
-    }
-  }
-},
   "paths": {
     "/v3/serp/{search_engine}/organic/live/advanced.ai": {
       "post": {
