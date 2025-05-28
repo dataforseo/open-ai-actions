@@ -17,7 +17,7 @@ The repository includes OpenAPI 3.1.0 specifications for the following DataForSE
 
 ## Researcher Toolkit
 
-The `dataforseo_researcher_toolkit.json` file provides a streamlined OpenAPI specification tailored for the [ChatGPT Researcher Toolkit](https://platform.openai.com/docs/assistants/overview). This toolkit enables researchers, analysts, and SEO professionals to:
+The `dataforseo_researcher_toolkit.json` file provides a streamlined OpenAPI specification. This toolkit enables researchers, analysts, and SEO professionals to:
 
 - Run advanced SEO research and analysis directly within ChatGPT.
 - Automate workflows for keyword research, competitor analysis, SERP tracking, backlink audits, and content analysis.
