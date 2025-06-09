@@ -81,7 +81,7 @@
                     "items": {
                       "type": "string"
                     },
-                    "description": "results sorting rules\n        optional field\n        you can use the same values as in the filters array to sort the results\n        possible sorting types:\n        asc \u2013 results will be sorted in the ascending order\n        desc \u2013 results will be sorted in the descending order\n        you should use a comma to set up a sorting type\n        example:\n        [\"keyword_data.keyword_info.competition,desc\"]\n        default rule:\n        [\"ranked_serp_element.serp_item.rank_group,asc\"]\n        note that you can set no more than three sorting rules in a single request\n        you should use a comma to separate several sorting rules\n        example:\n        [\"keyword_data.keyword_info.search_volume,desc\",\"keyword_data.keyword_info.cpc,desc\"]"
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"keyword_data.keyword_info.competition,desc\"]\ndefault rule:\n[\"ranked_serp_element.serp_item.rank_group,asc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"keyword_data.keyword_info.search_volume,desc\",\"keyword_data.keyword_info.cpc,desc\"]"
                   },
                   "include_subdomains": {
                     "type": "boolean",
@@ -101,7 +101,6 @@
         }
       }
     },
-
     "/v3/dataforseo_labs/google/competitors_domain/live.ai": {
       "post": {
         "description": "This endpoint will provide you with a full overview of ranking and traffic data of the competitor domains from organic and paid search. In addition to that, you will get the metrics specific to the keywords both competitor domains and your domain rank for within the same SERP.",
@@ -197,7 +196,7 @@
     "/v3/dataforseo_labs/google/domain_rank_overview/live.ai": {
       "post": {
         "description": "This endpoint will provide you with ranking and traffic data from organic and paid search for the specified domain. You will be able to review the domain ranking distribution in SERPs as well as estimated monthly traffic volume for both organic and paid results.",
-        "operationId": "datalabs_google_domain_rank_overview",
+        "operationId": "dataforseo_labs_google_domain_rank_overview",
         "requestBody": {
           "required": true,
           "content": {
@@ -396,7 +395,7 @@
                     "items": {
                       "type": "string"
                     },
-                    "description": "results sorting rules\n        optional field\n        you can use the same values as in the filters array to sort the results\n        possible sorting types:\n        asc \u2013 results will be sorted in the ascending order\n        desc \u2013 results will be sorted in the descending order\n        you should use a comma to set up a sorting type\n        example:\n        [\"keyword_data.keyword_info.competition,desc\"]\n        default rule:\n        [\"ranked_serp_element.serp_item.rank_group,asc\"]\n        note that you can set no more than three sorting rules in a single request\n        you should use a comma to separate several sorting rules\n        example:\n        [\"keyword_data.keyword_info.search_volume,desc\",\"keyword_data.keyword_info.cpc,desc\"]"
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"keyword_data.keyword_info.competition,desc\"]\ndefault rule:\n[\"keyword_data.keyword_info.search_volume,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"keyword_data.keyword_info.search_volume,desc\",\"keyword_data.keyword_info.cpc,desc\"]"
                   }
                 },
                 "required": [
@@ -411,7 +410,7 @@
     "/v3/dataforseo_labs/google/keyword_suggestions/live.ai": {
       "post": {
         "description": "The Keyword Suggestions provides search queries that include the specified seed keyword.\n\nThe algorithm is based on the full-text search for the specified keyword and therefore returns only those search terms that contain the keyword you set in the POST array with additional words before, after, or",
-        "operationId": "datalabs_google_keyword_suggestions",
+        "operationId": "dataforseo_labs_google_keyword_suggestions",
         "requestBody": {
           "required": true,
           "content": {
@@ -478,7 +477,7 @@
                     "items": {
                       "type": "string"
                     },
-                    "description": "results sorting rules\n        optional field\n        you can use the same values as in the filters array to sort the results\n        possible sorting types:\n        asc \u2013 results will be sorted in the ascending order\n        desc \u2013 results will be sorted in the descending order\n        you should use a comma to set up a sorting type\n        example:\n        [\"keyword_data.keyword_info.competition,desc\"]\n        default rule:\n        [\"ranked_serp_element.serp_item.rank_group,asc\"]\n        note that you can set no more than three sorting rules in a single request\n        you should use a comma to separate several sorting rules\n        example:\n        [\"keyword_data.keyword_info.search_volume,desc\",\"keyword_data.keyword_info.cpc,desc\"]"
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\na comma is used as a separator\nexample:\n[\"keyword_info.competition,desc\"]\ndefault rule:\n[\"keyword_info.search_volume,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"keyword_info.search_volume,desc\",\"keyword_info.cpc,desc\"]"
                   }
                 },
                 "required": [
@@ -598,7 +597,7 @@
                     "items": {
                       "type": "string"
                     },
-                    "description": "results sorting rules\n        optional field\n        you can use the same values as in the filters array to sort the results\n        possible sorting types:\n        asc \u2013 results will be sorted in the ascending order\n        desc \u2013 results will be sorted in the descending order\n        you should use a comma to set up a sorting type\n        example:\n        [\"keyword_data.keyword_info.competition,desc\"]\n        default rule:\n        [\"ranked_serp_element.serp_item.rank_group,asc\"]\n        note that you can set no more than three sorting rules in a single request\n        you should use a comma to separate several sorting rules\n        example:\n        [\"keyword_data.keyword_info.search_volume,desc\",\"keyword_data.keyword_info.cpc,desc\"]"
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nthe comma is used as a separator\nexample:\n[\"avg_position,asc\"]\ndefault rule:\n[\"rating,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"avg_position,asc\",\"etv,desc\"]"
                   },
                   "include_subdomains": {
                     "type": "boolean",
@@ -617,7 +616,7 @@
     "/v3/dataforseo_labs/bulk_keyword_difficulty/live.ai": {
       "post": {
         "description": "This endpoint will provide you with the Keyword Difficulty metric for a maximum of 1,000 keywords in one API request. Keyword Difficulty stands for the relative difficulty of ranking in the first top-10 organic results for the related keyword. Keyword Difficulty in DataForSEO API responses indicate",
-        "operationId": "datalabs_bulk_keyword_difficulty",
+        "operationId": "dataforseo_labs_bulk_keyword_difficulty",
         "requestBody": {
           "required": true,
           "content": {
@@ -727,7 +726,7 @@
                     "items": {
                       "type": "string"
                     },
-                    "description": "results sorting rules\n        optional field\n        you can use the same values as in the filters array to sort the results\n        possible sorting types:\n        asc \u2013 results will be sorted in the ascending order\n        desc \u2013 results will be sorted in the descending order\n        you should use a comma to set up a sorting type\n        example:\n        [\"metrics.paid.etv,asc\"]\n        Note: you can set no more than three sorting rules in a single request\n        you should use a comma to separate several sorting rules\n        example:\n        [\"metrics.organic.etv,desc\",\"metrics.paid.count,asc\"]\n        default rule:\n        [\"metrics.organic.count,desc\"]"
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to specify a sorting type\nexample:\n[\"metrics.paid.etv,asc\"]\nNote: you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"metrics.organic.etv,desc\",\"metrics.paid.count,asc\"]\ndefault rule:\n[\"metrics.organic.count,desc\"]"
                   },
                   "item_types": {
                     "type": "array",
@@ -850,7 +849,7 @@
                     "items": {
                       "type": "string"
                     },
-                    "description": "results sorting rules\n        optional field\n        you can use the same values as in the filters array to sort the results\n        possible sorting types:\n        asc \u2013 results will be sorted in the ascending order\n        desc \u2013 results will be sorted in the descending order\n        you should use a comma to set up a sorting type\n        example:\n        [\"keyword_data.keyword_info.competition,desc\"]\n        default rule:\n        [\"ranked_serp_element.serp_item.rank_group,asc\"]\n        note that you can set no more than three sorting rules in a single request\n        you should use a comma to separate several sorting rules\n        example:\n        [\"keyword_data.keyword_info.search_volume,desc\",\"keyword_data.keyword_info.cpc,desc\"]"
+                    "description": "resuresults sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"keyword_info.competition,desc\"]\ndefault rule:\n[\"keyword_info.search_volume,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"keyword_info.search_volume,desc\",\"keyword_info.cpc,desc\"]"
                   }
                 },
                 "required": []
@@ -863,7 +862,7 @@
     "/v3/dataforseo_labs/search_intent/live.ai": {
       "post": {
         "description": "This endpoint will provide you with search intent data for up to 1,000 keywords. For each keyword that you specify when setting a task, the API will return the keyword's search intent and intent probability. Besides the highest probable search intent, the results will also provide you with other li",
-        "operationId": "datalabs_search_intent",
+        "operationId": "dataforseo_labs_search_intent",
         "requestBody": {
           "required": true,
           "content": {
@@ -963,7 +962,7 @@
                     "items": {
                       "type": "string"
                     },
-                    "description": "results sorting rules\n        optional field\n        you can use the same values as in the filters array to sort the results\n        possible sorting types:\n        asc \u2013 results will be sorted in the ascending order\n        desc \u2013 results will be sorted in the descending order\n        you should use a comma to set up a sorting type\n        example:\n        [\"keyword_data.keyword_info.competition,desc\"]\n        default rule:\n        [\"ranked_serp_element.serp_item.rank_group,asc\"]\n        note that you can set no more than three sorting rules in a single request\n        you should use a comma to separate several sorting rules\n        example:\n        [\"keyword_data.keyword_info.search_volume,desc\",\"keyword_data.keyword_info.cpc,desc\"]"
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\ndefault rule:\n[\"relevance,desc\"]\nexample:\n[\"relevance,desc\",\"keyword_info.search_volume,desc\"]"
                   },
                   "include_subdomains": {
                     "type": "boolean",
@@ -1058,7 +1057,7 @@
                     "items": {
                       "type": "string"
                     },
-                    "description": "results sorting rules\n        optional field\n        you can use the same values as in the filters array to sort the results\n        possible sorting types:\n        asc \u2013 results will be sorted in the ascending order\n        desc \u2013 results will be sorted in the descending order\n        you should use a comma to set up a sorting type\n        example:\n        [\"keyword_data.keyword_info.competition,desc\"]\n        default rule:\n        [\"keyword_data.keyword_info.search_volume,desc\"]\n        note that you can set no more than three sorting rules in a single request\n        you should use a comma to separate several sorting rules\n        example:\n        [\"keyword_data.keyword_info.search_volume,desc\",\"keyword_data.keyword_info.cpc,desc\"]"
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\nexample:\n[\"keyword_data.keyword_info.competition,desc\"]\ndefault rule:\n[\"keyword_data.keyword_info.search_volume,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"keyword_data.keyword_info.search_volume,desc\",\"keyword_data.keyword_info.cpc,desc\"]"
                   },
                   "intersections": {
                     "type": "boolean",
@@ -1079,7 +1078,7 @@
     "/v3/dataforseo_labs/google/historical_rank_overview/live.ai": {
       "post": {
         "description": "This endpoint will provide you with historical data on rankings and traffic of the specified domain, such as domain ranking distribution in SERPs and estimated monthly traffic volume for both organic and paid results",
-        "operationId": "datalabs_google_historical_rank_overview",
+        "operationId": "dataforseo_labs_google_historical_rank_overview",
         "requestBody": {
           "required": true,
           "content": {
@@ -1224,11 +1223,54 @@
                     "items": {
                       "type": "string"
                     },
-                    "description": "results sorting rules\n        optional field\n        you can use the same values as in the filters array to sort the results\n        possible sorting types:\n        asc \u2013 results will be sorted in the ascending order\n        desc \u2013 results will be sorted in the descending order\n        you should use a comma to set up a sorting type\n        example:\n        [\"keyword_data.keyword_info.competition,desc\"]\n        default rule:\n        [\"keyword_data.keyword_info.search_volume,desc\"]\n        note that you can set no more than three sorting rules in a single request\n        you should use a comma to separate several sorting rules\n        example:\n        [\"keyword_data.keyword_info.search_volume,desc\",\"keyword_data.keyword_info.cpc,desc\"]"
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\nexample:\n[\"keyword_data.keyword_info.competition,desc\"]\ndefault rule:\n[\"keyword_data.keyword_info.search_volume,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"intersection_result.1.rank_group,asc\",\"intersection_result.2.rank_absolute,asc\"]"
                   }
                 },
                 "required": [
                   "pages"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/dataforseo_labs/bulk_traffic_estimation/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with estimated monthly traffic volumes for up to 1,000 domains, subdomains, or webpages. Along with organic search traffic estimations, you will also get separate values for paid search, featured snippet, and local pack results.",
+        "operationId": "dataforseo_labs_bulk_traffic_estimation",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "targets": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "target domains, subdomains, and webpages.\n        you can specify domains, subdomains, and webpages in this field;\ndomains and subdomains should be specified without https:// and www.;\npages should be specified with absolute URL, including https:// and www.;\nyou can set up to 1000 domains, subdomains or webpages"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "language code\n        required field\n        example:\n        en"
+                  },
+                  "ignore_synonyms": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "ignore highly similar keywords, if set to true, results will be more accurate"
+                  }
+                },
+                "required": [
+                  "targets"
                 ]
               }
             }
