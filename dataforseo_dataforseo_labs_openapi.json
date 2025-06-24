@@ -510,10 +510,10 @@
         }
       }
     },
-    "/v3/dataforseo_labs/google/historical_serp/live.ai": {
+    "/v3/dataforseo_labs/google/historical_serps/live.ai": {
       "post": {
         "description": "This endpoint will provide you with Google SERPs collected within the specified time frame. You will also receive a complete overview of featured snippets and other extra elements that were present within the specified dates. The data will allow you to analyze the dynamics of keyword rankings over ",
-        "operationId": "dataforseo_labs_google_historical_serp",
+        "operationId": "dataforseo_labs_google_historical_serps",
         "requestBody": {
           "required": true,
           "content": {
