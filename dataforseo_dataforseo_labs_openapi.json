@@ -87,9 +87,10 @@
                     "type": "boolean",
                     "description": "Include keywords from subdomains"
                   },
-                  "include_serp_info": {
+                  "include_clickstream_data": {
                     "type": "boolean",
-                    "description": "Include SERP information"
+                    "default": false,
+                    "description": "Include or exclude data from clickstream-based metrics in the result"
                   }
                 },
                 "required": [
@@ -176,12 +177,17 @@
                     "items": {
                       "type": "string"
                     },
-                    "description": "results sorting rules\n        optional field\n        you can use the same values as in the filters array to sort the results\n        possible sorting types:\n        asc \u2013 results will be sorted in the ascending order\n        desc \u2013 results will be sorted in the descending order\n        you should use a comma to set up a sorting type\n        example:\n        [\"metrics.paid.etv,asc\"]\n        Note: you can set no more than three sorting rules in a single request\n        you should use a comma to separate several sorting rules\n        example:\n        [\"metrics.organic.etv,desc\",\"metrics.paid.count,asc\"]\n        default rule:\n        [\"metrics.organic.count,desc\"]"
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\ndefault rule:\n[\"relevance,desc\"]\nexample:\n[\"relevance,desc\",\"keyword_info.search_volume,desc\"]"
                   },
                   "exclude_top_domains": {
                     "type": "boolean",
                     "default": true,
                     "description": "indicates whether to exclude world's largest websites\n        optional field\n        default value: false\n        set to true if you want to get highly-relevant competitors excluding the top websites"
+                  },
+                  "include_clickstream_data": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Include or exclude data from clickstream-based metrics in the result"
                   }
                 },
                 "required": [
@@ -306,7 +312,12 @@
                     "items": {
                       "type": "string"
                     },
-                    "description": "results sorting rules\n        optional field\n        you can use the same values as in the filters array to sort the results\n        possible sorting types:\n        asc \u2013 results will be sorted in the ascending order\n        desc \u2013 results will be sorted in the descending order\n        you should use a comma to set up a sorting type\n        example:\n        [\"keyword_info.competition,desc\"]\n        default rule:\n        [\"keyword_info.search_volume,desc\"]\n        note that you can set no more than three sorting rules in a single request\n        you should use a comma to separate several sorting rules\n        example:\n        [\"keyword_info.search_volume,desc\",\"keyword_info.cpc,desc\"]"
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\ndefault rule:\n[\"relevance,desc\"]\nrelevance is used as the default sorting rule to provide you with the closest keyword ideas. We recommend using this sorting rule to get highly-relevant search terms. Note that relevance is only our internal system identifier, so it can not be used as a filter, and you will not find this field in the result array. The relevance score is based on a similar principle as used in the Keywords For Keywords endpoint.\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"relevance,desc\",\"keyword_info.search_volume,desc\"]"
+                  },
+                  "include_clickstream_data": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Include or exclude data from clickstream-based metrics in the result"
                   }
                 },
                 "required": [
@@ -396,6 +407,11 @@
                       "type": "string"
                     },
                     "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"keyword_data.keyword_info.competition,desc\"]\ndefault rule:\n[\"keyword_data.keyword_info.search_volume,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"keyword_data.keyword_info.search_volume,desc\",\"keyword_data.keyword_info.cpc,desc\"]"
+                  },
+                  "include_clickstream_data": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Include or exclude data from clickstream-based metrics in the result"
                   }
                 },
                 "required": [
@@ -478,6 +494,11 @@
                       "type": "string"
                     },
                     "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\na comma is used as a separator\nexample:\n[\"keyword_info.competition,desc\"]\ndefault rule:\n[\"keyword_info.search_volume,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"keyword_info.search_volume,desc\",\"keyword_info.cpc,desc\"]"
+                  },
+                  "include_clickstream_data": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Include or exclude data from clickstream-based metrics in the result"
                   }
                 },
                 "required": [
@@ -734,6 +755,11 @@
                       "type": "string"
                     },
                     "description": "item types to return\n        optional field\n        default: ['organic']\n        possible values:\n        organic\n        paid"
+                  },
+                  "include_clickstream_data": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Include or exclude data from clickstream-based metrics in the result"
                   }
                 },
                 "required": [
@@ -772,6 +798,11 @@
                     "type": "string",
                     "default": "en",
                     "description": "language code\n        required field\n        example:\n        en"
+                  },
+                  "include_clickstream_data": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Include or exclude data from clickstream-based metrics in the result"
                   }
                 },
                 "required": [
@@ -850,6 +881,11 @@
                       "type": "string"
                     },
                     "description": "resuresults sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"keyword_info.competition,desc\"]\ndefault rule:\n[\"keyword_info.search_volume,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"keyword_info.search_volume,desc\",\"keyword_info.cpc,desc\"]"
+                  },
+                  "include_clickstream_data": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Include or exclude data from clickstream-based metrics in the result"
                   }
                 },
                 "required": []
@@ -967,6 +1003,11 @@
                   "include_subdomains": {
                     "type": "boolean",
                     "description": "Include keywords from subdomains"
+                  },
+                  "include_clickstream_data": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Include or exclude data from clickstream-based metrics in the result"
                   }
                 },
                 "required": [
@@ -1063,6 +1104,11 @@
                     "type": "boolean",
                     "description": "domain intersections in SERP\noptional field\nif you set intersections to true, you will get the keywords for which both target domains specified as target1 and target2 have results within the same SERP; the corresponding SERP elements for both domains will be provided in the results array\nNote: this endpoint will not provide results if the number of intersecting keywords exceeds 10 million\nif you specify intersections: false, you will get the keywords for which the domain specified as target1 has results in SERP, and the domain specified as target2 doesn\u2019t;\nthus, the corresponding SERP elements and other data will be provided for the domain specified as target1only\ndefault value: true",
                     "default": true
+                  },
+                  "include_clickstream_data": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Include or exclude data from clickstream-based metrics in the result"
                   }
                 },
                 "required": [
@@ -1104,6 +1150,11 @@
                     "type": "boolean",
                     "default": true,
                     "description": "ignore highly similar keywords, if set to true, results will be more accurate"
+                  },
+                  "include_clickstream_data": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Include or exclude data from clickstream-based metrics in the result"
                   }
                 },
                 "required": [
@@ -1224,6 +1275,11 @@
                       "type": "string"
                     },
                     "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\nexample:\n[\"keyword_data.keyword_info.competition,desc\"]\ndefault rule:\n[\"keyword_data.keyword_info.search_volume,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"intersection_result.1.rank_group,asc\",\"intersection_result.2.rank_absolute,asc\"]"
+                  },
+                  "include_clickstream_data": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Include or exclude data from clickstream-based metrics in the result"
                   }
                 },
                 "required": [
@@ -1282,6 +1338,44 @@
       "get": {
         "description": "Here you will find all the necessary information about filters that can be used with DataForSEO Labs API endpoints.\n\nPlease, keep in mind that filters are associated with a certain object in the result array, and should be specified accordingly.",
         "operationId": "dataforseo_labs_available_filters"
+      }
+    },
+    "/v3/dataforseo_labs/google/historical_keyword_data/live.ai": {
+      "post": {
+        "description": "This endpoint provides Google historical keyword data for specified keywords, including search volume, cost-per-click, competition values for paid search, monthly searches, and search volume trends. You can get historical keyword data since August, 2021, depending on keywords along with location an",
+        "operationId": "dataforseo_labs_google_historical_keyword_data",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "keywords": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "keywords\nrequired field\nThe maximum number of keywords you can specify: 700\nThe maximum number of characters for each keyword: 80\nThe maximum number of words for each keyword phrase: 10\nthe specified keywords will be converted to lowercase format, data will be provided in a separate array\nnote that if some of the keywords specified in this array are omitted in the results you receive, then our database doesn't contain such keywords and cannot return data on them\nyou will not be charged for the keywords omitted in the results"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "language code\n        required field\n        example:\n        en"
+                  }
+                },
+                "required": [
+                  "keywords"
+                ]
+              }
+            }
+          }
+        }
       }
     }
   }

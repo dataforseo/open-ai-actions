@@ -23,13 +23,20 @@
                 "type": "object",
                 "properties": {
                   "location_name": {
-                    "type": "string",
-                    "default": "United States",
-                    "description": "full name of the location\n        required field\n        in format \"Country\"\n        example:\n        United Kingdom"
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "default": null,
+                    "description": "full name of the location\noptional field\nin format \"Country\"\nexample:\nUnited Kingdom"
                   },
                   "language_code": {
-                    "type": "string",
-                    "description": "Language code (e.g., 'en')"
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "default": null,
+                    "description": "Language two-letter ISO code (e.g., 'en').\noptional field"
                   },
                   "keywords": {
                     "type": "array",
@@ -40,7 +47,319 @@
                   }
                 },
                 "required": [
-                  "language_code",
+                  "keywords"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/keywords_data/dataforseo_trends/demography/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with the demographic breakdown (by age and gender) of keyword popularity per each specified term based on DataForSEO Trends data",
+        "operationId": "keywords_data_dataforseo_trends_demography",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "location_name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "default": null,
+                    "description": "full name of the location\n        optional field\n        in format \"Country\"\n        example:\n        United Kingdom"
+                  },
+                  "keywords": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "keywords\n        the maximum number of keywords you can specify: 5"
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "web",
+                      "news",
+                      "ecommerce"
+                    ],
+                    "default": "web",
+                    "description": "dataforseo trends type"
+                  },
+                  "date_from": {
+                    "type": "string",
+                    "description": "starting date of the time range\n          if you don\u2019t specify this field, the current day and month of the preceding year will be used by default\n          minimal value for the web type: 2004-01-01\n          minimal value for other types: 2008-01-01\n          date format: \"yyyy-mm-dd\"\n          example:\n          \"2019-01-15\""
+                  },
+                  "date_to": {
+                    "type": "string",
+                    "description": "ending date of the time range\n            if you don\u2019t specify this field, the today\u2019s date will be used by default\n            date format: \"yyyy-mm-dd\"\n            example:\n            \"2019-01-15\""
+                  },
+                  "time_range": {
+                    "type": "string",
+                    "enum": [
+                      "past_4_hours",
+                      "past_day",
+                      "past_7_days",
+                      "past_30_days",
+                      "past_90_days",
+                      "past_12_months",
+                      "past_5_years"
+                    ],
+                    "default": "past_7_days",
+                    "description": "preset time ranges\n            if you specify date_from or date_to parameters, this field will be ignored when setting a task"
+                  }
+                },
+                "required": [
+                  "keywords"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/keywords_data/dataforseo_trends/subregion_interests/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with location-specific keyword popularity data from DataForSEO Trends",
+        "operationId": "keywords_data_dataforseo_trends_subregion_interests",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "location_name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "default": null,
+                    "description": "full name of the location\n        optional field\n        in format \"Country\"\n        example:\n        United Kingdom"
+                  },
+                  "keywords": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "keywords\n        the maximum number of keywords you can specify: 5"
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "web",
+                      "news",
+                      "ecommerce"
+                    ],
+                    "default": "web",
+                    "description": "dataforseo trends type"
+                  },
+                  "date_from": {
+                    "type": "string",
+                    "description": "starting date of the time range\n          if you don\u2019t specify this field, the current day and month of the preceding year will be used by default\n          minimal value for the web type: 2004-01-01\n          minimal value for other types: 2008-01-01\n          date format: \"yyyy-mm-dd\"\n          example:\n          \"2019-01-15\""
+                  },
+                  "date_to": {
+                    "type": "string",
+                    "description": "ending date of the time range\n            if you don\u2019t specify this field, the today\u2019s date will be used by default\n            date format: \"yyyy-mm-dd\"\n            example:\n            \"2019-01-15\""
+                  },
+                  "time_range": {
+                    "type": "string",
+                    "enum": [
+                      "past_4_hours",
+                      "past_day",
+                      "past_7_days",
+                      "past_30_days",
+                      "past_90_days",
+                      "past_12_months",
+                      "past_5_years"
+                    ],
+                    "default": "past_7_days",
+                    "description": "preset time ranges\n            if you specify date_from or date_to parameters, this field will be ignored when setting a task"
+                  }
+                },
+                "required": [
+                  "keywords"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/keywords_data/dataforseo_trends/explore/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with the keyword popularity data from DataForSEO Trends. You can check keyword trends for Google Search, Google News, and Google Shopping",
+        "operationId": "keywords_data_dataforseo_trends_explore",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "location_name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "default": null,
+                    "description": "full name of the location\n        optional field\n        in format \"Country\"\n        example:\n        United Kingdom"
+                  },
+                  "keywords": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "keywords\n        the maximum number of keywords you can specify: 5"
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "web",
+                      "news",
+                      "ecommerce"
+                    ],
+                    "default": "web",
+                    "description": "dataforseo trends type"
+                  },
+                  "date_from": {
+                    "type": "string",
+                    "description": "starting date of the time range\n          if you don\u2019t specify this field, the current day and month of the preceding year will be used by default\n          minimal value for the web type: 2004-01-01\n          minimal value for other types: 2008-01-01\n          date format: \"yyyy-mm-dd\"\n          example:\n          \"2019-01-15\""
+                  },
+                  "date_to": {
+                    "type": "string",
+                    "description": "ending date of the time range\n            if you don\u2019t specify this field, the today\u2019s date will be used by default\n            date format: \"yyyy-mm-dd\"\n            example:\n            \"2019-01-15\""
+                  },
+                  "time_range": {
+                    "type": "string",
+                    "enum": [
+                      "past_4_hours",
+                      "past_day",
+                      "past_7_days",
+                      "past_30_days",
+                      "past_90_days",
+                      "past_12_months",
+                      "past_5_years"
+                    ],
+                    "default": "past_7_days",
+                    "description": "preset time ranges\n            if you specify date_from or date_to parameters, this field will be ignored when setting a task"
+                  }
+                },
+                "required": [
+                  "keywords"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/keywords_data/google_trends/categories.ai": {
+      "get": {
+        "description": "This endpoint will provide you list of Google Trends Categories",
+        "operationId": "keywords_data_google_trends_categories"
+      }
+    },
+    "/v3/keywords_data/google_trends/explore/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with the keyword popularity data from the \u2018Explore\u2019 feature of Google Trends. You can check keyword trends for Google Search, Google News, Google Images, Google Shopping, and YouTube",
+        "operationId": "keywords_data_google_trends_explore",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "location_name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "default": null,
+                    "description": "full name of the location\n        optional field\n        in format \"Country\"\n        example:\n        United Kingdom"
+                  },
+                  "language_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "default": null,
+                    "description": "Language two-letter ISO code (e.g., 'en').\n        optional field"
+                  },
+                  "keywords": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "keywords\n        the maximum number of keywords you can specify: 5\n        the maximum number of characters you can specify in a keyword: 100\n        the minimum number of characters must be greater than 1\n        comma characters (,) in the specified keywords will be unset and ignored\n        Note: keywords cannot consist of a combination of the following characters: < > |  \" - + = ~ ! : * ( ) [ ] { }\n\n        Note: to obtain google_trends_topics_list and google_trends_queries_list items, specify no more than 1 keyword"
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "web",
+                      "news",
+                      "youtube",
+                      "images",
+                      "froogle"
+                    ],
+                    "default": "web",
+                    "description": "google trends type"
+                  },
+                  "date_from": {
+                    "type": "string",
+                    "description": "starting date of the time range\n          if you don\u2019t specify this field, the current day and month of the preceding year will be used by default\n          minimal value for the web type: 2004-01-01\n          minimal value for other types: 2008-01-01\n          date format: \"yyyy-mm-dd\"\n          example:\n          \"2019-01-15\""
+                  },
+                  "date_to": {
+                    "type": "string",
+                    "description": "ending date of the time range\n            if you don\u2019t specify this field, the today\u2019s date will be used by default\n            date format: \"yyyy-mm-dd\"\n            example:\n            \"2019-01-15\""
+                  },
+                  "time_range": {
+                    "type": "string",
+                    "enum": [
+                      "past_hour",
+                      "past_4_hours",
+                      "past_day",
+                      "past_7_days",
+                      "past_30_days",
+                      "past_90_days",
+                      "past_12_months",
+                      "past_5_years"
+                    ],
+                    "default": "past_7_days",
+                    "description": "preset time ranges\n            if you specify date_from or date_to parameters, this field will be ignored when setting a task"
+                  },
+                  "item_types": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "google_trends_graph",
+                        "google_trends_map",
+                        "google_trends_topics_list",
+                        "google_trends_queries_list"
+                      ]
+                    },
+                    "default": [
+                      "google_trends_graph"
+                    ],
+                    "description": "types of items returned\n            to speed up the execution of the request, specify one item at a time"
+                  },
+                  "category_code": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "default": null,
+                    "description": "google trends search category\n            you can receive the list of available categories with their category_code by making a separate request to the keywords_data_google_trends_categories tool"
+                  }
+                },
+                "required": [
                   "keywords"
                 ]
               }

@@ -41,6 +41,18 @@
                   "keyword": {
                     "type": "string",
                     "description": "Search keyword"
+                  },
+                  "max_crawl_pages": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 7,
+                    "default": 1,
+                    "description": "page crawl limit\noptional field\nnumber of search results pages to crawl\nmax value: 100\nNote: the max_crawl_pages and depth parameters complement each other"
+                  },
+                  "device": {
+                    "type": "string",
+                    "default": "desktop",
+                    "description": "device type\noptional field\ncan take the values:desktop, mobile\ndefault value: desktop"
                   }
                 },
                 "required": [
@@ -71,7 +83,7 @@
     },
     "/v3/serp/{search_engine}/locations/{country_code}.ai": {
       "get": {
-        "description": "Utility tool for serp-organic-live-advanced to get list of availible locations",
+        "description": "Utility tool for serp_organic_live_advanced to get list of availible locations",
         "operationId": "serp_locations",
         "parameters": [
           {
