@@ -1179,6 +1179,41 @@
         }
       }
     },
+    "/v3/dataforseo_labs/google/historical_serp/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with Google SERPs collected within the specified time frame. You will also receive a complete overview of featured snippets and other extra elements that were present within the specified dates. The data will allow you to analyze the dynamics of keyword rankings over ",
+        "operationId": "dataforseo_labs_google_historical_serp",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "keyword": {
+                    "type": "string",
+                    "description": "target keyword"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "language code\n        required field\n        example:\n        en"
+                  }
+                },
+                "required": [
+                  "keyword"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
     "/v3/backlinks/backlinks/live.ai": {
       "post": {
         "description": "This endpoint will provide you with a list of backlinks and relevant data for the specified domain, subdomain, or webpage",
@@ -1825,44 +1860,6 @@
                     "type": "boolean",
                     "description": "indicates if internal backlinks from subdomains to the target will be excluded from the results\nif set to true, the results will not include data on internal backlinks from subdomains of the same domain as target\nif set to false, internal links will be included in the results",
                     "default": true
-                  }
-                },
-                "required": [
-                  "target"
-                ]
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v3/backlinks/timeseries_new_lost_summary/live.ai": {
-      "post": {
-        "description": "This endpoint will provide you with the number of new and lost backlinks and referring domains for the domain specified in the target field.\nThe results will be provided for a period between the two indicated dates, and metrics will be grouped by the time range that you define: day, week, month, or",
-        "operationId": "backlinks_timeseries_new_lost_summary",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "target": {
-                    "type": "string",
-                    "description": "domain to get data for\nrequired field\na domain should be specified without https:// and www.\nexample:\n\"forbes.com\""
-                  },
-                  "date_from": {
-                    "type": "string",
-                    "description": "starting date of the time range\noptional field\nthis field indicates the date which will be used as a threshold for summary data;\nminimum value: 2019-01-30\nmaximum value shouldn’t exceed the date specified in the date_to\ndate format: \"yyyy-mm-dd\"\nexample:\n\"2021-01-01\""
-                  },
-                  "date_to": {
-                    "type": "string",
-                    "description": "ending date of the time range\noptional field\nif you don’t specify this field, the today’s date will be used by default\nminimum value shouldn’t preceed the date specified in the date_from\nmaximum value: today’s date\ndate format: \"yyyy-mm-dd\"\nexample:\n\"2021-01-15\""
-                  },
-                  "group_range": {
-                    "type": "string",
-                    "description": "time range which will be used to group the results\noptional field\ndefault value: month\npossible values: day, week, month, year\nnote: for day, we will return items corresponding to all dates between and including date_from and date_to;\nfor week/month/year, we will return items corresponding to full weeks/months/years, where each item will indicate the last day of the week/month/year\n\nfor example, if you specify:\n\"group_range\": \"month\",\n\"date_from\": \"2022-03-23\",\n\"date_to\": \"2022-05-13\"\nwe will return items falling between 2022-03-01 and 2022-05-31, namely, three items corresponding to the following dates: 2022-03-31, 2022-04-30, 2022-05-31\n\nif there is no data for a certain day/week/month/year, we will return 0",
-                    "default": "month"
                   }
                 },
                 "required": [
