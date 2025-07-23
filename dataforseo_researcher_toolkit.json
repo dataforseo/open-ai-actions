@@ -53,6 +53,12 @@
                     "type": "string",
                     "default": "desktop",
                     "description": "device type\noptional field\ncan take the values:desktop, mobile\ndefault value: desktop"
+                  },
+                  "people_also_ask_click_depth": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 4,
+                    "description": "clicks on the corresponding element\n        specify the click depth on the people_also_ask element to get additional people_also_ask_element items;"
                   }
                 },
                 "required": [
@@ -263,7 +269,7 @@
                   },
                   "accept_language": {
                     "type": "string",
-                    "description": "Accept-Language header value"
+                    "description": "language header for accessing the website\n        all locale formats are supported (xx, xx-XX, xxx-XX, etc.)\n        Note: if you do not specify this parameter, some websites may deny access; in this case, pages will be returned with the \"type\":\"broken in the response array"
                   }
                 },
                 "required": [

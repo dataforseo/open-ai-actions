@@ -53,6 +53,12 @@
                     "type": "string",
                     "default": "desktop",
                     "description": "device type\noptional field\ncan take the values:desktop, mobile\ndefault value: desktop"
+                  },
+                  "people_also_ask_click_depth": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 4,
+                    "description": "clicks on the corresponding element\n        specify the click depth on the people_also_ask element to get additional people_also_ask_element items;"
                   }
                 },
                 "required": [
@@ -110,6 +116,221 @@
             }
           }
         ]
+      }
+    },
+    "/v3/serp/youtube/locations/{country_code}.ai": {
+      "get": {
+        "description": "Utility tool to get list of available locations for: serp_youtube_organic_live_advanced, serp_youtube_video_info_live_advanced, serp_youtube_video_comments_live_advanced, serp_youtube_video_subtitles_live_advanced",
+        "operationId": "serp_youtube_locations",
+        "parameters": [
+          {
+            "name": "country_code",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "country code (e.g., 'US')"
+            }
+          }
+        ]
+      }
+    },
+    "/v3/serp/youtube/organic/live/advanced.ai": {
+      "post": {
+        "description": "provides top 20 blocks of youtube search engine results for a keyword",
+        "operationId": "serp_youtube_organic_live_advanced",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "keyword": {
+                    "type": "string",
+                    "description": "Search keyword"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "description": "full name of the location\nrequired field\nLocation format - hierarchical, comma-separated (from most specific to least)\n Can be one of:\n 1. Country only: \"United States\"\n 2. Region,Country: \"California,United States\"\n 3. City,Region,Country: \"San Francisco,California,United States\""
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "description": "search engine language code (e.g., 'en')"
+                  },
+                  "device": {
+                    "type": "string",
+                    "default": "desktop",
+                    "description": "device type\noptional field\ncan take the values:desktop, mobile\ndefault value: desktop"
+                  },
+                  "os": {
+                    "type": "string",
+                    "default": "windows",
+                    "description": "device operating system\noptional field\nif you specify desktop in the device field, choose from the following values: windows, macos\ndefault value: windows\nif you specify mobile in the device field, choose from the following values: android, ios\ndefault value: android"
+                  },
+                  "block_depth": {
+                    "type": "number",
+                    "default": 20,
+                    "description": "parsing depth\noptional field\nnumber of blocks of results in SERP\nmax value: 700"
+                  }
+                },
+                "required": [
+                  "keyword",
+                  "location_name",
+                  "language_code"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/serp/youtube/video_info/live/advanced.ai": {
+      "post": {
+        "description": "provides data on the video you specify",
+        "operationId": "serp_youtube_video_info_live_advanced",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "video_id": {
+                    "type": "string",
+                    "description": "ID of the video"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "description": "full name of the location\nrequired field\nLocation format - hierarchical, comma-separated (from most specific to least)\n Can be one of:\n 1. Country only: \"United States\"\n 2. Region,Country: \"California,United States\"\n 3. City,Region,Country: \"San Francisco,California,United States\""
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "description": "search engine language code (e.g., 'en')"
+                  },
+                  "device": {
+                    "type": "string",
+                    "default": "desktop",
+                    "description": "device type\noptional field\ncan take the values:desktop, mobile\ndefault value: desktop"
+                  },
+                  "os": {
+                    "type": "string",
+                    "default": "windows",
+                    "description": "device operating system\noptional field\nif you specify desktop in the device field, choose from the following values: windows, macos\ndefault value: windows\nif you specify mobile in the device field, choose from the following values: android, ios\ndefault value: android"
+                  }
+                },
+                "required": [
+                  "video_id",
+                  "location_name",
+                  "language_code"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/serp/youtube/video_comments/live/advanced.ai": {
+      "post": {
+        "description": "provides data on the video comments you specify",
+        "operationId": "serp_youtube_video_comments_live_advanced",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "video_id": {
+                    "type": "string",
+                    "description": "ID of the video"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "description": "full name of the location\nrequired field\nLocation format - hierarchical, comma-separated (from most specific to least)\n Can be one of:\n 1. Country only: \"United States\"\n 2. Region,Country: \"California,United States\"\n 3. City,Region,Country: \"San Francisco,California,United States\""
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "description": "search engine language code (e.g., 'en')"
+                  },
+                  "device": {
+                    "type": "string",
+                    "default": "desktop",
+                    "description": "device type\noptional field\ncan take the values:desktop, mobile\ndefault value: desktop"
+                  },
+                  "os": {
+                    "type": "string",
+                    "default": "windows",
+                    "description": "device operating system\noptional field\nif you specify desktop in the device field, choose from the following values: windows, macos\ndefault value: windows\nif you specify mobile in the device field, choose from the following values: android, ios\ndefault value: android"
+                  },
+                  "depth": {
+                    "type": "number",
+                    "default": 20,
+                    "description": "parsing depth, number of results in SERP, max value: 700"
+                  }
+                },
+                "required": [
+                  "video_id",
+                  "location_name",
+                  "language_code"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/serp/youtube/video_subtitles/live/advanced.ai": {
+      "post": {
+        "description": "provides data on the video subtitles you specify",
+        "operationId": "serp_youtube_video_subtitles_live_advanced",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "video_id": {
+                    "type": "string",
+                    "description": "ID of the video"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "description": "full name of the location\nrequired field\nLocation format - hierarchical, comma-separated (from most specific to least)\n Can be one of:\n 1. Country only: \"United States\"\n 2. Region,Country: \"California,United States\"\n 3. City,Region,Country: \"San Francisco,California,United States\""
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "description": "search engine language code (e.g., 'en')"
+                  },
+                  "subtitles_language": {
+                    "type": "string",
+                    "description": "language code of original text (e.g., 'en')"
+                  },
+                  "subtitles_translate_language": {
+                    "type": "string",
+                    "description": "language code of translated text (e.g., 'en')"
+                  },
+                  "device": {
+                    "type": "string",
+                    "default": "desktop",
+                    "description": "device type\noptional field\ncan take the values:desktop, mobile\ndefault value: desktop"
+                  },
+                  "os": {
+                    "type": "string",
+                    "default": "windows",
+                    "description": "device operating system\noptional field\nif you specify desktop in the device field, choose from the following values: windows, macos\ndefault value: windows\nif you specify mobile in the device field, choose from the following values: android, ios\ndefault value: android"
+                  }
+                },
+                "required": [
+                  "video_id",
+                  "location_name",
+                  "language_code"
+                ]
+              }
+            }
+          }
+        }
       }
     }
   }
