@@ -73,7 +73,6 @@
                         }
                       ]
                     },
-                    "maxItems": 8,
                     "description": "Array of filter conditions and logical operators. Each filter condition is an array of [field, operator, value].\n        Maximum 8 filters allowed.\n        Available operators: =, <>, <, <=, >, >=, in, not_in, like, not_like, ilike, not_ilike, regex, not_regex, match, not_match\n        Logical operators: \"and\", \"or\"\n        Examples:\n        Simple filter: [[\"ranked_serp_element.serp_item.rank_group\",\"<=\",10]]\n        With logical operator: [[\"ranked_serp_element.serp_item.rank_group\",\"<=\",10],\"or\",[\"ranked_serp_element.serp_item.type\",\"<>\",\"paid\"]]\n        Complex filter: [[\"keyword_data.keyword_info.search_volume\",\"<>\",0],\"and\",[[\"ranked_serp_element.serp_item.type\",\"<>\",\"paid\"],\"or\",[\"ranked_serp_element.serp_item.is_malicious\",\"=\",false]]]"
                   },
                   "order_by": {
@@ -169,7 +168,6 @@
                         }
                       ]
                     },
-                    "maxItems": 8,
                     "description": "you can add several filters at once (8 filters maximum)\n        you should set a logical operator and, or between the conditions\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n        you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n        merge operator must be a string and connect two other arrays, availible values: or, and.\n        example:\n        [\"metrics.organic.count\",\">\",50]\n        [[\"metrics.organic.pos_1\",\"<>\",0],\"and\",[\"metrics.organic.impressions_etv\",\">=\",\"10\"]]\n\n        [[[\"metrics.organic.count\",\">=\",50],\"and\",[\"metrics.organic.pos_1\",\"in\",[1,5]]],\n        \"or\",\n        [\"metrics.organic.etv\",\">=\",\"100\"]]"
                   },
                   "order_by": {
@@ -260,7 +258,7 @@
                   "location_name": {
                     "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                    "description": "full name of the location\n  required field\n  in format \"Country\"\n  example:\n  United Kingdom"
                   },
                   "language_code": {
                     "type": "string",
@@ -304,7 +302,6 @@
                         }
                       ]
                     },
-                    "maxItems": 8,
                     "description": "you can add several filters at once (8 filters maximum)\n        you should set a logical operator and, or between the conditions\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n        you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n        merge operator must be a string and connect two other arrays, availible values: or, and.\n        example:\n        [\"keyword_info.search_volume\",\">\",0]\n        [[\"keyword_info.search_volume\",\"in\",[0,1000]],\"and\",[\"keyword_info.competition_level\",\"=\",\"LOW\"]]\n        [[\"keyword_info.search_volume\",\">\",100],\"and\",[[\"keyword_info.cpc\",\"<\",0.5],\"or\",[\"keyword_info.high_top_of_page_bid\",\"<=\",0.5]]]"
                   },
                   "order_by": {
@@ -398,8 +395,7 @@
                         }
                       ]
                     },
-                    "maxItems": 8,
-                    "description": "you can add several filters at once (8 filters maximum)\n        you should set a logical operator and, or between the conditions\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n        you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n        merge operator must be a string and connect two other arrays, availible values: or, and.\n        example:\n      [\"keyword_info.search_volume\",\">\",0]\n[[\"keyword_info.search_volume\",\"in\",[0,1000]],\n\"and\",\n[\"keyword_info.competition_level\",\"=\",\"LOW\"]][[\"keyword_info.search_volume\",\">\",100],\n\"and\",\n[[\"keyword_info.cpc\",\"<\",0.5],\n\"or\",\n[\"keyword_info.high_top_of_page_bid\",\"<=\",0.5]]]"
+                    "description": "you can add several filters at once (8 filters maximum)\n        you should set a logical operator and, or between the conditions\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n        you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n        merge operator must be a string and connect two other arrays, availible values: or, and.\nexample:\n[\"keyword_data.keyword_info.search_volume\",\">\",0]\n[[\"keyword_info.search_volume\",\"in\",[0,1000]],\n\"and\",\n[\"keyword_data.keyword_info.competition_level\",\"=\",\"LOW\"]]\n\n[[\"keyword_data.keyword_info.search_volume\",\">\",100],\n\"and\",\n[[\"keyword_data.keyword_info.cpc\",\"<\",0.5],\n\"or\",\n[\"keyword_data.keyword_info.high_top_of_page_bid\",\"<=\",0.5]]]"
                   },
                   "order_by": {
                     "type": "array",
@@ -485,7 +481,6 @@
                         }
                       ]
                     },
-                    "maxItems": 8,
                     "description": "you can add several filters at once (8 filters maximum)\n        you should set a logical operator and, or between the conditions\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n        you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n        merge operator must be a string and connect two other arrays, availible values: or, and.\n        example:\n      [\"keyword_info.search_volume\",\">\",0]\n[[\"keyword_info.search_volume\",\"in\",[0,1000]],\n\"and\",\n[\"keyword_info.competition_level\",\"=\",\"LOW\"]][[\"keyword_info.search_volume\",\">\",100],\n\"and\",\n[[\"keyword_info.cpc\",\"<\",0.5],\n\"or\",\n[\"keyword_info.high_top_of_page_bid\",\"<=\",0.5]]]"
                   },
                   "order_by": {
@@ -610,7 +605,6 @@
                         }
                       ]
                     },
-                    "maxItems": 8,
                     "description": "you can add several filters at once (8 filters maximum)\n        you should set a logical operator and, or between the conditions\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n        you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n        merge operator must be a string and connect two other arrays, availible values: or, and.\n        example:\n        [\"ranked_serp_element.serp_item.rank_group\",\"<=\",10]\n        [[\"ranked_serp_element.serp_item.rank_group\",\"<=\",10],\"or\",[\"ranked_serp_element.serp_item.type\",\"<>\",\"paid\"]]\n        [[\"keyword_data.keyword_info.search_volume\",\"<>\",0],\"and\",[[\"ranked_serp_element.serp_item.type\",\"<>\",\"paid\"],\"or\",[\"ranked_serp_element.serp_item.is_malicious\",\"=\",false]]]"
                   },
                   "order_by": {
@@ -739,7 +733,6 @@
                         }
                       ]
                     },
-                    "maxItems": 8,
                     "description": "you can add several filters at once (8 filters maximum)\n        you should set a logical operator and, or between the conditions\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n        you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n        merge operator must be a string and connect two other arrays, availible values: or, and.\n        example:\n        [\"metrics.organic.count\",\">\",50]\n        [[\"metrics.organic.pos_1\",\"<>\",0],\"and\",[\"metrics.organic.impressions_etv\",\">=\",\"10\"]]\n        [[[\"metrics.organic.count\",\">=\",50],\"and\",[\"metrics.organic.pos_1\",\"in\",[1,5]]],\"or\",[\"metrics.organic.etv\",\">=\",\"100\"]]"
                   },
                   "order_by": {
@@ -872,7 +865,6 @@
                         }
                       ]
                     },
-                    "maxItems": 8,
                     "description": "you can add several filters at once (8 filters maximum)\n        you should set a logical operator and, or between the conditions\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n        you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n        merge operator must be a string and connect two other arrays, availible values: or, and.\n        example:\n     [\"keyword_info.search_volume\",\">\",0]\n[[\"keyword_info.search_volume\",\"in\",[0,1000]],\n\"and\",\n[\"keyword_info.competition_level\",\"=\",\"LOW\"]][[\"keyword_info.search_volume\",\">\",100],\n\"and\",\n[[\"keyword_info.cpc\",\"<\",0.5],\n\"or\",\n[\"keyword_info.high_top_of_page_bid\",\"<=\",0.5]]]"
                   },
                   "order_by": {
@@ -990,7 +982,6 @@
                         }
                       ]
                     },
-                    "maxItems": 8,
                     "description": "you can add several filters at once (8 filters maximum)\n        you should set a logical operator and, or between the conditions\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n        you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n        merge operator must be a string and connect two other arrays, availible values: or, and.\n        example:\n      [\"keyword_info.search_volume\",\">\",0]\n[[\"keyword_info.search_volume\",\"in\",[0,1000]],\n\"and\",\n[\"keyword_info.competition_level\",\"=\",\"LOW\"]][[\"keyword_info.search_volume\",\">\",100],\n\"and\",\n[[\"keyword_info.cpc\",\"<\",0.5],\n\"or\",\n[\"keyword_info.high_top_of_page_bid\",\"<=\",0.5]]]"
                   },
                   "order_by": {
@@ -1090,7 +1081,6 @@
                         }
                       ]
                     },
-                    "maxItems": 8,
                     "description": "you can add several filters at once (8 filters maximum)\n        you should set a logical operator and, or between the conditions\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n        you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n        merge operator must be a string and connect two other arrays, availible values: or, and.\n        example:\n        [\"keyword_data.keyword_info.search_volume\",\"in\",[100,1000]]\n        [[\"first_domain_serp_element.etv\",\">\",0],\"and\",[\"first_domain_serp_element.description\",\"like\",\"%goat%\"]]\n        [[\"keyword_data.keyword_info.search_volume\",\">\",100],\"and\",[[\"first_domain_serp_element.description\",\"like\",\"%goat%\"],\"or\",[\"second_domain_serp_element.type\",\"=\",\"organic\"]]]"
                   },
                   "order_by": {
@@ -1266,7 +1256,6 @@
                         }
                       ]
                     },
-                    "maxItems": 8,
                     "description": "you can add several filters at once (8 filters maximum)\n        you should set a logical operator and, or between the conditions\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n        you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n        merge operator must be a string and connect two other arrays, availible values: or, and.\n        example:\n        [\"keyword_data.keyword_info.search_volume\",\"in\",[100,1000]]\n        [[\"intersection_result.1.etv\",\">\",0],\"and\",[\"intersection_result.2.description\",\"like\",\"%goat%\"]]\n        [[\"keyword_data.keyword_info.search_volume\",\">\",100],\"and\",[[\"intersection_result.1.description\",\"like\",\"%goat%\"],\"or\",[\"intersection_result.2.type\",\"=\",\"organic\"]]]"
                   },
                   "order_by": {

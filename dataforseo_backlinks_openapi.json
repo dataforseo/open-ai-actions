@@ -68,7 +68,6 @@
                         }
                       ]
                     },
-                    "maxItems": 8,
                     "description": "array of results filtering parameters\noptional field\nyou can add several filters at once (8 filters maximum)\nyou should set a logical operator and, or between the conditions\nthe following operators are supported:\n=, <>, in, not_in, like, not_like, ilike, not_ilike, regex, not_regex, match, not_match\nyou can use the % operator with like and not_like to match any string of zero or more characters\nexample:\n[\"rank\",\">\",\"80\"]\n[[\"page_from_rank\",\">\",\"55\"],\n\"and\",\n[\"dofollow\",\"=\",true]]\n\n[[\"first_seen\",\">\",\"2017-10-23 11:31:45 +00:00\"],\n\"and\",\n[[\"anchor\",\"like\",\"%seo%\"],\"or\",[\"text_pre\",\"like\",\"%seo%\"]]]"
                   },
                   "order_by": {
@@ -140,7 +139,6 @@
                         }
                       ]
                     },
-                    "maxItems": 8,
                     "description": "array of results filtering parameters\noptional field\nyou can add several filters at once (8 filters maximum)\nyou should set a logical operator and, or between the conditions\nthe following operators are supported:\n=, <>, in, not_in, like, not_like, ilike, not_ilike, regex, not_regex, match, not_match\nyou can use the % operator with like and not_like to match any string of zero or more characters\nexample:\n[\"rank\",\">\",\"80\"]\n[[\"page_from_rank\",\">\",\"55\"],\n\"and\",\n[\"dofollow\",\"=\",true]]\n\n[[\"first_seen\",\">\",\"2017-10-23 11:31:45 +00:00\"],\n\"and\",\n[[\"anchor\",\"like\",\"%seo%\"],\"or\",[\"text_pre\",\"like\",\"%seo%\"]]]"
                   },
                   "order_by": {
@@ -393,7 +391,6 @@
                         }
                       ]
                     },
-                    "maxItems": 8,
                     "description": "array of results filtering parameters\noptional field\nyou can add several filters at once (8 filters maximum)\nyou should set a logical operator and, or between the conditions\nthe following operators are supported:\nregex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nyou can use the % operator with like and not_like to match any string of zero or more characters\nexample:\n[\"rank\",\">\",\"100\"]\n[[\"target\",\"like\",\"%forbes%\"],\n\"and\",\n[[\"rank\",\">\",\"100\"],\"or\",[\"intersections\",\">\",\"5\"]]]"
                   },
                   "order_by": {
@@ -498,7 +495,6 @@
                         }
                       ]
                     },
-                    "maxItems": 8,
                     "description": "array of results filtering parameters\noptional field\nyou can add several filters at once (8 filters maximum)\nyou should set a logical operator and, or between the conditions\nthe following operators are supported:\nregex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nyou can use the % operator with like and not_like to match any string of zero or more characters\nexample:\n[\"1.internal_links_count\",\">\",\"1\"]\n[[\"2.referring_pages\",\">\",\"2\"],\n\"and\",\n[\"1.backlinks\",\">\",\"10\"]]\n\n[[\"1.first_seen\",\">\",\"2017-10-23 11:31:45 +00:00\"],\n\"and\",\n[[\"2.target\",\"like\",\"%dataforseo.com%\"],\"or\",[\"1.referring_domains\",\">\",\"10\"]]]"
                   },
                   "order_by": {
@@ -570,7 +566,6 @@
                         }
                       ]
                     },
-                    "maxItems": 8,
                     "description": "array of results filtering parameters\noptional field\nyou can add several filters at once (8 filters maximum)\nyou should set a logical operator and, or between the conditions\nthe following operators are supported:\nregex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nyou can use the % operator with like and not_like to match any string of zero or more characters\nexample:\n[\"referring_links_types.anchors\",\">\",\"1\"]\n[[\"broken_pages\",\">\",\"2\"],\n\"and\",\n[\"backlinks\",\">\",\"10\"]]\n\n[[\"first_seen\",\">\",\"2017-10-23 11:31:45 +00:00\"],\n\"and\",\n[[\"anchor\",\"like\",\"%seo%\"],\"or\",[\"referring_domains\",\">\",\"10\"]]]"
                   },
                   "order_by": {
@@ -642,7 +637,6 @@
                         }
                       ]
                     },
-                    "maxItems": 8,
                     "description": "array of results filtering parameters\noptional field\nyou can add several filters at once (8 filters maximum)\nyou should set a logical operator and, or between the conditions\nthe following operators are supported:\nregex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nyou can use the % operator with like and not_like to match any string of zero or more characters\nexample:\n[\"meta.internal_links_count\",\">\",\"1\"]\n[[\"meta.external_links_count\",\">\",\"2\"],\n\"and\",\n[\"backlinks\",\">\",\"10\"]]\n\n[[\"first_visited\",\">\",\"2017-10-23 11:31:45 +00:00\"],\n\"and\",\n[[\"title\",\"like\",\"%seo%\"],\"or\",[\"referring_domains\",\">\",\"10\"]]]"
                   },
                   "order_by": {
@@ -732,7 +726,6 @@
                         }
                       ]
                     },
-                    "maxItems": 8,
                     "description": "array of results filtering parameters\noptional field\nyou can add several filters at once (8 filters maximum)\nyou should set a logical operator and, or between the conditions\nthe following operators are supported:\nregex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nyou can use the % operator with like and not_like to match any string of zero or more characters\nexample:\n[\"1.rank\",\">\",\"80\"]\n[[\"2.page_from_rank\",\">\",\"55\"],\n\"and\",\n[\"1.original\",\"=\",\"true\"]]\n\n[[\"1.first_seen\",\">\",\"2017-10-23 11:31:45 +00:00\"],\n\"and\",\n[[\"1.anchor\",\"like\",\"%seo%\"],\"or\",[\"1.text_pre\",\"not_like\",\"%seo%\"]]]"
                   },
                   "order_by": {
@@ -804,7 +797,6 @@
                         }
                       ]
                     },
-                    "maxItems": 8,
                     "description": "array of results filtering parameters\noptional field\nyou can add several filters at once (8 filters maximum)\nyou should set a logical operator and, or between the conditions\nthe following operators are supported:\nregex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nyou can use the % operator with like and not_like to match any string of zero or more characters\nexample:\n[\"meta.internal_links_count\",\">\",\"1\"]\n[[\"meta.external_links_count\",\">\",\"2\"],\n\"and\",\n[\"backlinks\",\">\",\"10\"]]\n\n[[\"first_visited\",\">\",\"2017-10-23 11:31:45 +00:00\"],\n\"and\",\n[[\"title\",\"like\",\"%seo%\"],\"or\",[\"referring_domains\",\">\",\"10\"]]]"
                   },
                   "order_by": {
@@ -881,7 +873,6 @@
                         }
                       ]
                     },
-                    "maxItems": 8,
                     "description": "array of results filtering parameters\noptional field\nyou can add several filters at once (8 filters maximum)\nyou should set a logical operator and, or between the conditions\nthe following operators are supported:\nregex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nyou can use the % operator with like and not_like to match any string of zero or more characters\nexample:\n[\"referring_pages\",\">\",\"1\"]\n[[\"referring_pages\",\">\",\"2\"],\n\"and\",\n[\"backlinks\",\">\",\"10\"]]\n\n[[\"first_seen\",\">\",\"2017-10-23 11:31:45 +00:00\"],\n\"and\",\n[[\"network_address\",\"like\",\"194.1.%\"],\"or\",[\"referring_ips\",\">\",\"10\"]]]"
                   },
                   "order_by": {

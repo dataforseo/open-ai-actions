@@ -87,10 +87,37 @@
         ]
       }
     },
-    "/v3/serp/{search_engine}/locations/{country_code}.ai": {
-      "get": {
-        "description": "Utility tool for serp_organic_live_advanced to get list of availible locations",
+    "/v3/serp/{search_engine}/locations.ai": {
+      "post": {
+        "description": "Utility tool for serp_organic_live_advanced to get list of availible locations.",
         "operationId": "serp_locations",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "country_iso_code": {
+                    "type": "string",
+                    "description": "ISO 3166-1 alpha-2 country code, for example: US, GB, MT"
+                  },
+                  "location_type": {
+                    "type": "string",
+                    "description": "Type of location. Possible variants: 'TV Region','Postal Code','Neighborhood','Governorate','National Park','Quarter','Canton','Airport','Okrug','Prefecture','City','Country','Province','Barrio','Sub-District','Congressional District','Municipality District','district','DMA Region','Union Territory','Territory','Colloquial Area','Autonomous Community','Borough','County','State','District','City Region','Commune','Region','Department','Division','Sub-Ward','Municipality','University'"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "description": "Name of location or it`s part."
+                  }
+                },
+                "required": [
+                  "country_iso_code"
+                ]
+              }
+            }
+          }
+        },
         "parameters": [
           {
             "name": "search_engine",
@@ -103,36 +130,43 @@
                 "bing",
                 "yahoo"
               ],
-              "description": "The search engine to use"
-            }
-          },
-          {
-            "name": "country_code",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "description": "country code (e.g., 'US')"
+              "description": "search engine name, one of: google, yahoo, bing."
             }
           }
         ]
       }
     },
-    "/v3/serp/youtube/locations/{country_code}.ai": {
-      "get": {
-        "description": "Utility tool to get list of available locations for: serp_youtube_organic_live_advanced, serp_youtube_video_info_live_advanced, serp_youtube_video_comments_live_advanced, serp_youtube_video_subtitles_live_advanced",
+    "/v3/serp/youtube/locations.ai": {
+      "post": {
+        "description": "Utility tool to get list of available locations for: serp_youtube_organic_live_advanced, serp_youtube_video_info_live_advanced, serp_youtube_video_comments_live_advanced, serp_youtube_video_subtitles_live_advanced.",
         "operationId": "serp_youtube_locations",
-        "parameters": [
-          {
-            "name": "country_code",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "description": "country code (e.g., 'US')"
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "country_iso_code": {
+                    "type": "string",
+                    "description": "ISO 3166-1 alpha-2 country code, for example: US, GB, MT"
+                  },
+                  "location_type": {
+                    "type": "string",
+                    "description": "Type of location. Possible variants: 'TV Region','Postal Code','Neighborhood','Governorate','National Park','Quarter','Canton','Airport','Okrug','Prefecture','City','Country','Province','Barrio','Sub-District','Congressional District','Municipality District','district','DMA Region','Union Territory','Territory','Colloquial Area','Autonomous Community','Borough','County','State','District','City Region','Commune','Region','Department','Division','Sub-Ward','Municipality','University'"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "description": "Name of location or it`s part."
+                  }
+                },
+                "required": [
+                  "country_iso_code"
+                ]
+              }
             }
           }
-        ]
+        }
       }
     },
     "/v3/serp/youtube/organic/live/advanced.ai": {

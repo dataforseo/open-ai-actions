@@ -81,7 +81,7 @@
                   },
                   "accept_language": {
                     "type": "string",
-                    "description": "Accept-Language header value"
+                    "description": "language header for accessing the website\n        all locale formats are supported (xx, xx-XX, xxx-XX, etc.)\n        Note: if you do not specify this parameter, some websites may deny access; in this case, pages will be returned with the \"type\":\"broken in the response array"
                   }
                 },
                 "required": [
