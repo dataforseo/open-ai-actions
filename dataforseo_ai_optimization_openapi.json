@@ -1,0 +1,59 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "DataForSEO Ai Optimization API",
+    "description": "Access to DataForSEO Ai Optimization tools for SEO research and analysis",
+    "version": "v1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.dataforseo.com"
+    }
+  ],
+  "paths": {
+    "/v3/ai_optimization/ai_keyword_data/locations_and_languages.ai": {
+      "get": {
+        "description": "Utility tool for ai_keyword_data_search_volume to get list of availible locations and languages",
+        "operationId": "ai_optimization_keyword_data_locations_and_languages"
+      }
+    },
+    "/v3/ai_optimization/ai_keyword_data/keywords_search_volume/live.ai": {
+      "post": {
+        "description": "This endpoint provides search volume data for your target keywords, reflecting their estimated usage in AI LLMs",
+        "operationId": "ai_optimization_keyword_data_search_volume",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "keywords": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Keywords. The maximum number of keywords you can specify: 1000"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location, example: 'United Kingdom', 'United States'"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "description": "Search engine language code (e.g., 'en')"
+                  }
+                },
+                "required": [
+                  "keywords",
+                  "language_code"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
