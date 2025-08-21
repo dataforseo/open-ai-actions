@@ -92,6 +92,47 @@
           }
         }
       }
+    },
+    "/v3/on_page/lighthouse/live/json.ai": {
+      "post": {
+        "description": "The OnPage Lighthouse API is based on Google\u2019s open-source Lighthouse project for measuring the quality of web pages and web apps.",
+        "operationId": "on_page_lighthouse",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "url": {
+                    "type": "string",
+                    "description": "URL of the page to parse"
+                  },
+                  "enable_javascript": {
+                    "type": "boolean",
+                    "description": "Enable JavaScript rendering"
+                  },
+                  "custom_js": {
+                    "type": "string",
+                    "description": "Custom JavaScript code to execute"
+                  },
+                  "custom_user_agent": {
+                    "type": "string",
+                    "description": "Custom User-Agent header"
+                  },
+                  "accept_language": {
+                    "type": "string",
+                    "description": "Accept-Language header value"
+                  }
+                },
+                "required": [
+                  "url"
+                ]
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

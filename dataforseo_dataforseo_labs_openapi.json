@@ -29,7 +29,7 @@
                   "location_name": {
                     "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
                   },
                   "language_code": {
                     "type": "string",
@@ -119,7 +119,7 @@
                   "location_name": {
                     "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
                   },
                   "language_code": {
                     "type": "string",
@@ -215,7 +215,7 @@
                   "location_name": {
                     "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
                   },
                   "language_code": {
                     "type": "string",
@@ -258,7 +258,7 @@
                   "location_name": {
                     "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\n  required field\n  in format \"Country\"\n  example:\n  United Kingdom"
+                    "description": "full name of the location\n  required field\n  only in format \"Country\" (not \"City\" or \"Region\")\n  example:\n  'United Kingdom', 'United States', 'Canada'"
                   },
                   "language_code": {
                     "type": "string",
@@ -351,7 +351,7 @@
                   "location_name": {
                     "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
                   },
                   "language_code": {
                     "type": "string",
@@ -437,7 +437,7 @@
                   "location_name": {
                     "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
                   },
                   "language_code": {
                     "type": "string",
@@ -523,7 +523,7 @@
                   "location_name": {
                     "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
                   },
                   "language_code": {
                     "type": "string",
@@ -561,7 +561,7 @@
                   "location_name": {
                     "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
                   },
                   "language_code": {
                     "type": "string",
@@ -649,7 +649,7 @@
                   "location_name": {
                     "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
                   },
                   "language_code": {
                     "type": "string",
@@ -684,7 +684,7 @@
                   "location_name": {
                     "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
                   },
                   "language_code": {
                     "type": "string",
@@ -785,7 +785,7 @@
                   "location_name": {
                     "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
                   },
                   "language_code": {
                     "type": "string",
@@ -821,7 +821,7 @@
                   "location_name": {
                     "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
                   },
                   "language_code": {
                     "type": "string",
@@ -938,7 +938,7 @@
                   "location_name": {
                     "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
                   },
                   "language_code": {
                     "type": "string",
@@ -1032,7 +1032,7 @@
                   "location_name": {
                     "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
                   },
                   "language_code": {
                     "type": "string",
@@ -1129,7 +1129,7 @@
                   "location_name": {
                     "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
                   },
                   "language_code": {
                     "type": "string",
@@ -1207,7 +1207,7 @@
                   "location_name": {
                     "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
                   },
                   "language_code": {
                     "type": "string",
@@ -1301,7 +1301,7 @@
                   "location_name": {
                     "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
                   },
                   "language_code": {
                     "type": "string",
@@ -1350,7 +1350,7 @@
                   "location_name": {
                     "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
                   },
                   "language_code": {
                     "type": "string",
