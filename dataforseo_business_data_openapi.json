@@ -75,9 +75,26 @@
                             "and",
                             "or"
                           ]
+                        },
+                        {
+                          "type": "array",
+                          "items": {},
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ]
                         }
                       ]
                     },
+                    "maxItems": 3,
                     "description": "array of results filtering parameters\noptional field\nyou can add several filters at once (8 filters maximum)\nyou should set a logical operator and, or between the conditions\nthe following operators are supported:\nregex, not_regex, <, <=, >, >=, =, <>, in, not_in, like, not_like, match, not_match\nyou can use the % operator with like and not_like to match any string of zero or more characters\nexample:\n[\"rating.value\",\">\",3]"
                   },
                   "order_by": {

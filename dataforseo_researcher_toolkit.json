@@ -299,7 +299,7 @@
                   "location_name": {
                     "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
                   },
                   "language_code": {
                     "type": "string",
@@ -340,9 +340,26 @@
                             "and",
                             "or"
                           ]
+                        },
+                        {
+                          "type": "array",
+                          "items": {},
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ]
                         }
                       ]
                     },
+                    "maxItems": 3,
                     "description": "Array of filter conditions and logical operators. Each filter condition is an array of [field, operator, value].\n        Maximum 8 filters allowed.\n        Available operators: =, <>, <, <=, >, >=, in, not_in, like, not_like, ilike, not_ilike, regex, not_regex, match, not_match\n        Logical operators: \"and\", \"or\"\n        Examples:\n        Simple filter: [[\"ranked_serp_element.serp_item.rank_group\",\"<=\",10]]\n        With logical operator: [[\"ranked_serp_element.serp_item.rank_group\",\"<=\",10],\"or\",[\"ranked_serp_element.serp_item.type\",\"<>\",\"paid\"]]\n        Complex filter: [[\"keyword_data.keyword_info.search_volume\",\"<>\",0],\"and\",[[\"ranked_serp_element.serp_item.type\",\"<>\",\"paid\"],\"or\",[\"ranked_serp_element.serp_item.is_malicious\",\"=\",false]]]"
                   },
                   "order_by": {
@@ -389,7 +406,7 @@
                   "location_name": {
                     "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
                   },
                   "language_code": {
                     "type": "string",
@@ -435,9 +452,26 @@
                             "and",
                             "or"
                           ]
+                        },
+                        {
+                          "type": "array",
+                          "items": {},
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ]
                         }
                       ]
                     },
+                    "maxItems": 3,
                     "description": "you can add several filters at once (8 filters maximum)\n        you should set a logical operator and, or between the conditions\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n        you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n        merge operator must be a string and connect two other arrays, availible values: or, and.\n        example:\n        [\"metrics.organic.count\",\">\",50]\n        [[\"metrics.organic.pos_1\",\"<>\",0],\"and\",[\"metrics.organic.impressions_etv\",\">=\",\"10\"]]\n\n        [[[\"metrics.organic.count\",\">=\",50],\"and\",[\"metrics.organic.pos_1\",\"in\",[1,5]]],\n        \"or\",\n        [\"metrics.organic.etv\",\">=\",\"100\"]]"
                   },
                   "order_by": {
@@ -485,7 +519,7 @@
                   "location_name": {
                     "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
                   },
                   "language_code": {
                     "type": "string",
@@ -528,7 +562,7 @@
                   "location_name": {
                     "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\n  required field\n  in format \"Country\"\n  example:\n  United Kingdom"
+                    "description": "full name of the location\n  required field\n  only in format \"Country\" (not \"City\" or \"Region\")\n  example:\n  'United Kingdom', 'United States', 'Canada'"
                   },
                   "language_code": {
                     "type": "string",
@@ -569,9 +603,26 @@
                             "and",
                             "or"
                           ]
+                        },
+                        {
+                          "type": "array",
+                          "items": {},
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ]
                         }
                       ]
                     },
+                    "maxItems": 3,
                     "description": "you can add several filters at once (8 filters maximum)\n        you should set a logical operator and, or between the conditions\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n        you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n        merge operator must be a string and connect two other arrays, availible values: or, and.\n        example:\n        [\"keyword_info.search_volume\",\">\",0]\n        [[\"keyword_info.search_volume\",\"in\",[0,1000]],\"and\",[\"keyword_info.competition_level\",\"=\",\"LOW\"]]\n        [[\"keyword_info.search_volume\",\">\",100],\"and\",[[\"keyword_info.cpc\",\"<\",0.5],\"or\",[\"keyword_info.high_top_of_page_bid\",\"<=\",0.5]]]"
                   },
                   "order_by": {
@@ -617,7 +668,7 @@
                   "location_name": {
                     "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
                   },
                   "language_code": {
                     "type": "string",
@@ -652,7 +703,7 @@
                   "location_name": {
                     "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
                   },
                   "language_code": {
                     "type": "string",
@@ -698,9 +749,26 @@
                             "and",
                             "or"
                           ]
+                        },
+                        {
+                          "type": "array",
+                          "items": {},
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ]
                         }
                       ]
                     },
+                    "maxItems": 3,
                     "description": "you can add several filters at once (8 filters maximum)\n        you should set a logical operator and, or between the conditions\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n        you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n        merge operator must be a string and connect two other arrays, availible values: or, and.\n        example:\n        [\"metrics.organic.count\",\">\",50]\n        [[\"metrics.organic.pos_1\",\"<>\",0],\"and\",[\"metrics.organic.impressions_etv\",\">=\",\"10\"]]\n        [[[\"metrics.organic.count\",\">=\",50],\"and\",[\"metrics.organic.pos_1\",\"in\",[1,5]]],\"or\",[\"metrics.organic.etv\",\">=\",\"100\"]]"
                   },
                   "order_by": {
@@ -753,7 +821,7 @@
                   "location_name": {
                     "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
                   },
                   "language_code": {
                     "type": "string",
@@ -793,7 +861,7 @@
                   "location_name": {
                     "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
                   },
                   "language_code": {
                     "type": "string",
@@ -834,9 +902,26 @@
                             "and",
                             "or"
                           ]
+                        },
+                        {
+                          "type": "array",
+                          "items": {},
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ]
                         }
                       ]
                     },
+                    "maxItems": 3,
                     "description": "you can add several filters at once (8 filters maximum)\n        you should set a logical operator and, or between the conditions\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n        you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n        merge operator must be a string and connect two other arrays, availible values: or, and.\n        example:\n      [\"keyword_info.search_volume\",\">\",0]\n[[\"keyword_info.search_volume\",\"in\",[0,1000]],\n\"and\",\n[\"keyword_info.competition_level\",\"=\",\"LOW\"]][[\"keyword_info.search_volume\",\">\",100],\n\"and\",\n[[\"keyword_info.cpc\",\"<\",0.5],\n\"or\",\n[\"keyword_info.high_top_of_page_bid\",\"<=\",0.5]]]"
                   },
                   "order_by": {
@@ -887,7 +972,7 @@
                   "location_name": {
                     "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
                   },
                   "language_code": {
                     "type": "string",
@@ -933,9 +1018,26 @@
                             "and",
                             "or"
                           ]
+                        },
+                        {
+                          "type": "array",
+                          "items": {},
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ]
                         }
                       ]
                     },
+                    "maxItems": 3,
                     "description": "you can add several filters at once (8 filters maximum)\n        you should set a logical operator and, or between the conditions\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n        you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n        merge operator must be a string and connect two other arrays, availible values: or, and.\n        example:\n        [\"keyword_data.keyword_info.search_volume\",\"in\",[100,1000]]\n        [[\"first_domain_serp_element.etv\",\">\",0],\"and\",[\"first_domain_serp_element.description\",\"like\",\"%goat%\"]]\n        [[\"keyword_data.keyword_info.search_volume\",\">\",100],\"and\",[[\"first_domain_serp_element.description\",\"like\",\"%goat%\"],\"or\",[\"second_domain_serp_element.type\",\"=\",\"organic\"]]]"
                   },
                   "order_by": {
@@ -984,7 +1086,7 @@
                   "location_name": {
                     "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
                   },
                   "language_code": {
                     "type": "string",
@@ -1062,7 +1164,7 @@
                   "location_name": {
                     "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
                   },
                   "language_code": {
                     "type": "string",
@@ -1108,9 +1210,26 @@
                             "and",
                             "or"
                           ]
+                        },
+                        {
+                          "type": "array",
+                          "items": {},
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ]
                         }
                       ]
                     },
+                    "maxItems": 3,
                     "description": "you can add several filters at once (8 filters maximum)\n        you should set a logical operator and, or between the conditions\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n        you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n        merge operator must be a string and connect two other arrays, availible values: or, and.\n        example:\n        [\"keyword_data.keyword_info.search_volume\",\"in\",[100,1000]]\n        [[\"intersection_result.1.etv\",\">\",0],\"and\",[\"intersection_result.2.description\",\"like\",\"%goat%\"]]\n        [[\"keyword_data.keyword_info.search_volume\",\">\",100],\"and\",[[\"intersection_result.1.description\",\"like\",\"%goat%\"],\"or\",[\"intersection_result.2.type\",\"=\",\"organic\"]]]"
                   },
                   "order_by": {
@@ -1128,6 +1247,126 @@
                 },
                 "required": [
                   "pages"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/dataforseo_labs/google/relevant_pages/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with rankings and traffic data for the web pages of the specified domain. You will be able to review each page’s ranking distribution and estimated monthly traffic volume from both organic and paid searches.",
+        "operationId": "dataforseo_labs_google_relevant_pages",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "target": {
+                    "type": "string",
+                    "description": "target domain"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "language code\n        required field\n        example:\n        en"
+                  },
+                  "ignore_synonyms": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "ignore highly similar keywords, if set to true, results will be more accurate"
+                  },
+                  "limit": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 1000,
+                    "default": 10,
+                    "description": "Maximum number of keywords to return"
+                  },
+                  "offset": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "offset in the results array of returned keywords\n            optional field\n            default value: 0\n            if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords"
+                  },
+                  "filters": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": [
+                              "string",
+                              "number",
+                              "boolean"
+                            ]
+                          },
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "and",
+                            "or"
+                          ]
+                        },
+                        {
+                          "type": "array",
+                          "items": {},
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    "maxItems": 3,
+                    "description": "you can add several filters at once (8 filters maximum)\n            you should set a logical operator and, or between the conditions\n            the following operators are supported:\n            regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n            you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n            merge operator must be a string and connect two other arrays, availible values: or, and.\n            example:\n[\"metrics.organic.count\",\">\",50]\n[[\"metrics.organic.pos_1\",\"<>\",0],\"and\",[\"metrics.organic.impressions_etv\",\">=\",\"10\"]]\n\n[[[\"metrics.organic.count\",\">=\",50],\"and\",[\"metrics.organic.pos_1\",\"in\",[1,5]]],\n\"or\",\n[\"metrics.organic.etv\",\">=\",\"100\"]]"
+                  },
+                  "order_by": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to specify a sorting type\nexample:\n[\"metrics.paid.etv,asc\"]\nNote: you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"metrics.organic.etv,desc\",\"metrics.paid.count,asc\"]\ndefault rule:\n[\"metrics.organic.count,desc\"]"
+                  },
+                  "exclude_top_domains": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "indicates whether to exclude world’s largest websites\noptional field\ndefault value: false\nset to true if you want to get highly-relevant competitors excluding the top websites"
+                  },
+                  "item_types": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "item types to return\n            optional field\n            default: ['organic']\n            possible values:\n            organic\n            paid"
+                  },
+                  "include_clickstream_data": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Include or exclude data from clickstream-based metrics in the result"
+                  }
+                },
+                "required": [
+                  "target"
                 ]
               }
             }
@@ -1156,7 +1395,7 @@
                   "location_name": {
                     "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
                   },
                   "language_code": {
                     "type": "string",
@@ -1196,7 +1435,7 @@
                   "location_name": {
                     "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
                   },
                   "language_code": {
                     "type": "string",
@@ -1267,9 +1506,26 @@
                             "and",
                             "or"
                           ]
+                        },
+                        {
+                          "type": "array",
+                          "items": {},
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ]
                         }
                       ]
                     },
+                    "maxItems": 3,
                     "description": "array of results filtering parameters\noptional field\nyou can add several filters at once (8 filters maximum)\nyou should set a logical operator and, or between the conditions\nthe following operators are supported:\n=, <>, in, not_in, like, not_like, ilike, not_ilike, regex, not_regex, match, not_match\nyou can use the % operator with like and not_like to match any string of zero or more characters\nexample:\n[\"rank\",\">\",\"80\"]\n[[\"page_from_rank\",\">\",\"55\"],\n\"and\",\n[\"dofollow\",\"=\",true]]\n\n[[\"first_seen\",\">\",\"2017-10-23 11:31:45 +00:00\"],\n\"and\",\n[[\"anchor\",\"like\",\"%seo%\"],\"or\",[\"text_pre\",\"like\",\"%seo%\"]]]"
                   },
                   "order_by": {
@@ -1338,9 +1594,26 @@
                             "and",
                             "or"
                           ]
+                        },
+                        {
+                          "type": "array",
+                          "items": {},
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ]
                         }
                       ]
                     },
+                    "maxItems": 3,
                     "description": "array of results filtering parameters\noptional field\nyou can add several filters at once (8 filters maximum)\nyou should set a logical operator and, or between the conditions\nthe following operators are supported:\n=, <>, in, not_in, like, not_like, ilike, not_ilike, regex, not_regex, match, not_match\nyou can use the % operator with like and not_like to match any string of zero or more characters\nexample:\n[\"rank\",\">\",\"80\"]\n[[\"page_from_rank\",\">\",\"55\"],\n\"and\",\n[\"dofollow\",\"=\",true]]\n\n[[\"first_seen\",\">\",\"2017-10-23 11:31:45 +00:00\"],\n\"and\",\n[[\"anchor\",\"like\",\"%seo%\"],\"or\",[\"text_pre\",\"like\",\"%seo%\"]]]"
                   },
                   "order_by": {
@@ -1427,9 +1700,26 @@
                             "and",
                             "or"
                           ]
+                        },
+                        {
+                          "type": "array",
+                          "items": {},
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ]
                         }
                       ]
                     },
+                    "maxItems": 3,
                     "description": "array of results filtering parameters\noptional field\nyou can add several filters at once (8 filters maximum)\nyou should set a logical operator and, or between the conditions\nthe following operators are supported:\nregex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nyou can use the % operator with like and not_like to match any string of zero or more characters\nexample:\n[\"1.internal_links_count\",\">\",\"1\"]\n[[\"2.referring_pages\",\">\",\"2\"],\n\"and\",\n[\"1.backlinks\",\">\",\"10\"]]\n\n[[\"1.first_seen\",\">\",\"2017-10-23 11:31:45 +00:00\"],\n\"and\",\n[[\"2.target\",\"like\",\"%dataforseo.com%\"],\"or\",[\"1.referring_domains\",\">\",\"10\"]]]"
                   },
                   "order_by": {
@@ -1498,9 +1788,26 @@
                             "and",
                             "or"
                           ]
+                        },
+                        {
+                          "type": "array",
+                          "items": {},
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ]
                         }
                       ]
                     },
+                    "maxItems": 3,
                     "description": "array of results filtering parameters\noptional field\nyou can add several filters at once (8 filters maximum)\nyou should set a logical operator and, or between the conditions\nthe following operators are supported:\nregex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nyou can use the % operator with like and not_like to match any string of zero or more characters\nexample:\n[\"referring_links_types.anchors\",\">\",\"1\"]\n[[\"broken_pages\",\">\",\"2\"],\n\"and\",\n[\"backlinks\",\">\",\"10\"]]\n\n[[\"first_seen\",\">\",\"2017-10-23 11:31:45 +00:00\"],\n\"and\",\n[[\"anchor\",\"like\",\"%seo%\"],\"or\",[\"referring_domains\",\">\",\"10\"]]]"
                   },
                   "order_by": {
@@ -1569,9 +1876,26 @@
                             "and",
                             "or"
                           ]
+                        },
+                        {
+                          "type": "array",
+                          "items": {},
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ]
                         }
                       ]
                     },
+                    "maxItems": 3,
                     "description": "array of results filtering parameters\noptional field\nyou can add several filters at once (8 filters maximum)\nyou should set a logical operator and, or between the conditions\nthe following operators are supported:\nregex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nyou can use the % operator with like and not_like to match any string of zero or more characters\nexample:\n[\"meta.internal_links_count\",\">\",\"1\"]\n[[\"meta.external_links_count\",\">\",\"2\"],\n\"and\",\n[\"backlinks\",\">\",\"10\"]]\n\n[[\"first_visited\",\">\",\"2017-10-23 11:31:45 +00:00\"],\n\"and\",\n[[\"title\",\"like\",\"%seo%\"],\"or\",[\"referring_domains\",\">\",\"10\"]]]"
                   },
                   "order_by": {
@@ -1658,9 +1982,26 @@
                             "and",
                             "or"
                           ]
+                        },
+                        {
+                          "type": "array",
+                          "items": {},
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ]
                         }
                       ]
                     },
+                    "maxItems": 3,
                     "description": "array of results filtering parameters\noptional field\nyou can add several filters at once (8 filters maximum)\nyou should set a logical operator and, or between the conditions\nthe following operators are supported:\nregex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nyou can use the % operator with like and not_like to match any string of zero or more characters\nexample:\n[\"1.rank\",\">\",\"80\"]\n[[\"2.page_from_rank\",\">\",\"55\"],\n\"and\",\n[\"1.original\",\"=\",\"true\"]]\n\n[[\"1.first_seen\",\">\",\"2017-10-23 11:31:45 +00:00\"],\n\"and\",\n[[\"1.anchor\",\"like\",\"%seo%\"],\"or\",[\"1.text_pre\",\"not_like\",\"%seo%\"]]]"
                   },
                   "order_by": {
@@ -1729,9 +2070,26 @@
                             "and",
                             "or"
                           ]
+                        },
+                        {
+                          "type": "array",
+                          "items": {},
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ]
                         }
                       ]
                     },
+                    "maxItems": 3,
                     "description": "array of results filtering parameters\noptional field\nyou can add several filters at once (8 filters maximum)\nyou should set a logical operator and, or between the conditions\nthe following operators are supported:\nregex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nyou can use the % operator with like and not_like to match any string of zero or more characters\nexample:\n[\"meta.internal_links_count\",\">\",\"1\"]\n[[\"meta.external_links_count\",\">\",\"2\"],\n\"and\",\n[\"backlinks\",\">\",\"10\"]]\n\n[[\"first_visited\",\">\",\"2017-10-23 11:31:45 +00:00\"],\n\"and\",\n[[\"title\",\"like\",\"%seo%\"],\"or\",[\"referring_domains\",\">\",\"10\"]]]"
                   },
                   "order_by": {
@@ -1740,82 +2098,6 @@
                       "type": "string"
                     },
                     "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"page_summary.backlinks,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"page_summary.backlinks,desc\",\"page_summary.rank,asc\"]"
-                  }
-                },
-                "required": [
-                  "target"
-                ]
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v3/backlinks/referring_networks/live.ai": {
-      "post": {
-        "description": "This endpoint will provide you with a detailed overview of referring domains pointing to the target you specify",
-        "operationId": "backlinks_referring_networks",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "target": {
-                    "type": "string",
-                    "description": "domain, subdomain or webpage to get backlinks for\n        required field\na domain or a subdomain should be specified without https:// and www.\na page should be specified with absolute URL (including http:// or https://)"
-                  },
-                  "network_address_type": {
-                    "type": "string",
-                    "default": "ip",
-                    "description": "indicates the type of network to get data for\noptional field\npossible values: ip, subnet\ndefault value: ip"
-                  },
-                  "limit": {
-                    "type": "number",
-                    "minimum": 1,
-                    "maximum": 1000,
-                    "default": 10,
-                    "description": "the maximum number of returned networks"
-                  },
-                  "offset": {
-                    "type": "number",
-                    "minimum": 0,
-                    "description": "offset in the results array of returned networks\noptional field\ndefault value: 0\nif you specify the 10 value, the first ten domains in the results array will be omitted and the data will be provided for the successive pages"
-                  },
-                  "filters": {
-                    "type": "array",
-                    "items": {
-                      "anyOf": [
-                        {
-                          "type": "array",
-                          "items": {
-                            "type": [
-                              "string",
-                              "number",
-                              "boolean"
-                            ]
-                          },
-                          "minItems": 3,
-                          "maxItems": 3
-                        },
-                        {
-                          "type": "string",
-                          "enum": [
-                            "and",
-                            "or"
-                          ]
-                        }
-                      ]
-                    },
-                    "description": "array of results filtering parameters\noptional field\nyou can add several filters at once (8 filters maximum)\nyou should set a logical operator and, or between the conditions\nthe following operators are supported:\nregex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nyou can use the % operator with like and not_like to match any string of zero or more characters\nexample:\n[\"referring_pages\",\">\",\"1\"]\n[[\"referring_pages\",\">\",\"2\"],\n\"and\",\n[\"backlinks\",\">\",\"10\"]]\n\n[[\"first_seen\",\">\",\"2017-10-23 11:31:45 +00:00\"],\n\"and\",\n[[\"network_address\",\"like\",\"194.1.%\"],\"or\",[\"referring_ips\",\">\",\"10\"]]]"
-                  },
-                  "order_by": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"backlinks,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"backlinks,desc\",\"rank,asc\"]"
                   }
                 },
                 "required": [

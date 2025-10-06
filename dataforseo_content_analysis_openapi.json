@@ -102,9 +102,26 @@
                             "and",
                             "or"
                           ]
+                        },
+                        {
+                          "type": "array",
+                          "items": {},
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ]
                         }
                       ]
                     },
+                    "maxItems": 3,
                     "description": "array of results filtering parameters\noptional field\nyou can add several filters at once (8 filters maximum)\nyou should set a logical operator and, or between the conditions\nthe following operators are supported:\nregex, not_regex, <, <=, >, >=, =, <>, in, not_in, like,not_like, match, not_match\nyou can use the % operator with like and not_like to match any string of zero or more characters\nexample:\n[\"country\",\"=\", \"US\"]\n[[\"domain_rank\",\">\",800],\"and\",[\"content_info.connotation_types.negative\",\">\",0.9]]\n\n[[\"domain_rank\",\">\",800],\n\"and\",\n[[\"page_types\",\"has\",\"ecommerce\"],\n\"or\",\n[\"content_info.text_category\",\"has\",10994]]"
                   },
                   "order_by": {
@@ -194,9 +211,26 @@
                             "and",
                             "or"
                           ]
+                        },
+                        {
+                          "type": "array",
+                          "items": {},
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ]
                         }
                       ]
                     },
+                    "maxItems": 3,
                     "description": "initial dataset filtering parameters\n        initial filtering parameters that apply to fields in the Search endpoint;\n        you can add several filters at once (8 filters maximum);\n        you should set a logical operator and, or between the conditions;\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, like,not_like, has, has_not, match, not_match\n        you can use the % operator with like and not_like to match any string of zero or more characters;\n        example:\n        [\"domain\",\"<>\", \"logitech.com\"]\n        [[\"domain\",\"<>\",\"logitech.com\"],\"and\",[\"content_info.connotation_types.negative\",\">\",1000]]\n\n        [[\"domain\",\"<>\",\"logitech.com\"]],\n        \"and\",\n        [[\"content_info.connotation_types.negative\",\">\",1000],\n        \"or\",\n        [\"content_info.text_category\",\"has\",10994]]"
                   },
                   "positive_connotation_threshold": {
@@ -300,9 +334,26 @@
                             "and",
                             "or"
                           ]
+                        },
+                        {
+                          "type": "array",
+                          "items": {},
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ]
                         }
                       ]
                     },
+                    "maxItems": 3,
                     "description": "initial dataset filtering parameters\n        initial filtering parameters that apply to fields in the Search endpoint;\n        you can add several filters at once (8 filters maximum);\n        you should set a logical operator and, or between the conditions;\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, like,not_like, has, has_not, match, not_match\n        you can use the % operator with like and not_like to match any string of zero or more characters;\n        example:\n        [\"domain\",\"<>\", \"logitech.com\"]\n        [[\"domain\",\"<>\",\"logitech.com\"],\"and\",[\"content_info.connotation_types.negative\",\">\",1000]]\n\n        [[\"domain\",\"<>\",\"logitech.com\"]],\n        \"and\",\n        [[\"content_info.connotation_types.negative\",\">\",1000],\n        \"or\",\n        [\"content_info.text_category\",\"has\",10994]]"
                   },
                   "date_from": {
