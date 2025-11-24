@@ -107,6 +107,23 @@
                     "type": "boolean",
                     "default": false,
                     "description": "Include or exclude data from clickstream-based metrics in the result"
+                  },
+                  "item_types": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "organic",
+                        "paid",
+                        "featured_snippet",
+                        "local_pack",
+                        "ai_overview_reference"
+                      ]
+                    },
+                    "description": "display results by item type\nindicates the type of search results included in the response",
+                    "default": [
+                      "organic"
+                    ]
                   }
                 },
                 "required": [
@@ -220,6 +237,22 @@
                     "type": "boolean",
                     "default": false,
                     "description": "Include or exclude data from clickstream-based metrics in the result"
+                  },
+                  "item_types": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "organic",
+                        "paid",
+                        "featured_snippet",
+                        "local_pack"
+                      ]
+                    },
+                    "description": "display results by item type\nindicates the type of search results included in the response",
+                    "default": [
+                      "organic"
+                    ]
                   }
                 },
                 "required": [
@@ -707,7 +740,7 @@
                       ]
                     },
                     "maxItems": 3,
-                    "description": "you can add several filters at once (8 filters maximum)\n        you should set a logical operator and, or between the conditions\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n        you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n        merge operator must be a string and connect two other arrays, availible values: or, and.\n        example:\n        [\"ranked_serp_element.serp_item.rank_group\",\"<=\",10]\n        [[\"ranked_serp_element.serp_item.rank_group\",\"<=\",10],\"or\",[\"ranked_serp_element.serp_item.type\",\"<>\",\"paid\"]]\n        [[\"keyword_data.keyword_info.search_volume\",\"<>\",0],\"and\",[[\"ranked_serp_element.serp_item.type\",\"<>\",\"paid\"],\"or\",[\"ranked_serp_element.serp_item.is_malicious\",\"=\",false]]]"
+                    "description": "you can add several filters at once (8 filters maximum)\nyou should set a logical operator and, or between the conditions\nthe following operators are supported:\nregex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nyou can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\nexample:\n[\"median_position\",\"in\",[1,10]]\n[[\"median_position\",\"in\",[1,10]],\"and\",[\"domain\",\"not_like\",\"%wikipedia.org%\"]]\n\n[[\"domain\",\"not_like\",\"%wikipedia.org%\"],\n\"and\",\n[[\"relevant_serp_items\",\">\",0],\"or\",[\"median_position\",\"in\",[1,10]]]]"
                   },
                   "order_by": {
                     "type": "array",
@@ -719,6 +752,22 @@
                   "include_subdomains": {
                     "type": "boolean",
                     "description": "Include keywords from subdomains"
+                  },
+                  "item_types": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "organic",
+                        "paid",
+                        "featured_snippet",
+                        "local_pack"
+                      ]
+                    },
+                    "description": "display results by item type\nindicates the type of search results included in the response",
+                    "default": [
+                      "organic"
+                    ]
                   }
                 },
                 "required": [
@@ -864,9 +913,18 @@
                   "item_types": {
                     "type": "array",
                     "items": {
-                      "type": "string"
+                      "type": "string",
+                      "enum": [
+                        "organic",
+                        "paid",
+                        "featured_snippet",
+                        "local_pack"
+                      ]
                     },
-                    "description": "item types to return\n        optional field\n        default: ['organic']\n        possible values:\n        organic\n        paid"
+                    "description": "display results by item type\nindicates the type of search results included in the response",
+                    "default": [
+                      "organic"
+                    ]
                   },
                   "include_clickstream_data": {
                     "type": "boolean",
@@ -1269,6 +1327,22 @@
                     "type": "boolean",
                     "default": false,
                     "description": "Include or exclude data from clickstream-based metrics in the result"
+                  },
+                  "item_types": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "organic",
+                        "paid",
+                        "featured_snippet",
+                        "local_pack"
+                      ]
+                    },
+                    "description": "display results by item type\nindicates the type of search results included in the response",
+                    "default": [
+                      "organic"
+                    ]
                   }
                 },
                 "required": [
@@ -1456,6 +1530,22 @@
                     "type": "boolean",
                     "default": false,
                     "description": "Include or exclude data from clickstream-based metrics in the result"
+                  },
+                  "item_types": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "organic",
+                        "paid",
+                        "featured_snippet",
+                        "local_pack"
+                      ]
+                    },
+                    "description": "display results by item type\nindicates the type of search results included in the response",
+                    "default": [
+                      "organic"
+                    ]
                   }
                 },
                 "required": [
@@ -1499,6 +1589,22 @@
                     "type": "boolean",
                     "default": true,
                     "description": "ignore highly similar keywords, if set to true, results will be more accurate"
+                  },
+                  "item_types": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "organic",
+                        "paid",
+                        "featured_snippet",
+                        "local_pack"
+                      ]
+                    },
+                    "description": "display results by item type\nindicates the type of search results included in the response",
+                    "default": [
+                      "organic"
+                    ]
                   }
                 },
                 "required": [
@@ -1655,9 +1761,18 @@
                   "item_types": {
                     "type": "array",
                     "items": {
-                      "type": "string"
+                      "type": "string",
+                      "enum": [
+                        "organic",
+                        "paid",
+                        "featured_snippet",
+                        "local_pack"
+                      ]
                     },
-                    "description": "item types to return\n            optional field\n            default: ['organic']\n            possible values:\n            organic\n            paid"
+                    "description": "display results by item type\nindicates the type of search results included in the response",
+                    "default": [
+                      "organic"
+                    ]
                   },
                   "include_clickstream_data": {
                     "type": "boolean",
