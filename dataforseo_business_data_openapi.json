@@ -35,11 +35,11 @@
                     "items": {
                       "type": "string"
                     },
-                    "description": "business categories\nthe categories you specify are used to search for business listings;\nif you don\u2019t use this field, we will return business listings found in the specified location;\nyou can specify up to 10 categories"
+                    "description": "business categories\nthe categories you specify are used to search for business listings;\nif you don’t use this field, we will return business listings found in the specified location;\nyou can specify up to 10 categories"
                   },
                   "location_coordinate": {
                     "type": "string",
-                    "description": "GPS coordinates of a location\noptional field\nlocation_coordinate parameter should be specified in the \u201clatitude,longitude,radius\u201d format\nthe maximum number of decimal digits for \u201clatitude\u201d and \u201clongitude\u201d: 7\nthe value of \u201cradius\u201d is specified in kilometres (km)\nthe minimum value for \u201cradius\u201d: 1\nthe maximum value for \u201cradius\u201d: 100000\nexample:\n53.476225,-2.243572,200"
+                    "description": "GPS coordinates of a location\noptional field\nlocation_coordinate parameter should be specified in the “latitude,longitude,radius” format\nthe maximum number of decimal digits for “latitude” and “longitude”: 7\nthe value of “radius” is specified in kilometres (km)\nthe minimum value for “radius”: 1\nthe maximum value for “radius”: 100000\nexample:\n53.476225,-2.243572,200"
                   },
                   "limit": {
                     "type": "number",
@@ -102,7 +102,7 @@
                     "items": {
                       "type": "string"
                     },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\nexample:\n[\"rating.value,desc\"]note that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"rating.value,desc\",\"rating.votes_count,desc\"]"
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\nexample:\n[\"rating.value,desc\"]note that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"rating.value,desc\",\"rating.votes_count,desc\"]"
                   },
                   "is_claimed": {
                     "type": "boolean",

@@ -29,7 +29,7 @@
                   "mode": {
                     "type": "string",
                     "default": "as_is",
-                    "description": "results grouping type\noptional field\npossible grouping types:\nas_is \u2013 returns all backlinks\none_per_domain \u2013 returns one backlink per domain\none_per_anchor \u2013 returns one backlink per anchor\ndefault value: as_is"
+                    "description": "results grouping type\noptional field\npossible grouping types:\nas_is – returns all backlinks\none_per_domain – returns one backlink per domain\none_per_anchor – returns one backlink per anchor\ndefault value: as_is"
                   },
                   "limit": {
                     "type": "number",
@@ -92,7 +92,7 @@
                     "items": {
                       "type": "string"
                     },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"rank,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"domain_from_rank,desc\",\"page_from_rank,asc\"]"
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"rank,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"domain_from_rank,desc\",\"page_from_rank,asc\"]"
                   }
                 },
                 "required": [
@@ -180,7 +180,7 @@
                     "items": {
                       "type": "string"
                     },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"rank,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"domain_from_rank,desc\",\"page_from_rank,asc\"]"
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"rank,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"domain_from_rank,desc\",\"page_from_rank,asc\"]"
                   }
                 },
                 "required": [
@@ -240,7 +240,7 @@
                   },
                   "date_from": {
                     "type": "string",
-                    "description": "starting date of the time range\noptional field\nthis field indicates the date which will be used as a threshold for new and lost backlinks;\nthe backlinks that appeared in our index after the specified date will be considered as new;\nthe backlinks that weren\u2019t found after the specified date, but were present before, will be considered as lost;\ndefault value: today\u2019s date -(minus) one month;\ne.g. if today is 2021-10-13, default date_from will be 2021-09-13.\nminimum value equals today\u2019s date -(minus) one year;\ne.g. if today is 2021-10-13, minimum date_from will be 2020-10-13.\n\ndate format: \"yyyy-mm-dd\"\nexample:\n\"2021-01-01\""
+                    "description": "starting date of the time range\noptional field\nthis field indicates the date which will be used as a threshold for new and lost backlinks;\nthe backlinks that appeared in our index after the specified date will be considered as new;\nthe backlinks that weren’t found after the specified date, but were present before, will be considered as lost;\ndefault value: today’s date -(minus) one month;\ne.g. if today is 2021-10-13, default date_from will be 2021-09-13.\nminimum value equals today’s date -(minus) one year;\ne.g. if today is 2021-10-13, minimum date_from will be 2020-10-13.\n\ndate format: \"yyyy-mm-dd\"\nexample:\n\"2021-01-01\""
                   }
                 },
                 "required": [
@@ -272,7 +272,7 @@
                   },
                   "date_from": {
                     "type": "string",
-                    "description": "starting date of the time range\noptional field\nthis field indicates the date which will be used as a threshold for new and lost backlinks;\nthe backlinks that appeared in our index after the specified date will be considered as new;\nthe backlinks that weren\u2019t found after the specified date, but were present before, will be considered as lost;\ndefault value: today\u2019s date -(minus) one month;\ne.g. if today is 2021-10-13, default date_from will be 2021-09-13.\nminimum value equals today\u2019s date -(minus) one year;\ne.g. if today is 2021-10-13, minimum date_from will be 2020-10-13.\n\ndate format: \"yyyy-mm-dd\"\nexample:\n\"2021-01-01\""
+                    "description": "starting date of the time range\noptional field\nthis field indicates the date which will be used as a threshold for new and lost backlinks;\nthe backlinks that appeared in our index after the specified date will be considered as new;\nthe backlinks that weren’t found after the specified date, but were present before, will be considered as lost;\ndefault value: today’s date -(minus) one month;\ne.g. if today is 2021-10-13, default date_from will be 2021-09-13.\nminimum value equals today’s date -(minus) one year;\ne.g. if today is 2021-10-13, minimum date_from will be 2020-10-13.\n\ndate format: \"yyyy-mm-dd\"\nexample:\n\"2021-01-01\""
                   }
                 },
                 "required": [
@@ -304,7 +304,7 @@
                   },
                   "rank_scale": {
                     "type": "string",
-                    "description": "defines the scale used for calculating and displaying the rank, domain_from_rank, and page_from_rank values\noptional field\nyou can use this parameter to choose whether rank values are presented on a 0\u2013100 or 0\u20131000 scale\npossible values:\none_hundred \u2014 rank values are displayed on a 0\u2013100 scale\none_thousand \u2014 rank values are displayed on a 0\u20131000 scale",
+                    "description": "defines the scale used for calculating and displaying the rank, domain_from_rank, and page_from_rank values\noptional field\nyou can use this parameter to choose whether rank values are presented on a 0–100 or 0–1000 scale\npossible values:\none_hundred — rank values are displayed on a 0–100 scale\none_thousand — rank values are displayed on a 0–1000 scale",
                     "default": "one_thousand"
                   }
                 },
@@ -347,7 +347,7 @@
     },
     "/v3/backlinks/bulk_spam_score/live.ai": {
       "post": {
-        "description": "This endpoint will provide you with spam scores of the domains, subdomains, and pages you specified in the targets array. Spam Score is DataForSEO\u2019s proprietary metric that indicates how \u201cspammy\u201d your target is on a scale from 0 to 100",
+        "description": "This endpoint will provide you with spam scores of the domains, subdomains, and pages you specified in the targets array. Spam Score is DataForSEO’s proprietary metric that indicates how “spammy” your target is on a scale from 0 to 100",
         "operationId": "backlinks_bulk_spam_score",
         "requestBody": {
           "required": true,
@@ -449,7 +449,7 @@
                     "items": {
                       "type": "string"
                     },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"rank,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"intersections,desc\",\"rank,asc\"]"
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"rank,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"intersections,desc\",\"rank,asc\"]"
                   },
                   "main_domain": {
                     "type": "boolean",
@@ -489,6 +489,9 @@
                 "properties": {
                   "targets": {
                     "type": "object",
+                    "items": {
+                      "type": "string"
+                    },
                     "description": "Object containing two target values to compare",
                     "properties": {
                       "1": {
@@ -570,7 +573,7 @@
                     "items": {
                       "type": "string"
                     },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"backlinks,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"backlinks,desc\",\"rank,asc\"]"
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"backlinks,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"backlinks,desc\",\"rank,asc\"]"
                   }
                 },
                 "required": [
@@ -658,7 +661,7 @@
                     "items": {
                       "type": "string"
                     },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"backlinks,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"backlinks,desc\",\"rank,asc\"]"
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"backlinks,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"backlinks,desc\",\"rank,asc\"]"
                   }
                 },
                 "required": [
@@ -746,7 +749,7 @@
                     "items": {
                       "type": "string"
                     },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"page_summary.backlinks,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"page_summary.backlinks,desc\",\"page_summary.rank,asc\"]"
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"page_summary.backlinks,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"page_summary.backlinks,desc\",\"page_summary.rank,asc\"]"
                   }
                 },
                 "required": [
@@ -771,6 +774,9 @@
                 "properties": {
                   "targets": {
                     "type": "object",
+                    "items": {
+                      "type": "string"
+                    },
                     "description": "Object containing two target values to compare",
                     "properties": {
                       "1": {
@@ -852,7 +858,7 @@
                     "items": {
                       "type": "string"
                     },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"rank,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"domain_from_rank,desc\",\"page_from_rank,asc\"]"
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"rank,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"domain_from_rank,desc\",\"page_from_rank,asc\"]"
                   }
                 },
                 "required": [
@@ -940,7 +946,7 @@
                     "items": {
                       "type": "string"
                     },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"page_summary.backlinks,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"page_summary.backlinks,desc\",\"page_summary.rank,asc\"]"
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"page_summary.backlinks,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"page_summary.backlinks,desc\",\"page_summary.rank,asc\"]"
                   }
                 },
                 "required": [
@@ -1033,7 +1039,7 @@
                     "items": {
                       "type": "string"
                     },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"backlinks,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"backlinks,desc\",\"rank,asc\"]"
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"backlinks,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"backlinks,desc\",\"rank,asc\"]"
                   }
                 },
                 "required": [
@@ -1097,11 +1103,11 @@
                   },
                   "date_from": {
                     "type": "string",
-                    "description": "starting date of the time range\noptional field\nthis field indicates the date which will be used as a threshold for summary data;\nminimum value: 2019-01-30\nmaximum value shouldn\u2019t exceed the date specified in the date_to\ndate format: \"yyyy-mm-dd\"\nexample:\n\"2021-01-01\""
+                    "description": "starting date of the time range\noptional field\nthis field indicates the date which will be used as a threshold for summary data;\nminimum value: 2019-01-30\nmaximum value shouldn’t exceed the date specified in the date_to\ndate format: \"yyyy-mm-dd\"\nexample:\n\"2021-01-01\""
                   },
                   "date_to": {
                     "type": "string",
-                    "description": "ending date of the time range\noptional field\nif you don\u2019t specify this field, the today\u2019s date will be used by default\nminimum value shouldn\u2019t preceed the date specified in the date_from\nmaximum value: today\u2019s date\ndate format: \"yyyy-mm-dd\"\nexample:\n\"2021-01-15\""
+                    "description": "ending date of the time range\noptional field\nif you don’t specify this field, the today’s date will be used by default\nminimum value shouldn’t preceed the date specified in the date_from\nmaximum value: today’s date\ndate format: \"yyyy-mm-dd\"\nexample:\n\"2021-01-15\""
                   },
                   "group_range": {
                     "type": "string",
@@ -1135,11 +1141,11 @@
                   },
                   "date_from": {
                     "type": "string",
-                    "description": "starting date of the time range\noptional field\nthis field indicates the date which will be used as a threshold for summary data;\nminimum value: 2019-01-30\nmaximum value shouldn\u2019t exceed the date specified in the date_to\ndate format: \"yyyy-mm-dd\"\nexample:\n\"2021-01-01\""
+                    "description": "starting date of the time range\noptional field\nthis field indicates the date which will be used as a threshold for summary data;\nminimum value: 2019-01-30\nmaximum value shouldn’t exceed the date specified in the date_to\ndate format: \"yyyy-mm-dd\"\nexample:\n\"2021-01-01\""
                   },
                   "date_to": {
                     "type": "string",
-                    "description": "ending date of the time range\noptional field\nif you don\u2019t specify this field, the today\u2019s date will be used by default\nminimum value shouldn\u2019t preceed the date specified in the date_from\nmaximum value: today\u2019s date\ndate format: \"yyyy-mm-dd\"\nexample:\n\"2021-01-15\""
+                    "description": "ending date of the time range\noptional field\nif you don’t specify this field, the today’s date will be used by default\nminimum value shouldn’t preceed the date specified in the date_from\nmaximum value: today’s date\ndate format: \"yyyy-mm-dd\"\nexample:\n\"2021-01-15\""
                   },
                   "group_range": {
                     "type": "string",

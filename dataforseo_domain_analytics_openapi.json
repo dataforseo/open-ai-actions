@@ -83,7 +83,7 @@
                     "items": {
                       "type": "string"
                     },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\nexample:\n[\"rating.value,desc\"]note that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"rating.value,desc\",\"rating.votes_count,desc\"]"
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\nexample:\n[\"rating.value,desc\"]note that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"rating.value,desc\",\"rating.votes_count,desc\"]"
                   },
                   "is_claimed": {
                     "type": "boolean",

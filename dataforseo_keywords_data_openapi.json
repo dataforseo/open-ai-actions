@@ -11,6 +11,39 @@
     }
   ],
   "paths": {
+    "/v3/keywords_data/google_ads_locations/live.ai": {
+      "post": {
+        "description": "Utility tool for keywords_data_google_ads_search_volume to get list of availible locations.",
+        "operationId": "keywords_data_google_ads_locations",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "country_iso_code": {
+                    "type": "string",
+                    "description": "ISO 3166-1 alpha-2 country code, for example: US, GB, MT"
+                  },
+                  "location_type": {
+                    "type": "string",
+                    "description": "Type of location. Possible variants: 'TV Region','Postal Code','Neighborhood','Governorate','National Park','Quarter','Canton','Airport','Okrug','Prefecture','City','Country','Province','Barrio','Sub-District','Congressional District','Municipality District','district','DMA Region','Union Territory','Territory','Colloquial Area','Autonomous Community','Borough','County','State','District','City Region','Commune','Region','Department','Division','Sub-Ward','Municipality','University'"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "description": "Name of location or it`s part."
+                  }
+                },
+                "required": [
+                  "country_iso_code"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
     "/v3/keywords_data/google_ads/search_volume/live.ai": {
       "post": {
         "description": "Get search volume data for keywords from Google Ads",
@@ -23,12 +56,9 @@
                 "type": "object",
                 "properties": {
                   "location_name": {
-                    "type": [
-                      "string",
-                      "null"
-                    ],
-                    "default": null,
-                    "description": "full name of the location\noptional field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field\nLocation format - hierarchical, comma-separated (from most specific to least)\n Can be one of:\n 1. Country only: \"United States\"\n 2. Region,Country: \"California,United States\"\n 3. City,Region,Country: \"San Francisco,California,United States\""
                   },
                   "language_code": {
                     "type": [
@@ -93,11 +123,11 @@
                   },
                   "date_from": {
                     "type": "string",
-                    "description": "starting date of the time range\n          if you don\u2019t specify this field, the current day and month of the preceding year will be used by default\n          minimal value for the web type: 2004-01-01\n          minimal value for other types: 2008-01-01\n          date format: \"yyyy-mm-dd\"\n          example:\n          \"2019-01-15\""
+                    "description": "starting date of the time range\n          if you don’t specify this field, the current day and month of the preceding year will be used by default\n          minimal value for the web type: 2004-01-01\n          minimal value for other types: 2008-01-01\n          date format: \"yyyy-mm-dd\"\n          example:\n          \"2019-01-15\""
                   },
                   "date_to": {
                     "type": "string",
-                    "description": "ending date of the time range\n            if you don\u2019t specify this field, the today\u2019s date will be used by default\n            date format: \"yyyy-mm-dd\"\n            example:\n            \"2019-01-15\""
+                    "description": "ending date of the time range\n            if you don’t specify this field, the today’s date will be used by default\n            date format: \"yyyy-mm-dd\"\n            example:\n            \"2019-01-15\""
                   },
                   "time_range": {
                     "type": "string",
@@ -161,11 +191,11 @@
                   },
                   "date_from": {
                     "type": "string",
-                    "description": "starting date of the time range\n          if you don\u2019t specify this field, the current day and month of the preceding year will be used by default\n          minimal value for the web type: 2004-01-01\n          minimal value for other types: 2008-01-01\n          date format: \"yyyy-mm-dd\"\n          example:\n          \"2019-01-15\""
+                    "description": "starting date of the time range\n          if you don’t specify this field, the current day and month of the preceding year will be used by default\n          minimal value for the web type: 2004-01-01\n          minimal value for other types: 2008-01-01\n          date format: \"yyyy-mm-dd\"\n          example:\n          \"2019-01-15\""
                   },
                   "date_to": {
                     "type": "string",
-                    "description": "ending date of the time range\n            if you don\u2019t specify this field, the today\u2019s date will be used by default\n            date format: \"yyyy-mm-dd\"\n            example:\n            \"2019-01-15\""
+                    "description": "ending date of the time range\n            if you don’t specify this field, the today’s date will be used by default\n            date format: \"yyyy-mm-dd\"\n            example:\n            \"2019-01-15\""
                   },
                   "time_range": {
                     "type": "string",
@@ -229,11 +259,11 @@
                   },
                   "date_from": {
                     "type": "string",
-                    "description": "starting date of the time range\n          if you don\u2019t specify this field, the current day and month of the preceding year will be used by default\n          minimal value for the web type: 2004-01-01\n          minimal value for other types: 2008-01-01\n          date format: \"yyyy-mm-dd\"\n          example:\n          \"2019-01-15\""
+                    "description": "starting date of the time range\n          if you don’t specify this field, the current day and month of the preceding year will be used by default\n          minimal value for the web type: 2004-01-01\n          minimal value for other types: 2008-01-01\n          date format: \"yyyy-mm-dd\"\n          example:\n          \"2019-01-15\""
                   },
                   "date_to": {
                     "type": "string",
-                    "description": "ending date of the time range\n            if you don\u2019t specify this field, the today\u2019s date will be used by default\n            date format: \"yyyy-mm-dd\"\n            example:\n            \"2019-01-15\""
+                    "description": "ending date of the time range\n            if you don’t specify this field, the today’s date will be used by default\n            date format: \"yyyy-mm-dd\"\n            example:\n            \"2019-01-15\""
                   },
                   "time_range": {
                     "type": "string",
@@ -267,7 +297,7 @@
     },
     "/v3/keywords_data/google_trends/explore/live.ai": {
       "post": {
-        "description": "This endpoint will provide you with the keyword popularity data from the \u2018Explore\u2019 feature of Google Trends. You can check keyword trends for Google Search, Google News, Google Images, Google Shopping, and YouTube",
+        "description": "This endpoint will provide you with the keyword popularity data from the ‘Explore’ feature of Google Trends. You can check keyword trends for Google Search, Google News, Google Images, Google Shopping, and YouTube",
         "operationId": "keywords_data_google_trends_explore",
         "requestBody": {
           "required": true,
@@ -313,11 +343,11 @@
                   },
                   "date_from": {
                     "type": "string",
-                    "description": "starting date of the time range\n          if you don\u2019t specify this field, the current day and month of the preceding year will be used by default\n          minimal value for the web type: 2004-01-01\n          minimal value for other types: 2008-01-01\n          date format: \"yyyy-mm-dd\"\n          example:\n          \"2019-01-15\""
+                    "description": "starting date of the time range\n          if you don’t specify this field, the current day and month of the preceding year will be used by default\n          minimal value for the web type: 2004-01-01\n          minimal value for other types: 2008-01-01\n          date format: \"yyyy-mm-dd\"\n          example:\n          \"2019-01-15\""
                   },
                   "date_to": {
                     "type": "string",
-                    "description": "ending date of the time range\n            if you don\u2019t specify this field, the today\u2019s date will be used by default\n            date format: \"yyyy-mm-dd\"\n            example:\n            \"2019-01-15\""
+                    "description": "ending date of the time range\n            if you don’t specify this field, the today’s date will be used by default\n            date format: \"yyyy-mm-dd\"\n            example:\n            \"2019-01-15\""
                   },
                   "time_range": {
                     "type": "string",

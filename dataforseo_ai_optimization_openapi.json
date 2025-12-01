@@ -331,7 +331,7 @@
                     "items": {
                       "type": "string"
                     },
-                    "description": "resuresults sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"ai_search_volume,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"ai_search_volume,desc\"]\nThe full list of possible orders is available in 'ai_optimization_llm_mentions_filters' tool"
+                    "description": "resuresults sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"ai_search_volume,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"ai_search_volume,desc\"]\nThe full list of possible orders is available in 'ai_optimization_llm_mentions_filters' tool"
                   },
                   "limit": {
                     "type": "number",

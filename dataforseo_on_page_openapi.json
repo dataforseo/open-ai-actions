@@ -95,7 +95,7 @@
     },
     "/v3/on_page/lighthouse/live/json.ai": {
       "post": {
-        "description": "The OnPage Lighthouse API is based on Google\u2019s open-source Lighthouse project for measuring the quality of web pages and web apps.",
+        "description": "The OnPage Lighthouse API is based on Google’s open-source Lighthouse project for measuring the quality of web pages and web apps.",
         "operationId": "on_page_lighthouse",
         "requestBody": {
           "required": true,

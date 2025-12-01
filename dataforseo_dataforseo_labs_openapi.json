@@ -97,7 +97,7 @@
                     "items": {
                       "type": "string"
                     },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"keyword_data.keyword_info.competition,desc\"]\ndefault rule:\n[\"ranked_serp_element.serp_item.rank_group,asc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"keyword_data.keyword_info.search_volume,desc\",\"keyword_data.keyword_info.cpc,desc\"]"
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"keyword_data.keyword_info.competition,desc\"]\ndefault rule:\n[\"ranked_serp_element.serp_item.rank_group,asc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"keyword_data.keyword_info.search_volume,desc\",\"keyword_data.keyword_info.cpc,desc\"]"
                   },
                   "include_subdomains": {
                     "type": "boolean",
@@ -226,7 +226,7 @@
                     "items": {
                       "type": "string"
                     },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\ndefault rule:\n[\"relevance,desc\"]\nexample:\n[\"relevance,desc\",\"keyword_info.search_volume,desc\"]"
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\ndefault rule:\n[\"relevance,desc\"]\nexample:\n[\"relevance,desc\",\"keyword_info.search_volume,desc\"]"
                   },
                   "exclude_top_domains": {
                     "type": "boolean",
@@ -393,7 +393,7 @@
                     "items": {
                       "type": "string"
                     },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\ndefault rule:\n[\"relevance,desc\"]\nrelevance is used as the default sorting rule to provide you with the closest keyword ideas. We recommend using this sorting rule to get highly-relevant search terms. Note that relevance is only our internal system identifier, so it can not be used as a filter, and you will not find this field in the result array. The relevance score is based on a similar principle as used in the Keywords For Keywords endpoint.\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"relevance,desc\",\"keyword_info.search_volume,desc\"]"
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\ndefault rule:\n[\"relevance,desc\"]\nrelevance is used as the default sorting rule to provide you with the closest keyword ideas. We recommend using this sorting rule to get highly-relevant search terms. Note that relevance is only our internal system identifier, so it can not be used as a filter, and you will not find this field in the result array. The relevance score is based on a similar principle as used in the Keywords For Keywords endpoint.\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"relevance,desc\",\"keyword_info.search_volume,desc\"]"
                   },
                   "include_clickstream_data": {
                     "type": "boolean",
@@ -503,7 +503,7 @@
                     "items": {
                       "type": "string"
                     },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"keyword_data.keyword_info.competition,desc\"]\ndefault rule:\n[\"keyword_data.keyword_info.search_volume,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"keyword_data.keyword_info.search_volume,desc\",\"keyword_data.keyword_info.cpc,desc\"]"
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"keyword_data.keyword_info.competition,desc\"]\ndefault rule:\n[\"keyword_data.keyword_info.search_volume,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"keyword_data.keyword_info.search_volume,desc\",\"keyword_data.keyword_info.cpc,desc\"]"
                   },
                   "include_clickstream_data": {
                     "type": "boolean",
@@ -606,7 +606,7 @@
                     "items": {
                       "type": "string"
                     },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\na comma is used as a separator\nexample:\n[\"keyword_info.competition,desc\"]\ndefault rule:\n[\"keyword_info.search_volume,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"keyword_info.search_volume,desc\",\"keyword_info.cpc,desc\"]"
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\na comma is used as a separator\nexample:\n[\"keyword_info.competition,desc\"]\ndefault rule:\n[\"keyword_info.search_volume,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"keyword_info.search_volume,desc\",\"keyword_info.cpc,desc\"]"
                   },
                   "include_clickstream_data": {
                     "type": "boolean",
@@ -747,7 +747,7 @@
                     "items": {
                       "type": "string"
                     },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nthe comma is used as a separator\nexample:\n[\"avg_position,asc\"]\ndefault rule:\n[\"rating,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"avg_position,asc\",\"etv,desc\"]"
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nthe comma is used as a separator\nexample:\n[\"avg_position,asc\"]\ndefault rule:\n[\"rating,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"avg_position,asc\",\"etv,desc\"]"
                   },
                   "include_subdomains": {
                     "type": "boolean",
@@ -908,7 +908,7 @@
                     "items": {
                       "type": "string"
                     },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to specify a sorting type\nexample:\n[\"metrics.paid.etv,asc\"]\nNote: you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"metrics.organic.etv,desc\",\"metrics.paid.count,asc\"]\ndefault rule:\n[\"metrics.organic.count,desc\"]"
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to specify a sorting type\nexample:\n[\"metrics.paid.etv,asc\"]\nNote: you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"metrics.organic.etv,desc\",\"metrics.paid.count,asc\"]\ndefault rule:\n[\"metrics.organic.count,desc\"]"
                   },
                   "item_types": {
                     "type": "array",
@@ -1066,7 +1066,7 @@
                     "items": {
                       "type": "string"
                     },
-                    "description": "resuresults sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"keyword_info.competition,desc\"]\ndefault rule:\n[\"keyword_info.search_volume,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"keyword_info.search_volume,desc\",\"keyword_info.cpc,desc\"]"
+                    "description": "resuresults sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"keyword_info.competition,desc\"]\ndefault rule:\n[\"keyword_info.search_volume,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"keyword_info.search_volume,desc\",\"keyword_info.cpc,desc\"]"
                   },
                   "include_clickstream_data": {
                     "type": "boolean",
@@ -1200,7 +1200,7 @@
                     "items": {
                       "type": "string"
                     },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\ndefault rule:\n[\"relevance,desc\"]\nexample:\n[\"relevance,desc\",\"keyword_info.search_volume,desc\"]"
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\ndefault rule:\n[\"relevance,desc\"]\nexample:\n[\"relevance,desc\",\"keyword_info.search_volume,desc\"]"
                   },
                   "include_subdomains": {
                     "type": "boolean",
@@ -1316,11 +1316,11 @@
                     "items": {
                       "type": "string"
                     },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\nexample:\n[\"keyword_data.keyword_info.competition,desc\"]\ndefault rule:\n[\"keyword_data.keyword_info.search_volume,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"keyword_data.keyword_info.search_volume,desc\",\"keyword_data.keyword_info.cpc,desc\"]"
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\nexample:\n[\"keyword_data.keyword_info.competition,desc\"]\ndefault rule:\n[\"keyword_data.keyword_info.search_volume,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"keyword_data.keyword_info.search_volume,desc\",\"keyword_data.keyword_info.cpc,desc\"]"
                   },
                   "intersections": {
                     "type": "boolean",
-                    "description": "domain intersections in SERP\noptional field\nif you set intersections to true, you will get the keywords for which both target domains specified as target1 and target2 have results within the same SERP; the corresponding SERP elements for both domains will be provided in the results array\nNote: this endpoint will not provide results if the number of intersecting keywords exceeds 10 million\nif you specify intersections: false, you will get the keywords for which the domain specified as target1 has results in SERP, and the domain specified as target2 doesn\u2019t;\nthus, the corresponding SERP elements and other data will be provided for the domain specified as target1only\ndefault value: true",
+                    "description": "domain intersections in SERP\noptional field\nif you set intersections to true, you will get the keywords for which both target domains specified as target1 and target2 have results within the same SERP; the corresponding SERP elements for both domains will be provided in the results array\nNote: this endpoint will not provide results if the number of intersecting keywords exceeds 10 million\nif you specify intersections: false, you will get the keywords for which the domain specified as target1 has results in SERP, and the domain specified as target2 doesn’t;\nthus, the corresponding SERP elements and other data will be provided for the domain specified as target1only\ndefault value: true",
                     "default": true
                   },
                   "include_clickstream_data": {
@@ -1413,6 +1413,9 @@
                 "properties": {
                   "pages": {
                     "type": "object",
+                    "items": {
+                      "type": "string"
+                    },
                     "description": "Object containing two page values to compare",
                     "properties": {
                       "1": {
@@ -1438,7 +1441,7 @@
                     "items": {
                       "type": "string"
                     },
-                    "description": "URLs of pages you want to exclude\noptional field\nyou can set up to 10 pages in this array\nif you use this array, results will contain the keywords for which URLs from the pages object rank, but URLs from exclude_pages array do not;\nnote that if you specify this field, the results will be based on the keywords any URL from pages ranks for regardless of intersections between them. However, you can set intersection_mode to intersect and results will contain the keywords all URLs from pages rank for in the same SERP and URLs from exclude_pages do not.\nuse a wildcard (\u2018*\u2019) character to specify the search pattern\nexample:\n\"exclude_pages\": [\n\"https://www.apple.com/iphone/*\",\n\"https://dataforseo.com/apis/*\",\n\"https://www.microsoft.com/en-us/industry/services/\"\n]"
+                    "description": "URLs of pages you want to exclude\noptional field\nyou can set up to 10 pages in this array\nif you use this array, results will contain the keywords for which URLs from the pages object rank, but URLs from exclude_pages array do not;\nnote that if you specify this field, the results will be based on the keywords any URL from pages ranks for regardless of intersections between them. However, you can set intersection_mode to intersect and results will contain the keywords all URLs from pages rank for in the same SERP and URLs from exclude_pages do not.\nuse a wildcard (‘*’) character to specify the search pattern\nexample:\n\"exclude_pages\": [\n\"https://www.apple.com/iphone/*\",\n\"https://dataforseo.com/apis/*\",\n\"https://www.microsoft.com/en-us/industry/services/\"\n]"
                   },
                   "intersection_mode": {
                     "type": "string",
@@ -1446,7 +1449,7 @@
                       "union",
                       "intersect"
                     ],
-                    "description": "indicates whether to intersect keywords\noptional field\nuse this field to intersect or merge results for the specified URLs\npossible values: union, intersect\n\nunion \u2013 results are based on all keywords any URL from pages rank for;\n\nintersect \u2013 results are based on the keywords all URLs from pages rank for in the same SERP:\n\nby default, results are based on the intersect mode if you specify only pages array. If you specify exclude_pages as well, results are based on the union mode"
+                    "description": "indicates whether to intersect keywords\noptional field\nuse this field to intersect or merge results for the specified URLs\npossible values: union, intersect\n\nunion – results are based on all keywords any URL from pages rank for;\n\nintersect – results are based on the keywords all URLs from pages rank for in the same SERP:\n\nby default, results are based on the intersect mode if you specify only pages array. If you specify exclude_pages as well, results are based on the union mode"
                   },
                   "location_name": {
                     "type": "string",
@@ -1524,7 +1527,7 @@
                     "items": {
                       "type": "string"
                     },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\nexample:\n[\"keyword_data.keyword_info.competition,desc\"]\ndefault rule:\n[\"keyword_data.keyword_info.search_volume,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"intersection_result.1.rank_group,asc\",\"intersection_result.2.rank_absolute,asc\"]"
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\nexample:\n[\"keyword_data.keyword_info.competition,desc\"]\ndefault rule:\n[\"keyword_data.keyword_info.search_volume,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"intersection_result.1.rank_group,asc\",\"intersection_result.2.rank_absolute,asc\"]"
                   },
                   "include_clickstream_data": {
                     "type": "boolean",
@@ -1662,7 +1665,7 @@
     },
     "/v3/dataforseo_labs/google/relevant_pages/live.ai": {
       "post": {
-        "description": "This endpoint will provide you with rankings and traffic data for the web pages of the specified domain. You will be able to review each page\u2019s ranking distribution and estimated monthly traffic volume from both organic and paid searches.",
+        "description": "This endpoint will provide you with rankings and traffic data for the web pages of the specified domain. You will be able to review each page’s ranking distribution and estimated monthly traffic volume from both organic and paid searches.",
         "operationId": "dataforseo_labs_google_relevant_pages",
         "requestBody": {
           "required": true,
@@ -1751,12 +1754,12 @@
                     "items": {
                       "type": "string"
                     },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc \u2013 results will be sorted in the ascending order\ndesc \u2013 results will be sorted in the descending order\nyou should use a comma to specify a sorting type\nexample:\n[\"metrics.paid.etv,asc\"]\nNote: you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"metrics.organic.etv,desc\",\"metrics.paid.count,asc\"]\ndefault rule:\n[\"metrics.organic.count,desc\"]"
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to specify a sorting type\nexample:\n[\"metrics.paid.etv,asc\"]\nNote: you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"metrics.organic.etv,desc\",\"metrics.paid.count,asc\"]\ndefault rule:\n[\"metrics.organic.count,desc\"]"
                   },
                   "exclude_top_domains": {
                     "type": "boolean",
                     "default": true,
-                    "description": "indicates whether to exclude world\u2019s largest websites\noptional field\ndefault value: false\nset to true if you want to get highly-relevant competitors excluding the top websites"
+                    "description": "indicates whether to exclude world’s largest websites\noptional field\ndefault value: false\nset to true if you want to get highly-relevant competitors excluding the top websites"
                   },
                   "item_types": {
                     "type": "array",
