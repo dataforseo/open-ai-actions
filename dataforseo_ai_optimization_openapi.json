@@ -1064,6 +1064,72 @@
           }
         }
       }
+    },
+    "/v3/ai_optimization/chat_gpt_scraper/live.ai": {
+      "post": {
+        "description": "This endpoint provides results from ChatGPT searches",
+        "operationId": "ai_optimization_chat_gpt_scraper",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "keyword": {
+                    "type": "string",
+                    "description": "keyword\nrequired field\nyou can specify up to 2000 characters in the keyword field\nall %## will be decoded (plus character ‘+’ will be decoded to a space character)\nif you need to use the “%” character for your keyword, please specify it as “%25”;\nif you need to use the “+” character for your keyword, please specify it as “%2B”"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location, example: 'United Kingdom', 'United States'"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "description": "Search engine language code (e.g., 'en')"
+                  },
+                  "force_web_search": {
+                    "type": "boolean",
+                    "description": "force AI agent to use web search"
+                  }
+                },
+                "required": [
+                  "keyword",
+                  "language_code"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/ai_optimization/chat_gpt_scraper_locations/live.ai": {
+      "post": {
+        "description": "Utility tool for ai_optimization_chat_gpt_scraper to get list of available locations",
+        "operationId": "ai_optimization_chat_gpt_scraper_locations",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "country_iso_code": {
+                    "type": "string",
+                    "description": "ISO 3166-1 alpha-2 country code, for example: US, GB, MT"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "description": "Name of location or it`s part."
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
