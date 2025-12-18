@@ -30,10 +30,6 @@
                     "type": "boolean",
                     "description": "Enable JavaScript rendering"
                   },
-                  "custom_js": {
-                    "type": "string",
-                    "description": "Custom JavaScript code to execute"
-                  },
                   "custom_user_agent": {
                     "type": "string",
                     "description": "Custom User-Agent header"
@@ -111,10 +107,6 @@
                   "enable_javascript": {
                     "type": "boolean",
                     "description": "Enable JavaScript rendering"
-                  },
-                  "custom_js": {
-                    "type": "string",
-                    "description": "Custom JavaScript code to execute"
                   },
                   "custom_user_agent": {
                     "type": "string",
