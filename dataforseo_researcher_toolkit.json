@@ -99,12 +99,9 @@
                 "type": "object",
                 "properties": {
                   "location_name": {
-                    "type": [
-                      "string",
-                      "null"
-                    ],
-                    "default": null,
-                    "description": "full name of the location\noptional field\nin format \"Country\"\nexample:\nUnited Kingdom"
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field\nLocation format - hierarchical, comma-separated (from most specific to least)\n Can be one of:\n 1. Country only: \"United States\"\n 2. Region,Country: \"California,United States\"\n 3. City,Region,Country: \"San Francisco,California,United States\""
                   },
                   "language_code": {
                     "type": [
@@ -120,74 +117,6 @@
                       "type": "string"
                     },
                     "description": "Array of keywords to get search volume for"
-                  }
-                },
-                "required": [
-                  "keywords"
-                ]
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v3/keywords_data/dataforseo_trends/explore/live.ai": {
-      "post": {
-        "description": "This endpoint will provide you with the keyword popularity data from DataForSEO Trends. You can check keyword trends for Google Search, Google News, and Google Shopping",
-        "operationId": "keywords_data_dataforseo_trends_explore",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "location_name": {
-                    "type": [
-                      "string",
-                      "null"
-                    ],
-                    "default": null,
-                    "description": "full name of the location\n        optional field\n        in format \"Country\"\n        example:\n        United Kingdom"
-                  },
-                  "keywords": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    },
-                    "description": "keywords\n        the maximum number of keywords you can specify: 5"
-                  },
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "web",
-                      "news",
-                      "ecommerce"
-                    ],
-                    "default": "web",
-                    "description": "dataforseo trends type"
-                  },
-                  "date_from": {
-                    "type": "string",
-                    "description": "starting date of the time range\n          if you don’t specify this field, the current day and month of the preceding year will be used by default\n          minimal value for the web type: 2004-01-01\n          minimal value for other types: 2008-01-01\n          date format: \"yyyy-mm-dd\"\n          example:\n          \"2019-01-15\""
-                  },
-                  "date_to": {
-                    "type": "string",
-                    "description": "ending date of the time range\n            if you don’t specify this field, the today’s date will be used by default\n            date format: \"yyyy-mm-dd\"\n            example:\n            \"2019-01-15\""
-                  },
-                  "time_range": {
-                    "type": "string",
-                    "enum": [
-                      "past_4_hours",
-                      "past_day",
-                      "past_7_days",
-                      "past_30_days",
-                      "past_90_days",
-                      "past_12_months",
-                      "past_5_years"
-                    ],
-                    "default": "past_7_days",
-                    "description": "preset time ranges\n            if you specify date_from or date_to parameters, this field will be ignored when setting a task"
                   }
                 },
                 "required": [
@@ -217,10 +146,6 @@
                   "enable_javascript": {
                     "type": "boolean",
                     "description": "Enable JavaScript rendering"
-                  },
-                  "custom_js": {
-                    "type": "string",
-                    "description": "Custom JavaScript code to execute"
                   },
                   "custom_user_agent": {
                     "type": "string",
@@ -1184,6 +1109,9 @@
                 "properties": {
                   "pages": {
                     "type": "object",
+                    "items": {
+                      "type": "string"
+                    },
                     "description": "Object containing two page values to compare",
                     "properties": {
                       "1": {
@@ -1745,6 +1673,9 @@
                 "properties": {
                   "targets": {
                     "type": "object",
+                    "items": {
+                      "type": "string"
+                    },
                     "description": "Object containing two target values to compare",
                     "properties": {
                       "1": {
@@ -2027,6 +1958,9 @@
                 "properties": {
                   "targets": {
                     "type": "object",
+                    "items": {
+                      "type": "string"
+                    },
                     "description": "Object containing two target values to compare",
                     "properties": {
                       "1": {
