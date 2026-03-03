@@ -115,6 +115,10 @@
                   "accept_language": {
                     "type": "string",
                     "description": "Accept-Language header value"
+                  },
+                  "full_data": {
+                    "type": "boolean",
+                    "description": "Return the complete API response instead of a reduced version"
                   }
                 },
                 "required": [
