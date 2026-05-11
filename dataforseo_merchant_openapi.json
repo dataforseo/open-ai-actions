@@ -1,0 +1,196 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "DataForSEO Merchant API",
+    "description": "Access to DataForSEO Merchant tools for SEO research and analysis",
+    "version": "v1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.dataforseo.com"
+    }
+  ],
+  "paths": {
+    "/v3/merchant/amazon_asin_live_advanced/live.ai": {
+      "post": {
+        "description": "Get detailed product information from Amazon by ASIN (Amazon Standard Identification Number).\nReturns product title, price, description, images, reviews summary, seller info,\nshipping options, and other product attributes for the specified ASIN.",
+        "operationId": "merchant_amazon_asin_live_advanced",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "asin": {
+                    "type": "string",
+                    "description": "product ID\nrequired field\nunique product identifier (ASIN) in Amazon\nyou can receive the asin parameter by making a separate request to the merchant_amazon_products_live_advanced"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field\nLocation format - hierarchical, comma-separated (from most specific to least)\n Can be one of:\n 1. Country only: \"United States\"\n 2. Region,Country: \"California,United States\"\n 3. Postal Code,Region,Country: \"90210,California,United States\""
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en_US",
+                    "description": "language code\nrequired field\nexample: \"en_US\"\nsupported languages: ar_SA, ar_AE, zh_CN, zh_TW, cs_CZ, nl_NL, en_AU, en_CA, en_IN, en_AE, en_GB, en_US, fr_CA, fr_FR, de_DE, he_IL, hi_IN, it_IT, ja_JP, ko_KR, pl_PL, pt_BR, es_MX, es_ES, es_US, sv_SE, tr_TR"
+                  }
+                },
+                "required": [
+                  "asin"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/merchant/amazon_sellers_live_advanced/live.ai": {
+      "post": {
+        "description": "Get the list of sellers offering a specific Amazon product (by ASIN).\nReturns seller names, ratings, prices, shipping conditions, and product offers\navailable from each merchant for the requested ASIN.",
+        "operationId": "merchant_amazon_sellers_live_advanced",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "asin": {
+                    "type": "string",
+                    "description": "product identifier (ASIN) on Amazon\nrequired field\nthe unique identifier of the product on Amazon;\nexample: \"B07D528W98\""
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\n  required field\n  Location format - hierarchical, comma-separated (from most specific to least)\n   Can be one of:\n   1. Country only: \"United States\"\n   2. Region,Country: \"California,United States\"\n   3. Postal Code,Region,Country: \"90210,California,United States\""
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en_US",
+                    "description": "language code\nrequired field\nexample: \"en_US\"\nsupported languages: ar_SA, ar_AE, zh_CN, zh_TW, cs_CZ, nl_NL, en_AU, en_CA, en_IN, en_AE, en_GB, en_US, fr_CA, fr_FR, de_DE, he_IL, hi_IN, it_IT, ja_JP, ko_KR, pl_PL, pt_BR, es_MX, es_ES, es_US, sv_SE, tr_TR"
+                  }
+                },
+                "required": [
+                  "asin"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/merchant/amazon_products_live_advanced/live.ai": {
+      "post": {
+        "description": "Search Amazon products by keyword and get the list of matching items.\nReturns product titles, ASINs, prices, ratings, images, sponsored placements,\nand other SERP-like results for the specified keyword on Amazon.",
+        "operationId": "merchant_amazon_products_live_advanced",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "keyword": {
+                    "type": "string",
+                    "description": "keyword\nrequired field\nthe keyword that will be searched for on Amazon;\nexample: \"shoes\""
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\n  required field\n  Location format - hierarchical, comma-separated (from most specific to least)\n   Can be one of:\n   1. Country only: \"United States\"\n   2. Region,Country: \"California,United States\"\n   3. Postal Code,Region,Country: \"90210,California,United States\""
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en_US",
+                    "description": "language code\nrequired field\nexample: \"en_US\"\nsupported languages: ar_SA, ar_AE, zh_CN, zh_TW, cs_CZ, nl_NL, en_AU, en_CA, en_IN, en_AE, en_GB, en_US, fr_CA, fr_FR, de_DE, he_IL, hi_IN, it_IT, ja_JP, ko_KR, pl_PL, pt_BR, es_MX, es_ES, es_US, sv_SE, tr_TR"
+                  },
+                  "department": {
+                    "type": "string",
+                    "enum": [
+                      "Arts & Crafts",
+                      "Automotive",
+                      "Baby",
+                      "Beauty & Personal Care",
+                      "Books",
+                      "Computers",
+                      "Digital Music",
+                      "Electronics",
+                      "Kindle Store",
+                      "Prime Video",
+                      "Women's Fashion",
+                      "Men's Fashion",
+                      "Girls' Fashion",
+                      "Boys' Fashion",
+                      "Deals",
+                      "Health & Household",
+                      "Home & Kitchen",
+                      "Industrial & Scientific",
+                      "Luggage",
+                      "Movies & TV",
+                      "Music, CDs & Vinyl",
+                      "Pet Supplies",
+                      "Software",
+                      "Sports & Outdoors",
+                      "Tools & Home Improvement",
+                      "Toys & Games",
+                      "Video Games"
+                    ],
+                    "description": "amazon product department\noptional field\nspecify one of the supported amazon departments for extracting product listings"
+                  },
+                  "price_min": {
+                    "type": "integer",
+                    "description": "minimum product price\noptional field\nminimum price of the returned products listed on Amazon for the specified query\nexample: 5\nNote: if you specify price_min, the search_param parameter will be ignored"
+                  },
+                  "price_max": {
+                    "type": "integer",
+                    "description": "maximum product price\noptional field\nmaximum price of the returned products listed on Amazon for the specified query\nexample: 100\nNote: if you specify price_max, the search_param parameter will be ignored"
+                  },
+                  "sort_by": {
+                    "type": "string",
+                    "enum": [
+                      "relevance",
+                      "price_low_to_high",
+                      "price_high_to_low",
+                      "featured",
+                      "avg_customer_review",
+                      "newest_arrival"
+                    ],
+                    "description": "results sorting rules\noptional field\nsupported values: relevance, price_low_to_high, price_high_to_low, featured, avg_customer_review, newest_arrival\nexample: \"relevance\""
+                  }
+                },
+                "required": [
+                  "keyword"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/merchant/amazon_locations/live.ai": {
+      "post": {
+        "description": "Utility tool for Amazon merchant tools (merchant_amazon_asin_live_advanced,\nmerchant_amazon_sellers_live_advanced, merchant_amazon_products_live_advanced)\nto get the list of available locations with their location_code and location_name values.\nYou can optionally filter the list by country ISO code",
+        "operationId": "merchant_amazon_locations",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "country": {
+                    "type": "string",
+                    "description": "ISO 3166-1 alpha-2 country code to filter locations by\noptional field\nexample: \"US\", \"GB\", \"DE\"\nif omitted, the full list of available Amazon locations is returned"
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
