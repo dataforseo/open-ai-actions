@@ -647,6 +647,14 @@
                     "type": "string",
                     "default": "en",
                     "description": "language code\n        required field\n        example:\n        en"
+                  },
+                  "date_from": {
+                    "type": "string",
+                    "description": "starting date of the time range\n        date format: YYYY-MM-DD\n"
+                  },
+                  "date_to": {
+                    "type": "string",
+                    "description": "ending date of the time range\n        date format: YYYY-MM-DD\n"
                   }
                 },
                 "required": [
