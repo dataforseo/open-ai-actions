@@ -29,7 +29,7 @@
                   "location_name": {
                     "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nLocation format - hierarchical, comma-separated (from most specific to least)\n Can be one of:\n 1. Country only: \"United States\"\n 2. Region,Country: \"California,United States\"\n 3. Postal Code,Region,Country: \"90210,California,United States\""
+                    "description": "full name of the location\nrequired field\nLocation format - hierarchical, comma-separated (from most specific to least)\n Can be one of:\n 1. Country only: \"United States\"\n 2. Postal Code,Region,Country: \"90210,California,United States\""
                   },
                   "language_code": {
                     "type": "string",
@@ -64,7 +64,7 @@
                   "location_name": {
                     "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\n  required field\n  Location format - hierarchical, comma-separated (from most specific to least)\n   Can be one of:\n   1. Country only: \"United States\"\n   2. Region,Country: \"California,United States\"\n   3. Postal Code,Region,Country: \"90210,California,United States\""
+                    "description": "full name of the location\n  required field\n  Location format - hierarchical, comma-separated (from most specific to least)\n   Can be one of:\n   1. Country only: \"United States\"\n   2. Postal Code,Region,Country: \"90210,California,United States\""
                   },
                   "language_code": {
                     "type": "string",
@@ -99,7 +99,7 @@
                   "location_name": {
                     "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\n  required field\n  Location format - hierarchical, comma-separated (from most specific to least)\n   Can be one of:\n   1. Country only: \"United States\"\n   2. Region,Country: \"California,United States\"\n   3. Postal Code,Region,Country: \"90210,California,United States\""
+                    "description": "full name of the location\n  required field\n  Location format - hierarchical, comma-separated (from most specific to least)\n   Can be one of:\n   1. Country only: \"United States\"\n   2. Postal Code,Region,Country: \"90210,California,United States\""
                   },
                   "language_code": {
                     "type": "string",
@@ -183,6 +183,18 @@
                   "country": {
                     "type": "string",
                     "description": "ISO 3166-1 alpha-2 country code to filter locations by\noptional field\nexample: \"US\", \"GB\", \"DE\"\nif omitted, the full list of available Amazon locations is returned"
+                  },
+                  "location_name_contains": {
+                    "type": "string",
+                    "description": "filter locations by a substring match on location_name\noptional field\nexample: \"New York\", \"London\"\nif omitted, no name filtering is applied"
+                  },
+                  "limit": {
+                    "type": "number",
+                    "description": "maximum number of locations to return"
+                  },
+                  "offset": {
+                    "type": "number",
+                    "description": "offset in the results array of returned locations"
                   }
                 },
                 "required": []

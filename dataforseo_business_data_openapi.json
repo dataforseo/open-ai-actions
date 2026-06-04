@@ -95,7 +95,7 @@
                       ]
                     },
                     "maxItems": 3,
-                    "description": "array of results filtering parameters\noptional field\nyou can add several filters at once (8 filters maximum)\nyou should set a logical operator and, or between the conditions\nthe following operators are supported:\nregex, not_regex, <, <=, >, >=, =, <>, in, not_in, like, not_like, match, not_match\nyou can use the % operator with like and not_like to match any string of zero or more characters\nexample:\n[\"rating.value\",\">\",3]"
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, like, not_like, match, not_match\nUse % with like/not_like as a wildcard.\nExample:\n  Single: [\"rating.value\", \">\", 3]"
                   },
                   "order_by": {
                     "type": "array",
