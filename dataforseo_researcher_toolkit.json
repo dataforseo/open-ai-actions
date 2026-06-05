@@ -482,7 +482,7 @@
                       ]
                     },
                     "maxItems": 3,
-                    "description": "you can add several filters at once (8 filters maximum)\n        you should set a logical operator and, or between the conditions\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n        you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n        merge operator must be a string and connect two other arrays, availible values: or, and.\n        example:\n        [\"metrics.organic.count\",\">\",50]\n        [[\"metrics.organic.pos_1\",\"<>\",0],\"and\",[\"metrics.organic.impressions_etv\",\">=\",\"10\"]]\n\n        [[[\"metrics.organic.count\",\">=\",50],\"and\",[\"metrics.organic.pos_1\",\"in\",[1,5]]],\n        \"or\",\n        [\"metrics.organic.etv\",\">=\",\"100\"]]"
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExamples:\n  Single: [\"metrics.organic.count\", \">\", 50]\n  Combined: [[\"metrics.organic.pos_1\", \"<>\", 0], \"and\", [\"metrics.organic.impressions_etv\", \">=\", \"10\"]]\n  Nested: [[[\"metrics.organic.count\", \">=\", 50], \"and\", [\"metrics.organic.pos_1\", \"in\", [1, 5]]], \"or\", [\"metrics.organic.etv\", \">=\", \"100\"]]"
                   },
                   "order_by": {
                     "type": "array",
@@ -649,7 +649,7 @@
                       ]
                     },
                     "maxItems": 3,
-                    "description": "you can add several filters at once (8 filters maximum)\n        you should set a logical operator and, or between the conditions\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n        you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n        merge operator must be a string and connect two other arrays, availible values: or, and.\n        example:\n        [\"keyword_info.search_volume\",\">\",0]\n        [[\"keyword_info.search_volume\",\"in\",[0,1000]],\"and\",[\"keyword_info.competition_level\",\"=\",\"LOW\"]]\n        [[\"keyword_info.search_volume\",\">\",100],\"and\",[[\"keyword_info.cpc\",\"<\",0.5],\"or\",[\"keyword_info.high_top_of_page_bid\",\"<=\",0.5]]]"
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExamples:\n  Single: [\"keyword_info.search_volume\", \">\", 0]\n  Combined: [[\"keyword_info.search_volume\", \"in\", [0, 1000]], \"and\", [\"keyword_info.competition_level\", \"=\", \"LOW\"]]\n  Nested: [[\"keyword_info.search_volume\", \">\", 100], \"and\", [[\"keyword_info.cpc\", \"<\", 0.5], \"or\", [\"keyword_info.high_top_of_page_bid\", \"<=\", 0.5]]]"
                   },
                   "order_by": {
                     "type": "array",
@@ -795,7 +795,7 @@
                       ]
                     },
                     "maxItems": 3,
-                    "description": "you can add several filters at once (8 filters maximum)\n        you should set a logical operator and, or between the conditions\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n        you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n        merge operator must be a string and connect two other arrays, availible values: or, and.\n        example:\n        [\"metrics.organic.count\",\">\",50]\n        [[\"metrics.organic.pos_1\",\"<>\",0],\"and\",[\"metrics.organic.impressions_etv\",\">=\",\"10\"]]\n        [[[\"metrics.organic.count\",\">=\",50],\"and\",[\"metrics.organic.pos_1\",\"in\",[1,5]]],\"or\",[\"metrics.organic.etv\",\">=\",\"100\"]]"
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExamples:\n  Single: [\"metrics.organic.count\", \">\", 50]\n  Combined: [[\"metrics.organic.pos_1\", \"<>\", 0], \"and\", [\"metrics.organic.impressions_etv\", \">=\", \"10\"]]\n  Nested: [[[\"metrics.organic.count\", \">=\", 50], \"and\", [\"metrics.organic.pos_1\", \"in\", [1, 5]]], \"or\", [\"metrics.organic.etv\", \">=\", \"100\"]]"
                   },
                   "order_by": {
                     "type": "array",
@@ -957,7 +957,7 @@
                       ]
                     },
                     "maxItems": 3,
-                    "description": "you can add several filters at once (8 filters maximum)\n        you should set a logical operator and, or between the conditions\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n        you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n        merge operator must be a string and connect two other arrays, availible values: or, and.\n        example:\n      [\"keyword_info.search_volume\",\">\",0]\n[[\"keyword_info.search_volume\",\"in\",[0,1000]],\n\"and\",\n[\"keyword_info.competition_level\",\"=\",\"LOW\"]][[\"keyword_info.search_volume\",\">\",100],\n\"and\",\n[[\"keyword_info.cpc\",\"<\",0.5],\n\"or\",\n[\"keyword_info.high_top_of_page_bid\",\"<=\",0.5]]]"
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExamples:\n  Single: [\"keyword_info.search_volume\", \">\", 0]\n  Combined: [[\"keyword_info.search_volume\", \"in\", [0, 1000]], \"and\", [\"keyword_info.competition_level\", \"=\", \"LOW\"]]\n  Nested: [[\"keyword_info.search_volume\", \">\", 100], \"and\", [[\"keyword_info.cpc\", \"<\", 0.5], \"or\", [\"keyword_info.high_top_of_page_bid\", \"<=\", 0.5]]]"
                   },
                   "order_by": {
                     "type": "array",
@@ -1073,7 +1073,7 @@
                       ]
                     },
                     "maxItems": 3,
-                    "description": "you can add several filters at once (8 filters maximum)\n        you should set a logical operator and, or between the conditions\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n        you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n        merge operator must be a string and connect two other arrays, availible values: or, and.\n        example:\n        [\"keyword_data.keyword_info.search_volume\",\"in\",[100,1000]]\n        [[\"first_domain_serp_element.etv\",\">\",0],\"and\",[\"first_domain_serp_element.description\",\"like\",\"%goat%\"]]\n        [[\"keyword_data.keyword_info.search_volume\",\">\",100],\"and\",[[\"first_domain_serp_element.description\",\"like\",\"%goat%\"],\"or\",[\"second_domain_serp_element.type\",\"=\",\"organic\"]]]"
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExamples:\n  Single: [\"keyword_data.keyword_info.search_volume\", \"in\", [100, 1000]]\n  Combined: [[\"first_domain_serp_element.etv\", \">\", 0], \"and\", [\"first_domain_serp_element.description\", \"like\", \"%goat%\"]]\n  Nested: [[\"keyword_data.keyword_info.search_volume\", \">\", 100], \"and\", [[\"first_domain_serp_element.description\", \"like\", \"%goat%\"], \"or\", [\"second_domain_serp_element.type\", \"=\", \"organic\"]]]"
                   },
                   "order_by": {
                     "type": "array",
@@ -1284,7 +1284,7 @@
                       ]
                     },
                     "maxItems": 3,
-                    "description": "you can add several filters at once (8 filters maximum)\n        you should set a logical operator and, or between the conditions\n        the following operators are supported:\n        regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n        you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n        merge operator must be a string and connect two other arrays, availible values: or, and.\n        example:\n        [\"keyword_data.keyword_info.search_volume\",\"in\",[100,1000]]\n        [[\"intersection_result.1.etv\",\">\",0],\"and\",[\"intersection_result.2.description\",\"like\",\"%goat%\"]]\n        [[\"keyword_data.keyword_info.search_volume\",\">\",100],\"and\",[[\"intersection_result.1.description\",\"like\",\"%goat%\"],\"or\",[\"intersection_result.2.type\",\"=\",\"organic\"]]]"
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExamples:\n  Single: [\"keyword_data.keyword_info.search_volume\", \"in\", [100, 1000]]\n  Combined: [[\"intersection_result.1.etv\", \">\", 0], \"and\", [\"intersection_result.2.description\", \"like\", \"%goat%\"]]\n  Nested: [[\"keyword_data.keyword_info.search_volume\", \">\", 100], \"and\", [[\"intersection_result.1.description\", \"like\", \"%goat%\"], \"or\", [\"intersection_result.2.type\", \"=\", \"organic\"]]]"
                   },
                   "order_by": {
                     "type": "array",
@@ -1408,7 +1408,7 @@
                       ]
                     },
                     "maxItems": 3,
-                    "description": "you can add several filters at once (8 filters maximum)\n            you should set a logical operator and, or between the conditions\n            the following operators are supported:\n            regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\n            you can use the % operator with like and not_like, as well as ilike and not_ilike to match any string of zero or more characters\n            merge operator must be a string and connect two other arrays, availible values: or, and.\n            example:\n[\"metrics.organic.count\",\">\",50]\n[[\"metrics.organic.pos_1\",\"<>\",0],\"and\",[\"metrics.organic.impressions_etv\",\">=\",\"10\"]]\n\n[[[\"metrics.organic.count\",\">=\",50],\"and\",[\"metrics.organic.pos_1\",\"in\",[1,5]]],\n\"or\",\n[\"metrics.organic.etv\",\">=\",\"100\"]]"
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExamples:\n  Single: [\"metrics.organic.count\", \">\", 50]\n  Combined: [[\"metrics.organic.pos_1\", \"<>\", 0], \"and\", [\"metrics.organic.impressions_etv\", \">=\", \"10\"]]\n  Nested: [[[\"metrics.organic.count\", \">=\", 50], \"and\", [\"metrics.organic.pos_1\", \"in\", [1, 5]]], \"or\", [\"metrics.organic.etv\", \">=\", \"100\"]]"
                   },
                   "order_by": {
                     "type": "array",
@@ -1512,10 +1512,10 @@
         }
       }
     },
-    "/v3/dataforseo_labs/google/historical_serp/live.ai": {
+    "/v3/dataforseo_labs/google/historical_serps/live.ai": {
       "post": {
         "description": "This endpoint will provide you with Google SERPs collected within the specified time frame. You will also receive a complete overview of featured snippets and other extra elements that were present within the specified dates. The data will allow you to analyze the dynamics of keyword rankings over ",
-        "operationId": "dataforseo_labs_google_historical_serp",
+        "operationId": "dataforseo_labs_google_historical_serps",
         "requestBody": {
           "required": true,
           "content": {
@@ -1536,6 +1536,14 @@
                     "type": "string",
                     "default": "en",
                     "description": "language code\n        required field\n        example:\n        en"
+                  },
+                  "date_from": {
+                    "type": "string",
+                    "description": "starting date of the time range, date format: YYYY-MM-DD"
+                  },
+                  "date_to": {
+                    "type": "string",
+                    "description": "ending date of the time range, date format: YYYY-MM-DD"
                   }
                 },
                 "required": [
@@ -1621,7 +1629,7 @@
                       ]
                     },
                     "maxItems": 3,
-                    "description": "array of results filtering parameters\noptional field\nyou can add several filters at once (8 filters maximum)\nyou should set a logical operator and, or between the conditions\nthe following operators are supported:\n=, <>, in, not_in, like, not_like, ilike, not_ilike, regex, not_regex, match, not_match\nyou can use the % operator with like and not_like to match any string of zero or more characters\nexample:\n[\"rank\",\">\",\"80\"]\n[[\"page_from_rank\",\">\",\"55\"],\n\"and\",\n[\"dofollow\",\"=\",true]]\n\n[[\"first_seen\",\">\",\"2017-10-23 11:31:45 +00:00\"],\n\"and\",\n[[\"anchor\",\"like\",\"%seo%\"],\"or\",[\"text_pre\",\"like\",\"%seo%\"]]]"
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: =, <>, in, not_in, like, not_like, ilike, not_ilike, regex, not_regex, match, not_match\nUse % with like/not_like to match any string of zero or more characters.\nExamples:\n  Single: [\"rank\",\">\",\"80\"]\n  Combined: [[\"page_from_rank\",\">\",\"55\"],\"and\",[\"dofollow\",\"=\",true]]"
                   },
                   "order_by": {
                     "type": "array",
@@ -1709,7 +1717,7 @@
                       ]
                     },
                     "maxItems": 3,
-                    "description": "array of results filtering parameters\noptional field\nyou can add several filters at once (8 filters maximum)\nyou should set a logical operator and, or between the conditions\nthe following operators are supported:\n=, <>, in, not_in, like, not_like, ilike, not_ilike, regex, not_regex, match, not_match\nyou can use the % operator with like and not_like to match any string of zero or more characters\nexample:\n[\"rank\",\">\",\"80\"]\n[[\"page_from_rank\",\">\",\"55\"],\n\"and\",\n[\"dofollow\",\"=\",true]]\n\n[[\"first_seen\",\">\",\"2017-10-23 11:31:45 +00:00\"],\n\"and\",\n[[\"anchor\",\"like\",\"%seo%\"],\"or\",[\"text_pre\",\"like\",\"%seo%\"]]]"
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: =, <>, in, not_in, like, not_like, ilike, not_ilike, regex, not_regex, match, not_match\nUse % with like/not_like to match any string of zero or more characters.\nExamples:\n  Single: [\"rank\",\">\",\"80\"]\n  Combined: [[\"page_from_rank\",\">\",\"55\"],\"and\",[\"dofollow\",\"=\",true]]"
                   },
                   "order_by": {
                     "type": "array",
@@ -1818,7 +1826,7 @@
                       ]
                     },
                     "maxItems": 3,
-                    "description": "array of results filtering parameters\noptional field\nyou can add several filters at once (8 filters maximum)\nyou should set a logical operator and, or between the conditions\nthe following operators are supported:\nregex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nyou can use the % operator with like and not_like to match any string of zero or more characters\nexample:\n[\"1.internal_links_count\",\">\",\"1\"]\n[[\"2.referring_pages\",\">\",\"2\"],\n\"and\",\n[\"1.backlinks\",\">\",\"10\"]]\n\n[[\"1.first_seen\",\">\",\"2017-10-23 11:31:45 +00:00\"],\n\"and\",\n[[\"2.target\",\"like\",\"%dataforseo.com%\"],\"or\",[\"1.referring_domains\",\">\",\"10\"]]]"
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nUse % with like/not_like to match any string of zero or more characters.\nExamples:\n  Single: [\"1.internal_links_count\",\">\",\"1\"]\n  Combined: [[\"2.referring_pages\",\">\",\"2\"],\"and\",[\"1.backlinks\",\">\",\"10\"]]"
                   },
                   "order_by": {
                     "type": "array",
@@ -1906,7 +1914,7 @@
                       ]
                     },
                     "maxItems": 3,
-                    "description": "array of results filtering parameters\noptional field\nyou can add several filters at once (8 filters maximum)\nyou should set a logical operator and, or between the conditions\nthe following operators are supported:\nregex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nyou can use the % operator with like and not_like to match any string of zero or more characters\nexample:\n[\"referring_links_types.anchors\",\">\",\"1\"]\n[[\"broken_pages\",\">\",\"2\"],\n\"and\",\n[\"backlinks\",\">\",\"10\"]]\n\n[[\"first_seen\",\">\",\"2017-10-23 11:31:45 +00:00\"],\n\"and\",\n[[\"anchor\",\"like\",\"%seo%\"],\"or\",[\"referring_domains\",\">\",\"10\"]]]"
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nUse % with like/not_like to match any string of zero or more characters.\nExamples:\n  Single: [\"referring_links_types.anchors\",\">\",\"1\"]\n  Combined: [[\"broken_pages\",\">\",\"2\"],\"and\",[\"backlinks\",\">\",\"10\"]]"
                   },
                   "order_by": {
                     "type": "array",
@@ -1994,7 +2002,7 @@
                       ]
                     },
                     "maxItems": 3,
-                    "description": "array of results filtering parameters\noptional field\nyou can add several filters at once (8 filters maximum)\nyou should set a logical operator and, or between the conditions\nthe following operators are supported:\nregex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nyou can use the % operator with like and not_like to match any string of zero or more characters\nexample:\n[\"meta.internal_links_count\",\">\",\"1\"]\n[[\"meta.external_links_count\",\">\",\"2\"],\n\"and\",\n[\"backlinks\",\">\",\"10\"]]\n\n[[\"first_visited\",\">\",\"2017-10-23 11:31:45 +00:00\"],\n\"and\",\n[[\"title\",\"like\",\"%seo%\"],\"or\",[\"referring_domains\",\">\",\"10\"]]]"
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nUse % with like/not_like to match any string of zero or more characters.\nExamples:\n  Single: [\"meta.internal_links_count\",\">\",\"1\"]\n  Combined: [[\"meta.external_links_count\",\">\",\"2\"],\"and\",[\"backlinks\",\">\",\"10\"]]"
                   },
                   "order_by": {
                     "type": "array",
@@ -2103,7 +2111,7 @@
                       ]
                     },
                     "maxItems": 3,
-                    "description": "array of results filtering parameters\noptional field\nyou can add several filters at once (8 filters maximum)\nyou should set a logical operator and, or between the conditions\nthe following operators are supported:\nregex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nyou can use the % operator with like and not_like to match any string of zero or more characters\nexample:\n[\"1.rank\",\">\",\"80\"]\n[[\"2.page_from_rank\",\">\",\"55\"],\n\"and\",\n[\"1.original\",\"=\",\"true\"]]\n\n[[\"1.first_seen\",\">\",\"2017-10-23 11:31:45 +00:00\"],\n\"and\",\n[[\"1.anchor\",\"like\",\"%seo%\"],\"or\",[\"1.text_pre\",\"not_like\",\"%seo%\"]]]"
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nUse % with like/not_like to match any string of zero or more characters.\nExamples:\n  Single: [\"1.rank\",\">\",\"80\"]\n  Combined: [[\"2.page_from_rank\",\">\",\"55\"],\"and\",[\"1.original\",\"=\",\"true\"]]"
                   },
                   "order_by": {
                     "type": "array",
@@ -2191,7 +2199,7 @@
                       ]
                     },
                     "maxItems": 3,
-                    "description": "array of results filtering parameters\noptional field\nyou can add several filters at once (8 filters maximum)\nyou should set a logical operator and, or between the conditions\nthe following operators are supported:\nregex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nyou can use the % operator with like and not_like to match any string of zero or more characters\nexample:\n[\"meta.internal_links_count\",\">\",\"1\"]\n[[\"meta.external_links_count\",\">\",\"2\"],\n\"and\",\n[\"backlinks\",\">\",\"10\"]]\n\n[[\"first_visited\",\">\",\"2017-10-23 11:31:45 +00:00\"],\n\"and\",\n[[\"title\",\"like\",\"%seo%\"],\"or\",[\"referring_domains\",\">\",\"10\"]]]"
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nUse % with like/not_like to match any string of zero or more characters.\nExamples:\n  Single: [\"meta.internal_links_count\",\">\",\"1\"]\n  Combined: [[\"meta.external_links_count\",\">\",\"2\"],\"and\",[\"backlinks\",\">\",\"10\"]]"
                   },
                   "order_by": {
                     "type": "array",
