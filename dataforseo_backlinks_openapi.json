@@ -512,6 +512,14 @@
                       "2": "example2.com"
                     }
                   },
+                  "exclude_targets": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "maxItems": 10,
+                    "description": "domains, subdomains or webpages you want to exclude\noptional field\nyou can specify up to 10 domains, subdomains or webpages\nif you use this array, results will contain the referring domains that link to targets but don't link to exclude_targets\nexample: [\"bbc.com\",\"https://www.apple.com/iphone/*\",\"https://dataforseo.com/apis/*\"]"
+                  },
                   "limit": {
                     "type": "number",
                     "minimum": 1,
