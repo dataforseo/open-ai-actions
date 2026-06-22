@@ -1799,6 +1799,463 @@
           }
         }
       }
+    },
+    "/v3/dataforseo_labs/amazon_product_kw_intersections/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with a list of keywords for which the target products intersect in Amazon SERP. The returned results are specific to the asins specified in a POST request.",
+        "operationId": "dataforseo_labs_amazon_product_kw_intersections",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "asins": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "minItems": 1,
+                    "maxItems": 20,
+                    "description": "target product ASINs\nrequired field\nproduct IDs of the products for which you need to find keyword intersections\nthe maximum number of ASINs you can specify is 20\nexample: [\"B09172433Z\", \"B07GBZ4Q68\"]"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field if location_code is not specified\nNote: this endpoint currently supports the US, Egypt, Saudi Arabia, and the United Arab Emirates locations only\nexample: 'United States', 'United Kingdom'"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "language code\n        required field if language_name is not specified\n        example:\n        en"
+                  },
+                  "limit": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 1000,
+                    "default": 100,
+                    "description": "Maximum number of keywords to return"
+                  },
+                  "offset": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords"
+                  },
+                  "intersection_mode": {
+                    "type": "string",
+                    "enum": [
+                      "union",
+                      "intersect"
+                    ],
+                    "default": "intersect",
+                    "description": "mode for finding asin intersections\noptional field\npossible values: union, intersect\ndefault value: intersect"
+                  },
+                  "filters": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": [
+                              "string",
+                              "number",
+                              "boolean"
+                            ]
+                          },
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "and",
+                            "or"
+                          ]
+                        },
+                        {
+                          "type": "array",
+                          "items": {},
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    "maxItems": 3,
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExample: [\"avg_position\", \"<\", 10]"
+                  },
+                  "order_by": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\nexample:\n[\"sum_position,desc\"]\ndefault rule:\n[\"intersections,desc\"]\nnote that you can set no more than three sorting rules in a single request\nexample:\n[\"intersections,desc\",\"avg_position,asc\"]"
+                  }
+                },
+                "required": [
+                  "asins"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/dataforseo_labs/amazon_product_competitors/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with a list of products that intersect with a target asin in Amazon SERPs. The data can help you identify product competitors for any listing published on Amazon.",
+        "operationId": "dataforseo_labs_amazon_product_competitors",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "asin": {
+                    "type": "string",
+                    "description": "product ID\nrequired field\nunique product identifier (ASIN) on Amazon"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field if location_code is not specified\nNote: this endpoint currently supports the US, Egypt, Saudi Arabia, and the United Arab Emirates locations only\nexample: 'United States'"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "language code\n        required field if language_name is not specified\n        example:\n        en"
+                  },
+                  "limit": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 1000,
+                    "default": 100,
+                    "description": "Maximum number of product competitors to return"
+                  },
+                  "offset": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "offset in the results array of returned product competitors\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten product competitors in the results array will be omitted and the data will be provided for the successive product competitors"
+                  },
+                  "filters": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": [
+                              "string",
+                              "number",
+                              "boolean"
+                            ]
+                          },
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "and",
+                            "or"
+                          ]
+                        },
+                        {
+                          "type": "array",
+                          "items": {},
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    "maxItems": 3,
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExample: [\"full_metrics.amazon_serp.pos_1\", \">\", 20]"
+                  },
+                  "order_by": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\nexample:\n[\"full_metrics.amazon_serp.pos_1,desc\"]\ndefault rule:\n[\"ranked_serp_element.serp_item.rank_group,asc\"]\nnote that you can set no more than three sorting rules in a single request\nexample:\n[\"full_metrics.amazon_serp.pos_1,desc\",\"avg_position,desc\"]"
+                  }
+                },
+                "required": [
+                  "asin"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/dataforseo_labs/amazon_ranked_keywords/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with a list of keywords the target product ranks for on Amazon. The returned results are specific to the asin specified in a POST request.",
+        "operationId": "dataforseo_labs_amazon_ranked_keywords",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "asin": {
+                    "type": "string",
+                    "description": "product ID\nrequired field\nunique product identifier (ASIN) on Amazon"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field if location_code is not specified\nNote: this endpoint currently supports the US, Egypt, Saudi Arabia, and the United Arab Emirates locations only\nexample: 'United States'"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "language code\n        required field if language_name is not specified\n        example:\n        en"
+                  },
+                  "limit": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 1000,
+                    "default": 100,
+                    "description": "Maximum number of keywords to return"
+                  },
+                  "offset": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords"
+                  },
+                  "ignore_synonyms": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "ignore highly similar keywords\noptional field\nif set to true only core keywords will be returned, all highly similar keywords will be excluded\ndefault value: false"
+                  },
+                  "filters": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": [
+                              "string",
+                              "number",
+                              "boolean"
+                            ]
+                          },
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "and",
+                            "or"
+                          ]
+                        },
+                        {
+                          "type": "array",
+                          "items": {},
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    "maxItems": 3,
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, like, not_like, match, not_match\nUse % with like/not_like as a wildcard.\nExample: [\"keyword_data.keyword_info.search_volume\", \"in\", [100, 1000]]"
+                  },
+                  "order_by": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\nexample:\n[\"keyword_data.keyword_info.competition,desc\"]\ndefault rule:\n[\"ranked_serp_element.serp_item.rank_group,asc\"]\nnote that you can set no more than three sorting rules in a single request\nexample:\n[\"keyword_data.keyword_info.search_volume,desc\",\"keyword_data.keyword_info.cpc,desc\"]"
+                  }
+                },
+                "required": [
+                  "asin"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/dataforseo_labs/amazon_bulk_search_volume/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with search volume values for a maximum of 1,000 keywords in one API request. Search volume represents the approximate number of monthly searches for a keyword on Amazon.",
+        "operationId": "dataforseo_labs_amazon_bulk_search_volume",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "keywords": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "minItems": 1,
+                    "maxItems": 1000,
+                    "description": "target keywords\nrequired field\nUTF-8 encoding\nmaximum number of keywords you can specify in this array: 1000\nthe keywords will be converted to lowercase format"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field if location_code is not specified\nexample: 'United States'"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "language code\n        required field if language_name is not specified\n        example:\n        en"
+                  }
+                },
+                "required": [
+                  "keywords"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/dataforseo_labs/amazon_related_keywords/live.ai": {
+      "post": {
+        "description": "The Related Keywords endpoint provides keywords appearing in the \"Related Searches\" section on Amazon. You can get up to 1554 keyword ideas by specifying the search depth. Each related keyword comes with search volume information.",
+        "operationId": "dataforseo_labs_amazon_related_keywords",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "keyword": {
+                    "type": "string",
+                    "description": "target keyword\nrequired field\nUTF-8 encoding\nthe keyword should be specified in the lowercase format"
+                  },
+                  "depth": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 4,
+                    "default": 1,
+                    "description": "keyword search depth\noptional field\ndefault value: 1\nyou can specify a level from 0 to 4\nestimated number of keywords for each level (maximum):\n0 – the keyword set in the keyword field\n1 – 6 keywords\n2 – 42 keywords\n3 – 258 keywords\n4 – 1554 keywords"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field if location_code is not specified\nNote: this endpoint currently supports the US, Egypt, Saudi Arabia, and the United Arab Emirates locations only\nexample: 'United States'"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "language code\n        required field if language_name is not specified\n        example:\n        en"
+                  },
+                  "include_seed_keyword": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "include data for the seed keyword\noptional field\nif set to true, data for the seed keyword specified in the keyword field will be provided in the seed_keyword_data array of the response\ndefault value: false"
+                  },
+                  "ignore_synonyms": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "ignore highly similar keywords\noptional field\nif set to true only core keywords will be returned, all highly similar keywords will be excluded\ndefault value: false"
+                  },
+                  "limit": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 1000,
+                    "default": 100,
+                    "description": "Maximum number of keywords to return"
+                  },
+                  "offset": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords"
+                  }
+                },
+                "required": [
+                  "keyword"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/dataforseo_labs/amazon_product_rank_overview/live.ai": {
+      "post": {
+        "description": "This endpoint will provide you with ranking data from organic and paid Amazon SERPs for the target products. The returned results are specific to the asins specified in a POST request.",
+        "operationId": "dataforseo_labs_amazon_product_rank_overview",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "asins": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "minItems": 1,
+                    "maxItems": 1000,
+                    "description": "product IDs to compare\nrequired field\nproduct IDs to receive ranking data for\nthe maximum number of ASINs you can specify in this array is 1000\nNote: all letters in ASIN code must be specified in uppercase format\nexample: [\"B001TJ3HUG\", \"B01LW2SL7R\"]"
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "default": "United States",
+                    "description": "full name of the location\nrequired field if location_code is not specified\nNote: this endpoint currently supports the US, Egypt, Saudi Arabia, and the United Arab Emirates locations only\nexample: 'United States'"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "language code\n        required field if language_name is not specified\n        example:\n        en"
+                  }
+                },
+                "required": [
+                  "asins"
+                ]
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
