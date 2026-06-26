@@ -1823,7 +1823,7 @@
                   "location_name": {
                     "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field if location_code is not specified\nNote: this endpoint currently supports the US, Egypt, Saudi Arabia, and the United Arab Emirates locations only\nexample: 'United States', 'United Kingdom'"
+                    "description": "full name of the location\nrequired field if location_code is not specified\nNote: this endpoint currently supports the US, Egypt, Saudi Arabia, and the United Arab Emirates locations only\nexample: 'United States'"
                   },
                   "language_code": {
                     "type": "string",
@@ -1941,7 +1941,7 @@
                     "type": "number",
                     "minimum": 1,
                     "maximum": 1000,
-                    "default": 100,
+                    "default": 10,
                     "description": "Maximum number of product competitors to return"
                   },
                   "offset": {
@@ -2039,18 +2039,13 @@
                     "type": "number",
                     "minimum": 1,
                     "maximum": 1000,
-                    "default": 100,
+                    "default": 10,
                     "description": "Maximum number of keywords to return"
                   },
                   "offset": {
                     "type": "number",
                     "minimum": 0,
                     "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords"
-                  },
-                  "ignore_synonyms": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "ignore highly similar keywords\noptional field\nif set to true only core keywords will be returned, all highly similar keywords will be excluded\ndefault value: false"
                   },
                   "filters": {
                     "type": "array",
@@ -2190,16 +2185,11 @@
                     "default": false,
                     "description": "include data for the seed keyword\noptional field\nif set to true, data for the seed keyword specified in the keyword field will be provided in the seed_keyword_data array of the response\ndefault value: false"
                   },
-                  "ignore_synonyms": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "ignore highly similar keywords\noptional field\nif set to true only core keywords will be returned, all highly similar keywords will be excluded\ndefault value: false"
-                  },
                   "limit": {
                     "type": "number",
                     "minimum": 1,
                     "maximum": 1000,
-                    "default": 100,
+                    "default": 10,
                     "description": "Maximum number of keywords to return"
                   },
                   "offset": {
