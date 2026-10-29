@@ -23,51 +23,59 @@
                 "type": "object",
                 "properties": {
                   "description": {
-                    "type": "string",
-                    "description": "description of the element in SERP\noptional field\nthe description of the business entity for which the results are collected;\ncan contain up to 200 characters"
+                    "description": "description of the element in SERP\noptional field\nthe description of the business entity for which the results are collected;\ncan contain up to 200 characters",
+                    "type": "string"
                   },
                   "title": {
-                    "type": "string",
-                    "description": "title of the element in SERP\noptional field\nthe name of the business entity for which the results are collected;\ncan contain up to 200 characters"
+                    "description": "title of the element in SERP\noptional field\nthe name of the business entity for which the results are collected;\ncan contain up to 200 characters",
+                    "type": "string"
                   },
                   "categories": {
+                    "description": "business categories\nthe categories you specify are used to search for business listings;\nif you don’t use this field, we will return business listings found in the specified location;\nyou can specify up to 10 categories",
                     "type": "array",
                     "items": {
                       "type": "string"
-                    },
-                    "description": "business categories\nthe categories you specify are used to search for business listings;\nif you don’t use this field, we will return business listings found in the specified location;\nyou can specify up to 10 categories"
+                    }
                   },
                   "location_coordinate": {
-                    "type": "string",
-                    "description": "GPS coordinates of a location\noptional field\nlocation_coordinate parameter should be specified in the “latitude,longitude,radius” format\nthe maximum number of decimal digits for “latitude” and “longitude”: 7\nthe value of “radius” is specified in kilometres (km)\nthe minimum value for “radius”: 1\nthe maximum value for “radius”: 100000\nexample:\n53.476225,-2.243572,200"
+                    "description": "GPS coordinates of a location\noptional field\nlocation_coordinate parameter should be specified in the “latitude,longitude,radius” format\nthe maximum number of decimal digits for “latitude” and “longitude”: 7\nthe value of “radius” is specified in kilometres (km)\nthe minimum value for “radius”: 1\nthe maximum value for “radius”: 100000\nexample:\n53.476225,-2.243572,200",
+                    "type": "string"
                   },
                   "limit": {
+                    "description": "the maximum number of returned businesses",
+                    "default": 10,
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 1000,
-                    "default": 10,
-                    "description": "the maximum number of returned businesses"
+                    "maximum": 1000
                   },
                   "offset": {
+                    "description": "offset in the results array of returned businesses\noptional field\ndefault value: 0\nif you specify the 10 value, the first ten entities in the results array will be omitted and the data will be provided for the successive entities",
                     "type": "number",
-                    "minimum": 0,
-                    "description": "offset in the results array of returned businesses\noptional field\ndefault value: 0\nif you specify the 10 value, the first ten entities in the results array will be omitted and the data will be provided for the successive entities"
+                    "minimum": 0
                   },
                   "filters": {
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, like, not_like, match, not_match\nUse % with like/not_like as a wildcard.\nExample:\n  Single: [\"rating.value\", \">\", 3]",
+                    "maxItems": 3,
                     "type": "array",
                     "items": {
                       "anyOf": [
                         {
+                          "minItems": 3,
+                          "maxItems": 3,
                           "type": "array",
                           "items": {
-                            "type": [
-                              "string",
-                              "number",
-                              "boolean"
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
                             ]
-                          },
-                          "minItems": 3,
-                          "maxItems": 3
+                          }
                         },
                         {
                           "type": "string",
@@ -77,10 +85,10 @@
                           ]
                         },
                         {
-                          "type": "array",
-                          "items": {},
                           "minItems": 3,
-                          "maxItems": 3
+                          "maxItems": 3,
+                          "type": "array",
+                          "items": {}
                         },
                         {
                           "anyOf": [
@@ -89,25 +97,25 @@
                             },
                             {
                               "type": "number"
-                            }
+                            },
+                            {}
                           ]
-                        }
+                        },
+                        {}
                       ]
-                    },
-                    "maxItems": 3,
-                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, like, not_like, match, not_match\nUse % with like/not_like as a wildcard.\nExample:\n  Single: [\"rating.value\", \">\", 3]"
+                    }
                   },
                   "order_by": {
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\nexample:\n[\"rating.value,desc\"]note that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"rating.value,desc\",\"rating.votes_count,desc\"]",
                     "type": "array",
                     "items": {
                       "type": "string"
-                    },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\nexample:\n[\"rating.value,desc\"]note that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"rating.value,desc\",\"rating.votes_count,desc\"]"
+                    }
                   },
                   "is_claimed": {
-                    "type": "boolean",
+                    "default": true,
                     "description": "indicates whether the business is verified by its owner on Google Maps",
-                    "default": true
+                    "type": "boolean"
                   }
                 },
                 "required": []

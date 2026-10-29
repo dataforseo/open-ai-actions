@@ -27,16 +27,12 @@
                     "description": "URL of the page to parse"
                   },
                   "enable_javascript": {
-                    "type": "boolean",
-                    "description": "Enable JavaScript rendering"
+                    "description": "Enable JavaScript rendering",
+                    "type": "boolean"
                   },
                   "custom_user_agent": {
-                    "type": "string",
-                    "description": "Custom User-Agent header"
-                  },
-                  "accept_language": {
-                    "type": "string",
-                    "description": "Accept-Language header value"
+                    "description": "Custom User-Agent header",
+                    "type": "string"
                   }
                 },
                 "required": [
@@ -64,20 +60,16 @@
                     "description": "URL to analyze"
                   },
                   "enable_javascript": {
-                    "type": "boolean",
-                    "description": "Enable JavaScript rendering"
+                    "description": "Enable JavaScript rendering",
+                    "type": "boolean"
                   },
                   "custom_js": {
-                    "type": "string",
-                    "description": "Custom JavaScript code to execute"
+                    "description": "Custom JavaScript code to execute",
+                    "type": "string"
                   },
                   "custom_user_agent": {
-                    "type": "string",
-                    "description": "Custom User-Agent header"
-                  },
-                  "accept_language": {
-                    "type": "string",
-                    "description": "language header for accessing the website\n        all locale formats are supported (xx, xx-XX, xxx-XX, etc.)\n        Note: if you do not specify this parameter, some websites may deny access; in this case, pages will be returned with the \"type\":\"broken in the response array"
+                    "description": "Custom User-Agent header",
+                    "type": "string"
                   }
                 },
                 "required": [
@@ -105,20 +97,16 @@
                     "description": "URL of the page to parse"
                   },
                   "enable_javascript": {
-                    "type": "boolean",
-                    "description": "Enable JavaScript rendering"
+                    "description": "Enable JavaScript rendering",
+                    "type": "boolean"
                   },
                   "custom_user_agent": {
-                    "type": "string",
-                    "description": "Custom User-Agent header"
-                  },
-                  "accept_language": {
-                    "type": "string",
-                    "description": "Accept-Language header value"
+                    "description": "Custom User-Agent header",
+                    "type": "string"
                   },
                   "full_data": {
-                    "type": "boolean",
-                    "description": "Return the complete API response instead of a reduced version"
+                    "description": "Return the complete API response instead of a reduced version",
+                    "type": "boolean"
                   }
                 },
                 "required": [

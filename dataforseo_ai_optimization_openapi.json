@@ -36,9 +36,9 @@
                     "description": "Keywords. The maximum number of keywords you can specify: 1000"
                   },
                   "location_name": {
-                    "type": "string",
                     "default": "United States",
-                    "description": "full name of the location, example: 'United Kingdom', 'United States'"
+                    "description": "full name of the location, example: 'United Kingdom', 'United States'",
+                    "type": "string"
                   },
                   "language_code": {
                     "type": "string",
@@ -98,16 +98,16 @@
                     "description": "name of the AI model. consists of the actual model name and version name. if not sure which model to use, first call the ai_optimization_llm_models tool to get list of available models for the specified llm_type"
                   },
                   "temperature": {
-                    "type": "number",
-                    "description": "randomness of the AI response optional field higher values make output more diverse; lower values make output more focused;"
+                    "description": "randomness of the AI response optional field higher values make output more diverse; lower values make output more focused;",
+                    "type": "number"
                   },
                   "top_p": {
-                    "type": "number",
-                    "description": "diversity of the AI response, optional field, controls diversity of the response by limiting token selection;"
+                    "description": "diversity of the AI response, optional field, controls diversity of the response by limiting token selection;",
+                    "type": "number"
                   },
                   "web_search": {
-                    "type": "boolean",
-                    "description": "enable web search for current information. When enabled, the AI model can access and cite current web information;"
+                    "description": "enable web search for current information. When enabled, the AI model can access and cite current web information;",
+                    "type": "boolean"
                   }
                 },
                 "required": [
@@ -184,14 +184,15 @@
                               "description": "Target domain to search for LLM mentions"
                             },
                             "search_filter": {
+                              "description": "Search filter to apply (include or exclude)",
                               "type": "string",
                               "enum": [
                                 "include",
                                 "exclude"
-                              ],
-                              "description": "Search filter to apply (include or exclude)"
+                              ]
                             },
                             "search_scope": {
+                              "description": "Target search scope for LLM mentions",
                               "type": "array",
                               "items": {
                                 "type": "string",
@@ -200,14 +201,12 @@
                                   "question",
                                   "answer"
                                 ]
-                              },
-                              "description": "Target search scope for LLM mentions"
+                              }
                             }
                           },
                           "required": [
                             "domain"
-                          ],
-                          "additionalProperties": false
+                          ]
                         },
                         {
                           "type": "object",
@@ -217,22 +216,23 @@
                               "description": "Target keyword to search for LLM mentions"
                             },
                             "match_type": {
+                              "description": "Match type for the keyword",
                               "type": "string",
                               "enum": [
                                 "word_match",
                                 "partial_match"
-                              ],
-                              "description": "Match type for the keyword"
+                              ]
                             },
                             "search_filter": {
+                              "description": "Search filter to apply (include or exclude)",
                               "type": "string",
                               "enum": [
                                 "include",
                                 "exclude"
-                              ],
-                              "description": "Search filter to apply (include or exclude)"
+                              ]
                             },
                             "search_scope": {
+                              "description": "Target search scope for LLM mentions",
                               "type": "array",
                               "items": {
                                 "type": "string",
@@ -241,50 +241,56 @@
                                   "question",
                                   "answer"
                                 ]
-                              },
-                              "description": "Target search scope for LLM mentions"
+                              }
                             }
                           },
                           "required": [
                             "keyword"
-                          ],
-                          "additionalProperties": false
+                          ]
                         }
                       ]
                     },
                     "description": "Array of target objects to search for LLM mentions. Each object must contain either 'domain' or 'keyword'. Maximum number of targets: 1000"
                   },
                   "location_name": {
-                    "type": "string",
-                    "description": "full name of the location, example: 'United Kingdom', 'United States'"
+                    "description": "full name of the location, example: 'United Kingdom', 'United States'",
+                    "type": "string"
                   },
                   "language_code": {
-                    "type": "string",
-                    "description": "Search engine language code (e.g., 'en')"
+                    "description": "Search engine language code (e.g., 'en')",
+                    "type": "string"
                   },
                   "platform": {
+                    "description": "Platform to search for LLM mentions",
                     "type": "string",
                     "enum": [
                       "chat_gpt",
                       "google"
-                    ],
-                    "description": "Platform to search for LLM mentions"
+                    ]
                   },
                   "filters": {
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExample:\n  Single: [\"ai_search_volume\", \">\", \"1000\"]\nThe full list of possible filters is available in 'ai_optimization_llm_mentions_filters' tool",
+                    "maxItems": 3,
                     "type": "array",
                     "items": {
                       "anyOf": [
                         {
+                          "minItems": 3,
+                          "maxItems": 3,
                           "type": "array",
                           "items": {
-                            "type": [
-                              "string",
-                              "number",
-                              "boolean"
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
                             ]
-                          },
-                          "minItems": 3,
-                          "maxItems": 3
+                          }
                         },
                         {
                           "type": "string",
@@ -294,10 +300,10 @@
                           ]
                         },
                         {
-                          "type": "array",
-                          "items": {},
                           "minItems": 3,
-                          "maxItems": 3
+                          "maxItems": 3,
+                          "type": "array",
+                          "items": {}
                         },
                         {
                           "anyOf": [
@@ -306,24 +312,24 @@
                             },
                             {
                               "type": "number"
-                            }
+                            },
+                            {}
                           ]
-                        }
+                        },
+                        {}
                       ]
-                    },
-                    "maxItems": 3,
-                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExample:\n  Single: [\"ai_search_volume\", \">\", \"1000\"]\nThe full list of possible filters is available in 'ai_optimization_llm_mentions_filters' tool"
+                    }
                   },
                   "order_by": {
+                    "description": "resuresults sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"ai_search_volume,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"ai_search_volume,desc\"]\nThe full list of possible orders is available in 'ai_optimization_llm_mentions_filters' tool",
                     "type": "array",
                     "items": {
                       "type": "string"
-                    },
-                    "description": "resuresults sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"ai_search_volume,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"ai_search_volume,desc\"]\nThe full list of possible orders is available in 'ai_optimization_llm_mentions_filters' tool"
+                    }
                   },
                   "limit": {
-                    "type": "number",
-                    "description": "Number of results to return. Default is 10, maximum is 1000."
+                    "description": "Number of results to return. Default is 10, maximum is 1000.",
+                    "type": "number"
                   }
                 },
                 "required": [
@@ -358,14 +364,15 @@
                               "description": "Target domain to search for LLM mentions"
                             },
                             "search_filter": {
+                              "description": "Search filter to apply (include or exclude)",
                               "type": "string",
                               "enum": [
                                 "include",
                                 "exclude"
-                              ],
-                              "description": "Search filter to apply (include or exclude)"
+                              ]
                             },
                             "search_scope": {
+                              "description": "Target search scope for LLM mentions",
                               "type": "array",
                               "items": {
                                 "type": "string",
@@ -374,14 +381,12 @@
                                   "question",
                                   "answer"
                                 ]
-                              },
-                              "description": "Target search scope for LLM mentions"
+                              }
                             }
                           },
                           "required": [
                             "domain"
-                          ],
-                          "additionalProperties": false
+                          ]
                         },
                         {
                           "type": "object",
@@ -391,22 +396,23 @@
                               "description": "Target keyword to search for LLM mentions"
                             },
                             "match_type": {
+                              "description": "Match type for the keyword",
                               "type": "string",
                               "enum": [
                                 "word_match",
                                 "partial_match"
-                              ],
-                              "description": "Match type for the keyword"
+                              ]
                             },
                             "search_filter": {
+                              "description": "Search filter to apply (include or exclude)",
                               "type": "string",
                               "enum": [
                                 "include",
                                 "exclude"
-                              ],
-                              "description": "Search filter to apply (include or exclude)"
+                              ]
                             },
                             "search_scope": {
+                              "description": "Target search scope for LLM mentions",
                               "type": "array",
                               "items": {
                                 "type": "string",
@@ -415,50 +421,56 @@
                                   "question",
                                   "answer"
                                 ]
-                              },
-                              "description": "Target search scope for LLM mentions"
+                              }
                             }
                           },
                           "required": [
                             "keyword"
-                          ],
-                          "additionalProperties": false
+                          ]
                         }
                       ]
                     },
                     "description": "Array of target objects to search for LLM mentions. Each object must contain either 'domain' or 'keyword'. Maximum number of targets: 1000"
                   },
                   "location_name": {
-                    "type": "string",
-                    "description": "full name of the location, example: 'United Kingdom', 'United States'"
+                    "description": "full name of the location, example: 'United Kingdom', 'United States'",
+                    "type": "string"
                   },
                   "language_code": {
-                    "type": "string",
-                    "description": "Search engine language code (e.g., 'en')"
+                    "description": "Search engine language code (e.g., 'en')",
+                    "type": "string"
                   },
                   "platform": {
+                    "description": "Platform to search for LLM mentions",
                     "type": "string",
                     "enum": [
                       "chat_gpt",
                       "google"
-                    ],
-                    "description": "Platform to search for LLM mentions"
+                    ]
                   },
                   "filters": {
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExample:\n  Single: [\"ai_search_volume\", \">\", \"1000\"]\nThe full list of possible filters is available in 'ai_optimization_llm_mentions_filters' tool",
+                    "maxItems": 3,
                     "type": "array",
                     "items": {
                       "anyOf": [
                         {
+                          "minItems": 3,
+                          "maxItems": 3,
                           "type": "array",
                           "items": {
-                            "type": [
-                              "string",
-                              "number",
-                              "boolean"
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
                             ]
-                          },
-                          "minItems": 3,
-                          "maxItems": 3
+                          }
                         },
                         {
                           "type": "string",
@@ -468,10 +480,10 @@
                           ]
                         },
                         {
-                          "type": "array",
-                          "items": {},
                           "minItems": 3,
-                          "maxItems": 3
+                          "maxItems": 3,
+                          "type": "array",
+                          "items": {}
                         },
                         {
                           "anyOf": [
@@ -480,17 +492,17 @@
                             },
                             {
                               "type": "number"
-                            }
+                            },
+                            {}
                           ]
-                        }
+                        },
+                        {}
                       ]
-                    },
-                    "maxItems": 3,
-                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExample:\n  Single: [\"ai_search_volume\", \">\", \"1000\"]\nThe full list of possible filters is available in 'ai_optimization_llm_mentions_filters' tool"
+                    }
                   },
                   "internal_list_limit": {
-                    "type": "number",
-                    "description": "Internal parameter to limit the number of items processed. Not exposed to end-users."
+                    "description": "Internal parameter to limit the number of items processed. Not exposed to end-users.",
+                    "type": "number"
                   }
                 },
                 "required": [
@@ -534,14 +546,15 @@
                                     "description": "Target domain to search for LLM mentions"
                                   },
                                   "search_filter": {
+                                    "description": "Search filter to apply (include or exclude)",
                                     "type": "string",
                                     "enum": [
                                       "include",
                                       "exclude"
-                                    ],
-                                    "description": "Search filter to apply (include or exclude)"
+                                    ]
                                   },
                                   "search_scope": {
+                                    "description": "Target search scope for LLM mentions",
                                     "type": "array",
                                     "items": {
                                       "type": "string",
@@ -550,14 +563,12 @@
                                         "question",
                                         "answer"
                                       ]
-                                    },
-                                    "description": "Target search scope for LLM mentions"
+                                    }
                                   }
                                 },
                                 "required": [
                                   "domain"
-                                ],
-                                "additionalProperties": false
+                                ]
                               },
                               {
                                 "type": "object",
@@ -567,22 +578,23 @@
                                     "description": "Target keyword to search for LLM mentions"
                                   },
                                   "match_type": {
+                                    "description": "Match type for the keyword",
                                     "type": "string",
                                     "enum": [
                                       "word_match",
                                       "partial_match"
-                                    ],
-                                    "description": "Match type for the keyword"
+                                    ]
                                   },
                                   "search_filter": {
+                                    "description": "Search filter to apply (include or exclude)",
                                     "type": "string",
                                     "enum": [
                                       "include",
                                       "exclude"
-                                    ],
-                                    "description": "Search filter to apply (include or exclude)"
+                                    ]
                                   },
                                   "search_scope": {
+                                    "description": "Target search scope for LLM mentions",
                                     "type": "array",
                                     "items": {
                                       "type": "string",
@@ -591,14 +603,12 @@
                                         "question",
                                         "answer"
                                       ]
-                                    },
-                                    "description": "Target search scope for LLM mentions"
+                                    }
                                   }
                                 },
                                 "required": [
                                   "keyword"
-                                ],
-                                "additionalProperties": false
+                                ]
                               }
                             ]
                           },
@@ -608,42 +618,49 @@
                       "required": [
                         "aggregation_key",
                         "target"
-                      ],
-                      "additionalProperties": false
+                      ]
                     },
                     "description": "array of objects containing target entities with aggregation keys. you can specify up to 10, but not less than 2"
                   },
                   "location_name": {
-                    "type": "string",
-                    "description": "full name of the location, example: 'United Kingdom', 'United States'"
+                    "description": "full name of the location, example: 'United Kingdom', 'United States'",
+                    "type": "string"
                   },
                   "language_code": {
-                    "type": "string",
-                    "description": "Search engine language code (e.g., 'en')"
+                    "description": "Search engine language code (e.g., 'en')",
+                    "type": "string"
                   },
                   "platform": {
+                    "description": "Platform to search for LLM mentions",
                     "type": "string",
                     "enum": [
                       "chat_gpt",
                       "google"
-                    ],
-                    "description": "Platform to search for LLM mentions"
+                    ]
                   },
                   "filters": {
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExample:\n  Single: [\"ai_search_volume\", \">\", \"1000\"]\nThe full list of possible filters is available in 'ai_optimization_llm_mentions_filters' tool",
+                    "maxItems": 3,
                     "type": "array",
                     "items": {
                       "anyOf": [
                         {
+                          "minItems": 3,
+                          "maxItems": 3,
                           "type": "array",
                           "items": {
-                            "type": [
-                              "string",
-                              "number",
-                              "boolean"
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
                             ]
-                          },
-                          "minItems": 3,
-                          "maxItems": 3
+                          }
                         },
                         {
                           "type": "string",
@@ -653,10 +670,10 @@
                           ]
                         },
                         {
-                          "type": "array",
-                          "items": {},
                           "minItems": 3,
-                          "maxItems": 3
+                          "maxItems": 3,
+                          "type": "array",
+                          "items": {}
                         },
                         {
                           "anyOf": [
@@ -665,17 +682,17 @@
                             },
                             {
                               "type": "number"
-                            }
+                            },
+                            {}
                           ]
-                        }
+                        },
+                        {}
                       ]
-                    },
-                    "maxItems": 3,
-                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExample:\n  Single: [\"ai_search_volume\", \">\", \"1000\"]\nThe full list of possible filters is available in 'ai_optimization_llm_mentions_filters' tool"
+                    }
                   },
                   "internal_list_limit": {
-                    "type": "number",
-                    "description": "Internal parameter to limit the number of items processed. Not exposed to end-users."
+                    "description": "Internal parameter to limit the number of items processed. Not exposed to end-users.",
+                    "type": "number"
                   }
                 },
                 "required": [
@@ -710,14 +727,15 @@
                               "description": "Target domain to search for LLM mentions"
                             },
                             "search_filter": {
+                              "description": "Search filter to apply (include or exclude)",
                               "type": "string",
                               "enum": [
                                 "include",
                                 "exclude"
-                              ],
-                              "description": "Search filter to apply (include or exclude)"
+                              ]
                             },
                             "search_scope": {
+                              "description": "Target search scope for LLM mentions",
                               "type": "array",
                               "items": {
                                 "type": "string",
@@ -726,14 +744,12 @@
                                   "question",
                                   "answer"
                                 ]
-                              },
-                              "description": "Target search scope for LLM mentions"
+                              }
                             }
                           },
                           "required": [
                             "domain"
-                          ],
-                          "additionalProperties": false
+                          ]
                         },
                         {
                           "type": "object",
@@ -743,22 +759,23 @@
                               "description": "Target keyword to search for LLM mentions"
                             },
                             "match_type": {
+                              "description": "Match type for the keyword",
                               "type": "string",
                               "enum": [
                                 "word_match",
                                 "partial_match"
-                              ],
-                              "description": "Match type for the keyword"
+                              ]
                             },
                             "search_filter": {
+                              "description": "Search filter to apply (include or exclude)",
                               "type": "string",
                               "enum": [
                                 "include",
                                 "exclude"
-                              ],
-                              "description": "Search filter to apply (include or exclude)"
+                              ]
                             },
                             "search_scope": {
+                              "description": "Target search scope for LLM mentions",
                               "type": "array",
                               "items": {
                                 "type": "string",
@@ -767,58 +784,64 @@
                                   "question",
                                   "answer"
                                 ]
-                              },
-                              "description": "Target search scope for LLM mentions"
+                              }
                             }
                           },
                           "required": [
                             "keyword"
-                          ],
-                          "additionalProperties": false
+                          ]
                         }
                       ]
                     },
                     "description": "Array of target objects to search for LLM mentions. Each object must contain either 'domain' or 'keyword'. Maximum number of targets: 1000"
                   },
                   "location_name": {
-                    "type": "string",
-                    "description": "full name of the location, example: 'United Kingdom', 'United States'"
+                    "description": "full name of the location, example: 'United Kingdom', 'United States'",
+                    "type": "string"
                   },
                   "language_code": {
-                    "type": "string",
-                    "description": "Search engine language code (e.g., 'en')"
+                    "description": "Search engine language code (e.g., 'en')",
+                    "type": "string"
                   },
                   "platform": {
+                    "description": "Platform to search for LLM mentions",
                     "type": "string",
                     "enum": [
                       "chat_gpt",
                       "google"
-                    ],
-                    "description": "Platform to search for LLM mentions"
+                    ]
                   },
                   "links_scope": {
+                    "description": "specifies which links will be used to extract domains and aggregation",
                     "type": "string",
                     "enum": [
                       "sources",
                       "search_results"
-                    ],
-                    "description": "specifies which links will be used to extract domains and aggregation"
+                    ]
                   },
                   "initial_dataset_filters": {
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExample:\n  Single: [\"ai_search_volume\", \">\", \"1000\"]\nThe full list of possible filters is available in 'ai_optimization_llm_mentions_filters' tool",
+                    "maxItems": 3,
                     "type": "array",
                     "items": {
                       "anyOf": [
                         {
+                          "minItems": 3,
+                          "maxItems": 3,
                           "type": "array",
                           "items": {
-                            "type": [
-                              "string",
-                              "number",
-                              "boolean"
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
                             ]
-                          },
-                          "minItems": 3,
-                          "maxItems": 3
+                          }
                         },
                         {
                           "type": "string",
@@ -828,10 +851,10 @@
                           ]
                         },
                         {
-                          "type": "array",
-                          "items": {},
                           "minItems": 3,
-                          "maxItems": 3
+                          "maxItems": 3,
+                          "type": "array",
+                          "items": {}
                         },
                         {
                           "anyOf": [
@@ -840,25 +863,25 @@
                             },
                             {
                               "type": "number"
-                            }
+                            },
+                            {}
                           ]
-                        }
+                        },
+                        {}
                       ]
-                    },
-                    "maxItems": 3,
-                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExample:\n  Single: [\"ai_search_volume\", \">\", \"1000\"]\nThe full list of possible filters is available in 'ai_optimization_llm_mentions_filters' tool"
+                    }
                   },
                   "items_list_limit": {
+                    "description": "maximum number of results in the items array, min value is 1, max value is 10",
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 10,
-                    "description": "maximum number of results in the items array, min value is 1, max value is 10"
+                    "maximum": 10
                   },
                   "internal_list_limit": {
+                    "description": "maximum number of elements within internal arrays, min value is 1, max value is 10",
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 10,
-                    "description": "maximum number of elements within internal arrays, min value is 1, max value is 10"
+                    "maximum": 10
                   }
                 },
                 "required": [
@@ -893,14 +916,15 @@
                               "description": "Target domain to search for LLM mentions"
                             },
                             "search_filter": {
+                              "description": "Search filter to apply (include or exclude)",
                               "type": "string",
                               "enum": [
                                 "include",
                                 "exclude"
-                              ],
-                              "description": "Search filter to apply (include or exclude)"
+                              ]
                             },
                             "search_scope": {
+                              "description": "Target search scope for LLM mentions",
                               "type": "array",
                               "items": {
                                 "type": "string",
@@ -909,14 +933,12 @@
                                   "question",
                                   "answer"
                                 ]
-                              },
-                              "description": "Target search scope for LLM mentions"
+                              }
                             }
                           },
                           "required": [
                             "domain"
-                          ],
-                          "additionalProperties": false
+                          ]
                         },
                         {
                           "type": "object",
@@ -926,22 +948,23 @@
                               "description": "Target keyword to search for LLM mentions"
                             },
                             "match_type": {
+                              "description": "Match type for the keyword",
                               "type": "string",
                               "enum": [
                                 "word_match",
                                 "partial_match"
-                              ],
-                              "description": "Match type for the keyword"
+                              ]
                             },
                             "search_filter": {
+                              "description": "Search filter to apply (include or exclude)",
                               "type": "string",
                               "enum": [
                                 "include",
                                 "exclude"
-                              ],
-                              "description": "Search filter to apply (include or exclude)"
+                              ]
                             },
                             "search_scope": {
+                              "description": "Target search scope for LLM mentions",
                               "type": "array",
                               "items": {
                                 "type": "string",
@@ -950,58 +973,64 @@
                                   "question",
                                   "answer"
                                 ]
-                              },
-                              "description": "Target search scope for LLM mentions"
+                              }
                             }
                           },
                           "required": [
                             "keyword"
-                          ],
-                          "additionalProperties": false
+                          ]
                         }
                       ]
                     },
                     "description": "Array of target objects to search for LLM mentions. Each object must contain either 'domain' or 'keyword'. Maximum number of targets: 1000"
                   },
                   "location_name": {
-                    "type": "string",
-                    "description": "full name of the location, example: 'United Kingdom', 'United States'"
+                    "description": "full name of the location, example: 'United Kingdom', 'United States'",
+                    "type": "string"
                   },
                   "language_code": {
-                    "type": "string",
-                    "description": "Search engine language code (e.g., 'en')"
+                    "description": "Search engine language code (e.g., 'en')",
+                    "type": "string"
                   },
                   "platform": {
+                    "description": "Platform to search for LLM mentions",
                     "type": "string",
                     "enum": [
                       "chat_gpt",
                       "google"
-                    ],
-                    "description": "Platform to search for LLM mentions"
+                    ]
                   },
                   "links_scope": {
+                    "description": "specifies which links will be used to extract domains and aggregation",
                     "type": "string",
                     "enum": [
                       "sources",
                       "search_results"
-                    ],
-                    "description": "specifies which links will be used to extract domains and aggregation"
+                    ]
                   },
                   "initial_dataset_filters": {
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExample:\n  Single: [\"ai_search_volume\", \">\", \"1000\"]\nThe full list of possible filters is available in 'ai_optimization_llm_mentions_filters' tool",
+                    "maxItems": 3,
                     "type": "array",
                     "items": {
                       "anyOf": [
                         {
+                          "minItems": 3,
+                          "maxItems": 3,
                           "type": "array",
                           "items": {
-                            "type": [
-                              "string",
-                              "number",
-                              "boolean"
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
                             ]
-                          },
-                          "minItems": 3,
-                          "maxItems": 3
+                          }
                         },
                         {
                           "type": "string",
@@ -1011,10 +1040,10 @@
                           ]
                         },
                         {
-                          "type": "array",
-                          "items": {},
                           "minItems": 3,
-                          "maxItems": 3
+                          "maxItems": 3,
+                          "type": "array",
+                          "items": {}
                         },
                         {
                           "anyOf": [
@@ -1023,25 +1052,25 @@
                             },
                             {
                               "type": "number"
-                            }
+                            },
+                            {}
                           ]
-                        }
+                        },
+                        {}
                       ]
-                    },
-                    "maxItems": 3,
-                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExample:\n  Single: [\"ai_search_volume\", \">\", \"1000\"]\nThe full list of possible filters is available in 'ai_optimization_llm_mentions_filters' tool"
+                    }
                   },
                   "items_list_limit": {
+                    "description": "maximum number of results in the items array, min value is 1, max value is 10",
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 10,
-                    "description": "maximum number of results in the items array, min value is 1, max value is 10"
+                    "maximum": 10
                   },
                   "internal_list_limit": {
+                    "description": "maximum number of elements within internal arrays, min value is 1, max value is 10",
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 10,
-                    "description": "maximum number of elements within internal arrays, min value is 1, max value is 10"
+                    "maximum": 10
                   }
                 },
                 "required": [
@@ -1069,17 +1098,17 @@
                     "description": "keyword\nrequired field\nyou can specify up to 2000 characters in the keyword field\nall %## will be decoded (plus character ‘+’ will be decoded to a space character)\nif you need to use the “%” character for your keyword, please specify it as “%25”;\nif you need to use the “+” character for your keyword, please specify it as “%2B”"
                   },
                   "location_name": {
-                    "type": "string",
                     "default": "United States",
-                    "description": "full name of the location, example: 'United Kingdom', 'United States'"
+                    "description": "full name of the location, example: 'United Kingdom', 'United States'",
+                    "type": "string"
                   },
                   "language_code": {
                     "type": "string",
                     "description": "Search engine language code (e.g., 'en')"
                   },
                   "force_web_search": {
-                    "type": "boolean",
-                    "description": "force AI agent to use web search"
+                    "description": "force AI agent to use web search",
+                    "type": "boolean"
                   }
                 },
                 "required": [
@@ -1104,12 +1133,12 @@
                 "type": "object",
                 "properties": {
                   "country_iso_code": {
-                    "type": "string",
-                    "description": "ISO 3166-1 alpha-2 country code, for example: US, GB, MT"
+                    "description": "ISO 3166-1 alpha-2 country code, for example: US, GB, MT",
+                    "type": "string"
                   },
                   "location_name": {
-                    "type": "string",
-                    "description": "Name of location or it`s part."
+                    "description": "Name of location or it`s part.",
+                    "type": "string"
                   }
                 },
                 "required": []

@@ -27,14 +27,14 @@
                     "description": "product ID\nrequired field\nunique product identifier (ASIN) in Amazon\nyou can receive the asin parameter by making a separate request to the merchant_amazon_products_live_advanced"
                   },
                   "location_name": {
-                    "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nLocation format - hierarchical, comma-separated (from most specific to least)\n Can be one of:\n 1. Country only: \"United States\"\n 2. Postal Code,Region,Country: \"90210,California,United States\""
+                    "description": "full name of the location\nrequired field\nLocation format - hierarchical, comma-separated (from most specific to least)\n Can be one of:\n 1. Country only: \"United States\"\n 2. Postal Code,Region,Country: \"90210,California,United States\"",
+                    "type": "string"
                   },
                   "language_code": {
-                    "type": "string",
                     "default": "en_US",
-                    "description": "language code\nrequired field\nexample: \"en_US\"\nsupported languages: ar_SA, ar_AE, zh_CN, zh_TW, cs_CZ, nl_NL, en_AU, en_CA, en_IN, en_AE, en_GB, en_US, fr_CA, fr_FR, de_DE, he_IL, hi_IN, it_IT, ja_JP, ko_KR, pl_PL, pt_BR, es_MX, es_ES, es_US, sv_SE, tr_TR"
+                    "description": "language code\nrequired field\nexample: \"en_US\"\nsupported languages: ar_SA, ar_AE, zh_CN, zh_TW, cs_CZ, nl_NL, en_AU, en_CA, en_IN, en_AE, en_GB, en_US, fr_CA, fr_FR, de_DE, he_IL, hi_IN, it_IT, ja_JP, ko_KR, pl_PL, pt_BR, es_MX, es_ES, es_US, sv_SE, tr_TR",
+                    "type": "string"
                   }
                 },
                 "required": [
@@ -62,14 +62,14 @@
                     "description": "product identifier (ASIN) on Amazon\nrequired field\nthe unique identifier of the product on Amazon;\nexample: \"B07D528W98\""
                   },
                   "location_name": {
-                    "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\n  required field\n  Location format - hierarchical, comma-separated (from most specific to least)\n   Can be one of:\n   1. Country only: \"United States\"\n   2. Postal Code,Region,Country: \"90210,California,United States\""
+                    "description": "full name of the location\n  required field\n  Location format - hierarchical, comma-separated (from most specific to least)\n   Can be one of:\n   1. Country only: \"United States\"\n   2. Postal Code,Region,Country: \"90210,California,United States\"",
+                    "type": "string"
                   },
                   "language_code": {
-                    "type": "string",
                     "default": "en_US",
-                    "description": "language code\nrequired field\nexample: \"en_US\"\nsupported languages: ar_SA, ar_AE, zh_CN, zh_TW, cs_CZ, nl_NL, en_AU, en_CA, en_IN, en_AE, en_GB, en_US, fr_CA, fr_FR, de_DE, he_IL, hi_IN, it_IT, ja_JP, ko_KR, pl_PL, pt_BR, es_MX, es_ES, es_US, sv_SE, tr_TR"
+                    "description": "language code\nrequired field\nexample: \"en_US\"\nsupported languages: ar_SA, ar_AE, zh_CN, zh_TW, cs_CZ, nl_NL, en_AU, en_CA, en_IN, en_AE, en_GB, en_US, fr_CA, fr_FR, de_DE, he_IL, hi_IN, it_IT, ja_JP, ko_KR, pl_PL, pt_BR, es_MX, es_ES, es_US, sv_SE, tr_TR",
+                    "type": "string"
                   }
                 },
                 "required": [
@@ -97,16 +97,17 @@
                     "description": "keyword\nrequired field\nthe keyword that will be searched for on Amazon;\nexample: \"shoes\""
                   },
                   "location_name": {
-                    "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\n  required field\n  Location format - hierarchical, comma-separated (from most specific to least)\n   Can be one of:\n   1. Country only: \"United States\"\n   2. Postal Code,Region,Country: \"90210,California,United States\""
+                    "description": "full name of the location\n  required field\n  Location format - hierarchical, comma-separated (from most specific to least)\n   Can be one of:\n   1. Country only: \"United States\"\n   2. Postal Code,Region,Country: \"90210,California,United States\"",
+                    "type": "string"
                   },
                   "language_code": {
-                    "type": "string",
                     "default": "en_US",
-                    "description": "language code\nrequired field\nexample: \"en_US\"\nsupported languages: ar_SA, ar_AE, zh_CN, zh_TW, cs_CZ, nl_NL, en_AU, en_CA, en_IN, en_AE, en_GB, en_US, fr_CA, fr_FR, de_DE, he_IL, hi_IN, it_IT, ja_JP, ko_KR, pl_PL, pt_BR, es_MX, es_ES, es_US, sv_SE, tr_TR"
+                    "description": "language code\nrequired field\nexample: \"en_US\"\nsupported languages: ar_SA, ar_AE, zh_CN, zh_TW, cs_CZ, nl_NL, en_AU, en_CA, en_IN, en_AE, en_GB, en_US, fr_CA, fr_FR, de_DE, he_IL, hi_IN, it_IT, ja_JP, ko_KR, pl_PL, pt_BR, es_MX, es_ES, es_US, sv_SE, tr_TR",
+                    "type": "string"
                   },
                   "department": {
+                    "description": "amazon product department\noptional field\nspecify one of the supported amazon departments for extracting product listings",
                     "type": "string",
                     "enum": [
                       "Arts & Crafts",
@@ -136,18 +137,22 @@
                       "Tools & Home Improvement",
                       "Toys & Games",
                       "Video Games"
-                    ],
-                    "description": "amazon product department\noptional field\nspecify one of the supported amazon departments for extracting product listings"
+                    ]
                   },
                   "price_min": {
+                    "description": "minimum product price\noptional field\nminimum price of the returned products listed on Amazon for the specified query\nexample: 5\nNote: if you specify price_min, the search_param parameter will be ignored",
                     "type": "integer",
-                    "description": "minimum product price\noptional field\nminimum price of the returned products listed on Amazon for the specified query\nexample: 5\nNote: if you specify price_min, the search_param parameter will be ignored"
+                    "minimum": -9007199254740991,
+                    "maximum": 9007199254740991
                   },
                   "price_max": {
+                    "description": "maximum product price\noptional field\nmaximum price of the returned products listed on Amazon for the specified query\nexample: 100\nNote: if you specify price_max, the search_param parameter will be ignored",
                     "type": "integer",
-                    "description": "maximum product price\noptional field\nmaximum price of the returned products listed on Amazon for the specified query\nexample: 100\nNote: if you specify price_max, the search_param parameter will be ignored"
+                    "minimum": -9007199254740991,
+                    "maximum": 9007199254740991
                   },
                   "sort_by": {
+                    "description": "results sorting rules\noptional field\nsupported values: relevance, price_low_to_high, price_high_to_low, featured, avg_customer_review, newest_arrival\nexample: \"relevance\"",
                     "type": "string",
                     "enum": [
                       "relevance",
@@ -156,8 +161,7 @@
                       "featured",
                       "avg_customer_review",
                       "newest_arrival"
-                    ],
-                    "description": "results sorting rules\noptional field\nsupported values: relevance, price_low_to_high, price_high_to_low, featured, avg_customer_review, newest_arrival\nexample: \"relevance\""
+                    ]
                   }
                 },
                 "required": [
@@ -181,20 +185,20 @@
                 "type": "object",
                 "properties": {
                   "country": {
-                    "type": "string",
-                    "description": "ISO 3166-1 alpha-2 country code to filter locations by\noptional field\nexample: \"US\", \"GB\", \"DE\"\nif omitted, the full list of available Amazon locations is returned"
+                    "description": "ISO 3166-1 alpha-2 country code to filter locations by\noptional field\nexample: \"US\", \"GB\", \"DE\"\nif omitted, the full list of available Amazon locations is returned",
+                    "type": "string"
                   },
                   "location_name_contains": {
-                    "type": "string",
-                    "description": "filter locations by a substring match on location_name\noptional field\nexample: \"New York\", \"London\"\nif omitted, no name filtering is applied"
+                    "description": "filter locations by a substring match on location_name\noptional field\nexample: \"New York\", \"London\"\nif omitted, no name filtering is applied",
+                    "type": "string"
                   },
                   "limit": {
-                    "type": "number",
-                    "description": "maximum number of locations to return"
+                    "description": "maximum number of locations to return",
+                    "type": "number"
                   },
                   "offset": {
-                    "type": "number",
-                    "description": "offset in the results array of returned locations"
+                    "description": "offset in the results array of returned locations",
+                    "type": "number"
                   }
                 },
                 "required": []
