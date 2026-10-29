@@ -29,17 +29,21 @@
                 "type": "object",
                 "properties": {
                   "location_name": {
-                    "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nLocation format - hierarchical, comma-separated (from most specific to least)\n Can be one of:\n 1. Country only: \"United States\"\n 2. Region,Country: \"California,United States\"\n 3. City,Region,Country: \"San Francisco,California,United States\""
+                    "description": "full name of the location\nrequired field\nLocation format - hierarchical, comma-separated (from most specific to least)\n Can be one of:\n 1. Country only: \"United States\"\n 2. Region,Country: \"California,United States\"\n 3. City,Region,Country: \"San Francisco,California,United States\"",
+                    "type": "string"
                   },
                   "language_code": {
-                    "type": [
-                      "string",
-                      "null"
-                    ],
                     "default": null,
-                    "description": "Language two-letter ISO code (e.g., 'en').\noptional field"
+                    "description": "Language two-letter ISO code (e.g., 'en').\noptional field",
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
                   },
                   "keywords": {
                     "type": "array",
@@ -70,12 +74,16 @@
                 "type": "object",
                 "properties": {
                   "location_name": {
-                    "type": [
-                      "string",
-                      "null"
-                    ],
                     "default": null,
-                    "description": "full name of the location\n        optional field\n        in format \"Country\"\n        example:\n        United Kingdom"
+                    "description": "full name of the location\n        optional field\n        in format \"Country\"\n        example:\n        United Kingdom",
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
                   },
                   "keywords": {
                     "type": "array",
@@ -85,24 +93,26 @@
                     "description": "keywords\n        the maximum number of keywords you can specify: 5"
                   },
                   "type": {
+                    "default": "web",
+                    "description": "dataforseo trends type",
                     "type": "string",
                     "enum": [
                       "web",
                       "news",
                       "ecommerce"
-                    ],
-                    "default": "web",
-                    "description": "dataforseo trends type"
+                    ]
                   },
                   "date_from": {
-                    "type": "string",
-                    "description": "starting date of the time range\n          if you don’t specify this field, the current day and month of the preceding year will be used by default\n          minimal value for the web type: 2004-01-01\n          minimal value for other types: 2008-01-01\n          date format: \"yyyy-mm-dd\"\n          example:\n          \"2019-01-15\""
+                    "description": "starting date of the time range\n          if you don’t specify this field, the current day and month of the preceding year will be used by default\n          minimal value for the web type: 2004-01-01\n          minimal value for other types: 2008-01-01\n          date format: \"yyyy-mm-dd\"\n          example:\n          \"2019-01-15\"",
+                    "type": "string"
                   },
                   "date_to": {
-                    "type": "string",
-                    "description": "ending date of the time range\n            if you don’t specify this field, the today’s date will be used by default\n            date format: \"yyyy-mm-dd\"\n            example:\n            \"2019-01-15\""
+                    "description": "ending date of the time range\n            if you don’t specify this field, the today’s date will be used by default\n            date format: \"yyyy-mm-dd\"\n            example:\n            \"2019-01-15\"",
+                    "type": "string"
                   },
                   "time_range": {
+                    "default": "past_7_days",
+                    "description": "preset time ranges\n            if you specify date_from or date_to parameters, this field will be ignored when setting a task",
                     "type": "string",
                     "enum": [
                       "past_4_hours",
@@ -112,9 +122,7 @@
                       "past_90_days",
                       "past_12_months",
                       "past_5_years"
-                    ],
-                    "default": "past_7_days",
-                    "description": "preset time ranges\n            if you specify date_from or date_to parameters, this field will be ignored when setting a task"
+                    ]
                   }
                 },
                 "required": [
@@ -138,12 +146,16 @@
                 "type": "object",
                 "properties": {
                   "location_name": {
-                    "type": [
-                      "string",
-                      "null"
-                    ],
                     "default": null,
-                    "description": "full name of the location\n        optional field\n        in format \"Country\"\n        example:\n        United Kingdom"
+                    "description": "full name of the location\n        optional field\n        in format \"Country\"\n        example:\n        United Kingdom",
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
                   },
                   "keywords": {
                     "type": "array",
@@ -153,24 +165,26 @@
                     "description": "keywords\n        the maximum number of keywords you can specify: 5"
                   },
                   "type": {
+                    "default": "web",
+                    "description": "dataforseo trends type",
                     "type": "string",
                     "enum": [
                       "web",
                       "news",
                       "ecommerce"
-                    ],
-                    "default": "web",
-                    "description": "dataforseo trends type"
+                    ]
                   },
                   "date_from": {
-                    "type": "string",
-                    "description": "starting date of the time range\n          if you don’t specify this field, the current day and month of the preceding year will be used by default\n          minimal value for the web type: 2004-01-01\n          minimal value for other types: 2008-01-01\n          date format: \"yyyy-mm-dd\"\n          example:\n          \"2019-01-15\""
+                    "description": "starting date of the time range\n          if you don’t specify this field, the current day and month of the preceding year will be used by default\n          minimal value for the web type: 2004-01-01\n          minimal value for other types: 2008-01-01\n          date format: \"yyyy-mm-dd\"\n          example:\n          \"2019-01-15\"",
+                    "type": "string"
                   },
                   "date_to": {
-                    "type": "string",
-                    "description": "ending date of the time range\n            if you don’t specify this field, the today’s date will be used by default\n            date format: \"yyyy-mm-dd\"\n            example:\n            \"2019-01-15\""
+                    "description": "ending date of the time range\n            if you don’t specify this field, the today’s date will be used by default\n            date format: \"yyyy-mm-dd\"\n            example:\n            \"2019-01-15\"",
+                    "type": "string"
                   },
                   "time_range": {
+                    "default": "past_7_days",
+                    "description": "preset time ranges\n            if you specify date_from or date_to parameters, this field will be ignored when setting a task",
                     "type": "string",
                     "enum": [
                       "past_4_hours",
@@ -180,9 +194,7 @@
                       "past_90_days",
                       "past_12_months",
                       "past_5_years"
-                    ],
-                    "default": "past_7_days",
-                    "description": "preset time ranges\n            if you specify date_from or date_to parameters, this field will be ignored when setting a task"
+                    ]
                   }
                 },
                 "required": [
@@ -206,12 +218,16 @@
                 "type": "object",
                 "properties": {
                   "location_name": {
-                    "type": [
-                      "string",
-                      "null"
-                    ],
                     "default": null,
-                    "description": "full name of the location\n        optional field\n        in format \"Country\"\n        example:\n        United Kingdom"
+                    "description": "full name of the location\n        optional field\n        in format \"Country\"\n        example:\n        United Kingdom",
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
                   },
                   "keywords": {
                     "type": "array",
@@ -221,24 +237,26 @@
                     "description": "keywords\n        the maximum number of keywords you can specify: 5"
                   },
                   "type": {
+                    "default": "web",
+                    "description": "dataforseo trends type",
                     "type": "string",
                     "enum": [
                       "web",
                       "news",
                       "ecommerce"
-                    ],
-                    "default": "web",
-                    "description": "dataforseo trends type"
+                    ]
                   },
                   "date_from": {
-                    "type": "string",
-                    "description": "starting date of the time range\n          if you don’t specify this field, the current day and month of the preceding year will be used by default\n          minimal value for the web type: 2004-01-01\n          minimal value for other types: 2008-01-01\n          date format: \"yyyy-mm-dd\"\n          example:\n          \"2019-01-15\""
+                    "description": "starting date of the time range\n          if you don’t specify this field, the current day and month of the preceding year will be used by default\n          minimal value for the web type: 2004-01-01\n          minimal value for other types: 2008-01-01\n          date format: \"yyyy-mm-dd\"\n          example:\n          \"2019-01-15\"",
+                    "type": "string"
                   },
                   "date_to": {
-                    "type": "string",
-                    "description": "ending date of the time range\n            if you don’t specify this field, the today’s date will be used by default\n            date format: \"yyyy-mm-dd\"\n            example:\n            \"2019-01-15\""
+                    "description": "ending date of the time range\n            if you don’t specify this field, the today’s date will be used by default\n            date format: \"yyyy-mm-dd\"\n            example:\n            \"2019-01-15\"",
+                    "type": "string"
                   },
                   "time_range": {
+                    "default": "past_7_days",
+                    "description": "preset time ranges\n            if you specify date_from or date_to parameters, this field will be ignored when setting a task",
                     "type": "string",
                     "enum": [
                       "past_4_hours",
@@ -248,9 +266,7 @@
                       "past_90_days",
                       "past_12_months",
                       "past_5_years"
-                    ],
-                    "default": "past_7_days",
-                    "description": "preset time ranges\n            if you specify date_from or date_to parameters, this field will be ignored when setting a task"
+                    ]
                   }
                 },
                 "required": [
@@ -280,20 +296,28 @@
                 "type": "object",
                 "properties": {
                   "location_name": {
-                    "type": [
-                      "string",
-                      "null"
-                    ],
                     "default": null,
-                    "description": "full name of the location\n        optional field\n        in format \"Country\"\n        example:\n        United Kingdom"
+                    "description": "full name of the location\n        optional field\n        in format \"Country\"\n        example:\n        United Kingdom",
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
                   },
                   "language_code": {
-                    "type": [
-                      "string",
-                      "null"
-                    ],
                     "default": null,
-                    "description": "Language two-letter ISO code (e.g., 'en').\n        optional field"
+                    "description": "Language two-letter ISO code (e.g., 'en').\n        optional field",
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
                   },
                   "keywords": {
                     "type": "array",
@@ -303,6 +327,8 @@
                     "description": "keywords\n        the maximum number of keywords you can specify: 5\n        the maximum number of characters you can specify in a keyword: 100\n        the minimum number of characters must be greater than 1\n        comma characters (,) in the specified keywords will be unset and ignored\n        Note: keywords cannot consist of a combination of the following characters: < > |  \" - + = ~ ! : * ( ) [ ] { }\n\n        Note: to obtain google_trends_topics_list and google_trends_queries_list items, specify no more than 1 keyword"
                   },
                   "type": {
+                    "default": "web",
+                    "description": "google trends type",
                     "type": "string",
                     "enum": [
                       "web",
@@ -310,19 +336,19 @@
                       "youtube",
                       "images",
                       "froogle"
-                    ],
-                    "default": "web",
-                    "description": "google trends type"
+                    ]
                   },
                   "date_from": {
-                    "type": "string",
-                    "description": "starting date of the time range\n          if you don’t specify this field, the current day and month of the preceding year will be used by default\n          minimal value for the web type: 2004-01-01\n          minimal value for other types: 2008-01-01\n          date format: \"yyyy-mm-dd\"\n          example:\n          \"2019-01-15\""
+                    "description": "starting date of the time range\n          if you don’t specify this field, the current day and month of the preceding year will be used by default\n          minimal value for the web type: 2004-01-01\n          minimal value for other types: 2008-01-01\n          date format: \"yyyy-mm-dd\"\n          example:\n          \"2019-01-15\"",
+                    "type": "string"
                   },
                   "date_to": {
-                    "type": "string",
-                    "description": "ending date of the time range\n            if you don’t specify this field, the today’s date will be used by default\n            date format: \"yyyy-mm-dd\"\n            example:\n            \"2019-01-15\""
+                    "description": "ending date of the time range\n            if you don’t specify this field, the today’s date will be used by default\n            date format: \"yyyy-mm-dd\"\n            example:\n            \"2019-01-15\"",
+                    "type": "string"
                   },
                   "time_range": {
+                    "default": "past_7_days",
+                    "description": "preset time ranges\n            if you specify date_from or date_to parameters, this field will be ignored when setting a task",
                     "type": "string",
                     "enum": [
                       "past_hour",
@@ -333,11 +359,13 @@
                       "past_90_days",
                       "past_12_months",
                       "past_5_years"
-                    ],
-                    "default": "past_7_days",
-                    "description": "preset time ranges\n            if you specify date_from or date_to parameters, this field will be ignored when setting a task"
+                    ]
                   },
                   "item_types": {
+                    "default": [
+                      "google_trends_graph"
+                    ],
+                    "description": "types of items returned\n            to speed up the execution of the request, specify one item at a time",
                     "type": "array",
                     "items": {
                       "type": "string",
@@ -347,19 +375,19 @@
                         "google_trends_topics_list",
                         "google_trends_queries_list"
                       ]
-                    },
-                    "default": [
-                      "google_trends_graph"
-                    ],
-                    "description": "types of items returned\n            to speed up the execution of the request, specify one item at a time"
+                    }
                   },
                   "category_code": {
-                    "type": [
-                      "number",
-                      "null"
-                    ],
                     "default": null,
-                    "description": "google trends search category\n            you can receive the list of available categories with their category_code by making a separate request to the keywords_data_google_trends_categories tool"
+                    "description": "google trends search category\n            you can receive the list of available categories with their category_code by making a separate request to the keywords_data_google_trends_categories tool",
+                    "anyOf": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
                   }
                 },
                 "required": [
