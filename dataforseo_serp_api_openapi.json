@@ -23,16 +23,16 @@
                 "type": "object",
                 "properties": {
                   "location_name": {
-                    "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nLocation format - hierarchical, comma-separated (from most specific to least)\n Can be one of:\n 1. Country only: \"United States\"\n 2. Region,Country: \"California,United States\"\n 3. City,Region,Country: \"San Francisco,California,United States\""
+                    "description": "full name of the location\nrequired field\nLocation format - hierarchical, comma-separated (from most specific to least)\n Can be one of:\n 1. Country only: \"United States\"\n 2. Region,Country: \"California,United States\"\n 3. City,Region,Country: \"San Francisco,California,United States\"",
+                    "type": "string"
                   },
                   "depth": {
+                    "default": 10,
+                    "description": "parsing depth\noptional field\nnumber of results in SERP",
                     "type": "number",
                     "minimum": 10,
-                    "maximum": 700,
-                    "default": 10,
-                    "description": "parsing depth\noptional field\nnumber of results in SERP"
+                    "maximum": 700
                   },
                   "language_code": {
                     "type": "string",
@@ -43,22 +43,22 @@
                     "description": "Search keyword"
                   },
                   "max_crawl_pages": {
+                    "default": 1,
+                    "description": "page crawl limit\noptional field\nnumber of search results pages to crawl\nmax value: 100\nNote: the max_crawl_pages and depth parameters complement each other",
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 7,
-                    "default": 1,
-                    "description": "page crawl limit\noptional field\nnumber of search results pages to crawl\nmax value: 100\nNote: the max_crawl_pages and depth parameters complement each other"
+                    "maximum": 7
                   },
                   "device": {
-                    "type": "string",
+                    "description": "device type\noptional field\ncan take the values:desktop, mobile\ndefault value: desktop",
                     "default": "desktop",
-                    "description": "device type\noptional field\ncan take the values:desktop, mobile\ndefault value: desktop"
+                    "type": "string"
                   },
                   "people_also_ask_click_depth": {
+                    "description": "clicks on the corresponding element\n        specify the click depth on the people_also_ask element to get additional people_also_ask_element items;",
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 4,
-                    "description": "clicks on the corresponding element\n        specify the click depth on the people_also_ask element to get additional people_also_ask_element items;"
+                    "maximum": 4
                   }
                 },
                 "required": [
@@ -103,12 +103,12 @@
                     "description": "ISO 3166-1 alpha-2 country code, for example: US, GB, MT"
                   },
                   "location_type": {
-                    "type": "string",
-                    "description": "Type of location. Possible variants: 'TV Region','Postal Code','Neighborhood','Governorate','National Park','Quarter','Canton','Airport','Okrug','Prefecture','City','Country','Province','Barrio','Sub-District','Congressional District','Municipality District','district','DMA Region','Union Territory','Territory','Colloquial Area','Autonomous Community','Borough','County','State','District','City Region','Commune','Region','Department','Division','Sub-Ward','Municipality','University'"
+                    "description": "Type of location. Possible variants: 'TV Region','Postal Code','Neighborhood','Governorate','National Park','Quarter','Canton','Airport','Okrug','Prefecture','City','Country','Province','Barrio','Sub-District','Congressional District','Municipality District','district','DMA Region','Union Territory','Territory','Colloquial Area','Autonomous Community','Borough','County','State','District','City Region','Commune','Region','Department','Division','Sub-Ward','Municipality','University'",
+                    "type": "string"
                   },
                   "location_name": {
-                    "type": "string",
-                    "description": "Name of location or it`s part."
+                    "description": "Name of location or it`s part.",
+                    "type": "string"
                   }
                 },
                 "required": [
@@ -152,12 +152,12 @@
                     "description": "ISO 3166-1 alpha-2 country code, for example: US, GB, MT"
                   },
                   "location_type": {
-                    "type": "string",
-                    "description": "Type of location. Possible variants: 'TV Region','Postal Code','Neighborhood','Governorate','National Park','Quarter','Canton','Airport','Okrug','Prefecture','City','Country','Province','Barrio','Sub-District','Congressional District','Municipality District','district','DMA Region','Union Territory','Territory','Colloquial Area','Autonomous Community','Borough','County','State','District','City Region','Commune','Region','Department','Division','Sub-Ward','Municipality','University'"
+                    "description": "Type of location. Possible variants: 'TV Region','Postal Code','Neighborhood','Governorate','National Park','Quarter','Canton','Airport','Okrug','Prefecture','City','Country','Province','Barrio','Sub-District','Congressional District','Municipality District','district','DMA Region','Union Territory','Territory','Colloquial Area','Autonomous Community','Borough','County','State','District','City Region','Commune','Region','Department','Division','Sub-Ward','Municipality','University'",
+                    "type": "string"
                   },
                   "location_name": {
-                    "type": "string",
-                    "description": "Name of location or it`s part."
+                    "description": "Name of location or it`s part.",
+                    "type": "string"
                   }
                 },
                 "required": [
@@ -193,19 +193,19 @@
                     "description": "search engine language code (e.g., 'en')"
                   },
                   "device": {
-                    "type": "string",
+                    "description": "device type\noptional field\ncan take the values:desktop, mobile\ndefault value: desktop",
                     "default": "desktop",
-                    "description": "device type\noptional field\ncan take the values:desktop, mobile\ndefault value: desktop"
+                    "type": "string"
                   },
                   "os": {
-                    "type": "string",
+                    "description": "device operating system\noptional field\nif you specify desktop in the device field, choose from the following values: windows, macos\ndefault value: windows\nif you specify mobile in the device field, choose from the following values: android, ios\ndefault value: android",
                     "default": "windows",
-                    "description": "device operating system\noptional field\nif you specify desktop in the device field, choose from the following values: windows, macos\ndefault value: windows\nif you specify mobile in the device field, choose from the following values: android, ios\ndefault value: android"
+                    "type": "string"
                   },
                   "block_depth": {
-                    "type": "number",
+                    "description": "parsing depth\noptional field\nnumber of blocks of results in SERP\nmax value: 700",
                     "default": 20,
-                    "description": "parsing depth\noptional field\nnumber of blocks of results in SERP\nmax value: 700"
+                    "type": "number"
                   }
                 },
                 "required": [
@@ -243,14 +243,14 @@
                     "description": "search engine language code (e.g., 'en')"
                   },
                   "device": {
-                    "type": "string",
+                    "description": "device type\noptional field\ncan take the values:desktop, mobile\ndefault value: desktop",
                     "default": "desktop",
-                    "description": "device type\noptional field\ncan take the values:desktop, mobile\ndefault value: desktop"
+                    "type": "string"
                   },
                   "os": {
-                    "type": "string",
+                    "description": "device operating system\noptional field\nif you specify desktop in the device field, choose from the following values: windows, macos\ndefault value: windows\nif you specify mobile in the device field, choose from the following values: android, ios\ndefault value: android",
                     "default": "windows",
-                    "description": "device operating system\noptional field\nif you specify desktop in the device field, choose from the following values: windows, macos\ndefault value: windows\nif you specify mobile in the device field, choose from the following values: android, ios\ndefault value: android"
+                    "type": "string"
                   }
                 },
                 "required": [
@@ -288,19 +288,19 @@
                     "description": "search engine language code (e.g., 'en')"
                   },
                   "device": {
-                    "type": "string",
+                    "description": "device type\noptional field\ncan take the values:desktop, mobile\ndefault value: desktop",
                     "default": "desktop",
-                    "description": "device type\noptional field\ncan take the values:desktop, mobile\ndefault value: desktop"
+                    "type": "string"
                   },
                   "os": {
-                    "type": "string",
+                    "description": "device operating system\noptional field\nif you specify desktop in the device field, choose from the following values: windows, macos\ndefault value: windows\nif you specify mobile in the device field, choose from the following values: android, ios\ndefault value: android",
                     "default": "windows",
-                    "description": "device operating system\noptional field\nif you specify desktop in the device field, choose from the following values: windows, macos\ndefault value: windows\nif you specify mobile in the device field, choose from the following values: android, ios\ndefault value: android"
+                    "type": "string"
                   },
                   "depth": {
-                    "type": "number",
+                    "description": "parsing depth, number of results in SERP, max value: 700",
                     "default": 20,
-                    "description": "parsing depth, number of results in SERP, max value: 700"
+                    "type": "number"
                   }
                 },
                 "required": [
@@ -338,22 +338,22 @@
                     "description": "search engine language code (e.g., 'en')"
                   },
                   "subtitles_language": {
-                    "type": "string",
-                    "description": "language code of original text (e.g., 'en')"
+                    "description": "language code of original text (e.g., 'en')",
+                    "type": "string"
                   },
                   "subtitles_translate_language": {
-                    "type": "string",
-                    "description": "language code of translated text (e.g., 'en')"
+                    "description": "language code of translated text (e.g., 'en')",
+                    "type": "string"
                   },
                   "device": {
-                    "type": "string",
+                    "description": "device type\noptional field\ncan take the values:desktop, mobile\ndefault value: desktop",
                     "default": "desktop",
-                    "description": "device type\noptional field\ncan take the values:desktop, mobile\ndefault value: desktop"
+                    "type": "string"
                   },
                   "os": {
-                    "type": "string",
+                    "description": "device operating system\noptional field\nif you specify desktop in the device field, choose from the following values: windows, macos\ndefault value: windows\nif you specify mobile in the device field, choose from the following values: android, ios\ndefault value: android",
                     "default": "windows",
-                    "description": "device operating system\noptional field\nif you specify desktop in the device field, choose from the following values: windows, macos\ndefault value: windows\nif you specify mobile in the device field, choose from the following values: android, ios\ndefault value: android"
+                    "type": "string"
                   }
                 },
                 "required": [

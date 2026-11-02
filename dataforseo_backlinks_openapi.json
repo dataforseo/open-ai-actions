@@ -27,37 +27,45 @@
                     "description": "domain, subdomain or webpage to get backlinks for\n        required field\na domain or a subdomain should be specified without https:// and www.\na page should be specified with absolute URL (including http:// or https://)"
                   },
                   "mode": {
-                    "type": "string",
                     "default": "as_is",
-                    "description": "results grouping type\noptional field\npossible grouping types:\nas_is – returns all backlinks\none_per_domain – returns one backlink per domain\none_per_anchor – returns one backlink per anchor\ndefault value: as_is"
+                    "description": "results grouping type\noptional field\npossible grouping types:\nas_is – returns all backlinks\none_per_domain – returns one backlink per domain\none_per_anchor – returns one backlink per anchor\ndefault value: as_is",
+                    "type": "string"
                   },
                   "limit": {
+                    "description": "the maximum number of returned backlinks",
+                    "default": 10,
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 1000,
-                    "default": 10,
-                    "description": "the maximum number of returned backlinks"
+                    "maximum": 1000
                   },
                   "offset": {
+                    "description": "offset in the results array of the returned backlinks\noptional field\ndefault value: 0\nif you specify the 10 value, the first ten backlinks in the results array will be omitted and the data will be provided for the successive backlinks",
                     "type": "number",
-                    "minimum": 0,
-                    "description": "offset in the results array of the returned backlinks\noptional field\ndefault value: 0\nif you specify the 10 value, the first ten backlinks in the results array will be omitted and the data will be provided for the successive backlinks"
+                    "minimum": 0
                   },
                   "filters": {
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: =, <>, in, not_in, like, not_like, ilike, not_ilike, regex, not_regex, match, not_match\nUse % with like/not_like to match any string of zero or more characters.\nExamples:\n  Single: [\"rank\",\">\",\"80\"]\n  Combined: [[\"page_from_rank\",\">\",\"55\"],\"and\",[\"dofollow\",\"=\",true]]",
+                    "maxItems": 3,
                     "type": "array",
                     "items": {
                       "anyOf": [
                         {
+                          "minItems": 3,
+                          "maxItems": 3,
                           "type": "array",
                           "items": {
-                            "type": [
-                              "string",
-                              "number",
-                              "boolean"
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
                             ]
-                          },
-                          "minItems": 3,
-                          "maxItems": 3
+                          }
                         },
                         {
                           "type": "string",
@@ -67,10 +75,10 @@
                           ]
                         },
                         {
-                          "type": "array",
-                          "items": {},
                           "minItems": 3,
-                          "maxItems": 3
+                          "maxItems": 3,
+                          "type": "array",
+                          "items": {}
                         },
                         {
                           "anyOf": [
@@ -79,20 +87,20 @@
                             },
                             {
                               "type": "number"
-                            }
+                            },
+                            {}
                           ]
-                        }
+                        },
+                        {}
                       ]
-                    },
-                    "maxItems": 3,
-                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: =, <>, in, not_in, like, not_like, ilike, not_ilike, regex, not_regex, match, not_match\nUse % with like/not_like to match any string of zero or more characters.\nExamples:\n  Single: [\"rank\",\">\",\"80\"]\n  Combined: [[\"page_from_rank\",\">\",\"55\"],\"and\",[\"dofollow\",\"=\",true]]"
+                    }
                   },
                   "order_by": {
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"rank,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"domain_from_rank,desc\",\"page_from_rank,asc\"]",
                     "type": "array",
                     "items": {
                       "type": "string"
-                    },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"rank,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"domain_from_rank,desc\",\"page_from_rank,asc\"]"
+                    }
                   }
                 },
                 "required": [
@@ -120,32 +128,40 @@
                     "description": "domain, subdomain or webpage to get backlinks for\n        required field\na domain or a subdomain should be specified without https:// and www.\na page should be specified with absolute URL (including http:// or https://)"
                   },
                   "limit": {
+                    "description": "the maximum number of returned anchors",
+                    "default": 10,
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 1000,
-                    "default": 10,
-                    "description": "the maximum number of returned anchors"
+                    "maximum": 1000
                   },
                   "offset": {
+                    "description": "offset in the results array of returned anchors\noptional field\ndefault value: 0\nif you specify the 10 value, the first ten anchors in the results array will be omitted and the data will be provided for the successive anchors",
                     "type": "number",
-                    "minimum": 0,
-                    "description": "offset in the results array of returned anchors\noptional field\ndefault value: 0\nif you specify the 10 value, the first ten anchors in the results array will be omitted and the data will be provided for the successive anchors"
+                    "minimum": 0
                   },
                   "filters": {
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: =, <>, in, not_in, like, not_like, ilike, not_ilike, regex, not_regex, match, not_match\nUse % with like/not_like to match any string of zero or more characters.\nExamples:\n  Single: [\"rank\",\">\",\"80\"]\n  Combined: [[\"page_from_rank\",\">\",\"55\"],\"and\",[\"dofollow\",\"=\",true]]",
+                    "maxItems": 3,
                     "type": "array",
                     "items": {
                       "anyOf": [
                         {
+                          "minItems": 3,
+                          "maxItems": 3,
                           "type": "array",
                           "items": {
-                            "type": [
-                              "string",
-                              "number",
-                              "boolean"
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
                             ]
-                          },
-                          "minItems": 3,
-                          "maxItems": 3
+                          }
                         },
                         {
                           "type": "string",
@@ -155,10 +171,10 @@
                           ]
                         },
                         {
-                          "type": "array",
-                          "items": {},
                           "minItems": 3,
-                          "maxItems": 3
+                          "maxItems": 3,
+                          "type": "array",
+                          "items": {}
                         },
                         {
                           "anyOf": [
@@ -167,20 +183,20 @@
                             },
                             {
                               "type": "number"
-                            }
+                            },
+                            {}
                           ]
-                        }
+                        },
+                        {}
                       ]
-                    },
-                    "maxItems": 3,
-                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: =, <>, in, not_in, like, not_like, ilike, not_ilike, regex, not_regex, match, not_match\nUse % with like/not_like to match any string of zero or more characters.\nExamples:\n  Single: [\"rank\",\">\",\"80\"]\n  Combined: [[\"page_from_rank\",\">\",\"55\"],\"and\",[\"dofollow\",\"=\",true]]"
+                    }
                   },
                   "order_by": {
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"rank,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"domain_from_rank,desc\",\"page_from_rank,asc\"]",
                     "type": "array",
                     "items": {
                       "type": "string"
-                    },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"rank,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"domain_from_rank,desc\",\"page_from_rank,asc\"]"
+                    }
                   }
                 },
                 "required": [
@@ -239,8 +255,8 @@
                     "description": "domains, subdomains or webpages to get rank for\nrequired field\nyou can set up to 1000 domains, subdomains or webpages\nthe domain or subdomain should be specified without https:// and www.\nthe page should be specified with absolute URL (including http:// or https://)\nexample:\n\"targets\": [\n\"forbes.com\",\n\"cnn.com\",\n\"bbc.com\",\n\"yelp.com\",\n\"https://www.apple.com/iphone/\",\n\"https://ahrefs.com/blog/\",\n\"ibm.com\",\n\"https://variety.com/\",\n\"https://stackoverflow.com/\",\n\"www.trustpilot.com\"\n]"
                   },
                   "date_from": {
-                    "type": "string",
-                    "description": "starting date of the time range\noptional field\nthis field indicates the date which will be used as a threshold for new and lost backlinks;\nthe backlinks that appeared in our index after the specified date will be considered as new;\nthe backlinks that weren’t found after the specified date, but were present before, will be considered as lost;\ndefault value: today’s date -(minus) one month;\ne.g. if today is 2021-10-13, default date_from will be 2021-09-13.\nminimum value equals today’s date -(minus) one year;\ne.g. if today is 2021-10-13, minimum date_from will be 2020-10-13.\n\ndate format: \"yyyy-mm-dd\"\nexample:\n\"2021-01-01\""
+                    "description": "starting date of the time range\noptional field\nthis field indicates the date which will be used as a threshold for new and lost backlinks;\nthe backlinks that appeared in our index after the specified date will be considered as new;\nthe backlinks that weren’t found after the specified date, but were present before, will be considered as lost;\ndefault value: today’s date -(minus) one month;\ne.g. if today is 2021-10-13, default date_from will be 2021-09-13.\nminimum value equals today’s date -(minus) one year;\ne.g. if today is 2021-10-13, minimum date_from will be 2020-10-13.\n\ndate format: \"yyyy-mm-dd\"\nexample:\n\"2021-01-01\"",
+                    "type": "string"
                   }
                 },
                 "required": [
@@ -271,8 +287,8 @@
                     "description": "domains, subdomains or webpages to get rank for\nrequired field\nyou can set up to 1000 domains, subdomains or webpages\nthe domain or subdomain should be specified without https:// and www.\nthe page should be specified with absolute URL (including http:// or https://)\nexample:\n\"targets\": [\n\"forbes.com\",\n\"cnn.com\",\n\"bbc.com\",\n\"yelp.com\",\n\"https://www.apple.com/iphone/\",\n\"https://ahrefs.com/blog/\",\n\"ibm.com\",\n\"https://variety.com/\",\n\"https://stackoverflow.com/\",\n\"www.trustpilot.com\"\n]"
                   },
                   "date_from": {
-                    "type": "string",
-                    "description": "starting date of the time range\noptional field\nthis field indicates the date which will be used as a threshold for new and lost backlinks;\nthe backlinks that appeared in our index after the specified date will be considered as new;\nthe backlinks that weren’t found after the specified date, but were present before, will be considered as lost;\ndefault value: today’s date -(minus) one month;\ne.g. if today is 2021-10-13, default date_from will be 2021-09-13.\nminimum value equals today’s date -(minus) one year;\ne.g. if today is 2021-10-13, minimum date_from will be 2020-10-13.\n\ndate format: \"yyyy-mm-dd\"\nexample:\n\"2021-01-01\""
+                    "description": "starting date of the time range\noptional field\nthis field indicates the date which will be used as a threshold for new and lost backlinks;\nthe backlinks that appeared in our index after the specified date will be considered as new;\nthe backlinks that weren’t found after the specified date, but were present before, will be considered as lost;\ndefault value: today’s date -(minus) one month;\ne.g. if today is 2021-10-13, default date_from will be 2021-09-13.\nminimum value equals today’s date -(minus) one year;\ne.g. if today is 2021-10-13, minimum date_from will be 2020-10-13.\n\ndate format: \"yyyy-mm-dd\"\nexample:\n\"2021-01-01\"",
+                    "type": "string"
                   }
                 },
                 "required": [
@@ -303,9 +319,9 @@
                     "description": "domains, subdomains or webpages to get rank for\nrequired field\nyou can set up to 1000 domains, subdomains or webpages\nthe domain or subdomain should be specified without https:// and www.\nthe page should be specified with absolute URL (including http:// or https://)\nexample:\n\"targets\": [\n\"forbes.com\",\n\"cnn.com\",\n\"bbc.com\",\n\"yelp.com\",\n\"https://www.apple.com/iphone/\",\n\"https://ahrefs.com/blog/\",\n\"ibm.com\",\n\"https://variety.com/\",\n\"https://stackoverflow.com/\",\n\"www.trustpilot.com\"\n]"
                   },
                   "rank_scale": {
-                    "type": "string",
+                    "default": "one_thousand",
                     "description": "defines the scale used for calculating and displaying the rank, domain_from_rank, and page_from_rank values\noptional field\nyou can use this parameter to choose whether rank values are presented on a 0–100 or 0–1000 scale\npossible values:\none_hundred — rank values are displayed on a 0–100 scale\none_thousand — rank values are displayed on a 0–1000 scale",
-                    "default": "one_thousand"
+                    "type": "string"
                   }
                 },
                 "required": [
@@ -389,32 +405,40 @@
                     "description": "domain, subdomain or webpage to get backlinks for\n        required field\na domain or a subdomain should be specified without https:// and www.\na page should be specified with absolute URL (including http:// or https://)"
                   },
                   "limit": {
+                    "description": "the maximum number of returned domains",
+                    "default": 10,
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 1000,
-                    "default": 10,
-                    "description": "the maximum number of returned domains"
+                    "maximum": 1000
                   },
                   "offset": {
+                    "description": "offset in the results array of returned networks\noptional field\ndefault value: 0\nif you specify the 10 value, the first ten domains in the results array will be omitted and the data will be provided for the successive pages",
                     "type": "number",
-                    "minimum": 0,
-                    "description": "offset in the results array of returned networks\noptional field\ndefault value: 0\nif you specify the 10 value, the first ten domains in the results array will be omitted and the data will be provided for the successive pages"
+                    "minimum": 0
                   },
                   "filters": {
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nUse % with like/not_like to match any string of zero or more characters.\nExamples:\n  Single: [\"rank\",\">\",\"100\"]\n  Combined: [[\"target\",\"like\",\"%forbes%\"],\"and\",[[\"rank\",\">\",\"100\"],\"or\",[\"intersections\",\">\",\"5\"]]]",
+                    "maxItems": 3,
                     "type": "array",
                     "items": {
                       "anyOf": [
                         {
+                          "minItems": 3,
+                          "maxItems": 3,
                           "type": "array",
                           "items": {
-                            "type": [
-                              "string",
-                              "number",
-                              "boolean"
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
                             ]
-                          },
-                          "minItems": 3,
-                          "maxItems": 3
+                          }
                         },
                         {
                           "type": "string",
@@ -424,10 +448,10 @@
                           ]
                         },
                         {
-                          "type": "array",
-                          "items": {},
                           "minItems": 3,
-                          "maxItems": 3
+                          "maxItems": 3,
+                          "type": "array",
+                          "items": {}
                         },
                         {
                           "anyOf": [
@@ -436,35 +460,35 @@
                             },
                             {
                               "type": "number"
-                            }
+                            },
+                            {}
                           ]
-                        }
+                        },
+                        {}
                       ]
-                    },
-                    "maxItems": 3,
-                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nUse % with like/not_like to match any string of zero or more characters.\nExamples:\n  Single: [\"rank\",\">\",\"100\"]\n  Combined: [[\"target\",\"like\",\"%forbes%\"],\"and\",[[\"rank\",\">\",\"100\"],\"or\",[\"intersections\",\">\",\"5\"]]]"
+                    }
                   },
                   "order_by": {
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"rank,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"intersections,desc\",\"rank,asc\"]",
                     "type": "array",
                     "items": {
                       "type": "string"
-                    },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"rank,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"intersections,desc\",\"rank,asc\"]"
+                    }
                   },
                   "main_domain": {
-                    "type": "boolean",
+                    "default": true,
                     "description": "indicates if only main domain of the target will be included in the search\nif set to true, only the main domain will be included in search",
-                    "default": true
+                    "type": "boolean"
                   },
                   "exclude_large_domains": {
-                    "type": "boolean",
+                    "default": true,
                     "description": "indicates whether large domain will appear in results\nif set to true, the results from the large domain (google.com, amazon.com, etc.) will be omitted",
-                    "default": true
+                    "type": "boolean"
                   },
                   "exclude_internal_backlinks": {
-                    "type": "boolean",
+                    "default": true,
                     "description": "indicates if internal backlinks from subdomains to the target will be excluded from the results\nif set to true, the results will not include data on internal backlinks from subdomains of the same domain as target\nif set to false, internal links will be included in the results",
-                    "default": true
+                    "type": "boolean"
                   }
                 },
                 "required": [
@@ -513,40 +537,48 @@
                     }
                   },
                   "exclude_targets": {
+                    "description": "domains, subdomains or webpages you want to exclude\noptional field\nyou can specify up to 10 domains, subdomains or webpages\nif you use this array, results will contain the referring domains that link to targets but don't link to exclude_targets\nexample: [\"bbc.com\",\"https://www.apple.com/iphone/*\",\"https://dataforseo.com/apis/*\"]",
+                    "maxItems": 10,
                     "type": "array",
                     "items": {
                       "type": "string"
-                    },
-                    "maxItems": 10,
-                    "description": "domains, subdomains or webpages you want to exclude\noptional field\nyou can specify up to 10 domains, subdomains or webpages\nif you use this array, results will contain the referring domains that link to targets but don't link to exclude_targets\nexample: [\"bbc.com\",\"https://www.apple.com/iphone/*\",\"https://dataforseo.com/apis/*\"]"
+                    }
                   },
                   "limit": {
+                    "description": "the maximum number of returned results",
+                    "default": 10,
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 1000,
-                    "default": 10,
-                    "description": "the maximum number of returned results"
+                    "maximum": 1000
                   },
                   "offset": {
+                    "description": "offset in the array of returned results\noptional field\ndefault value: 0\nif you specify the 10 value, the first ten backlinks in the results array will be omitted and the data will be provided for the successive backlinks",
                     "type": "number",
-                    "minimum": 0,
-                    "description": "offset in the array of returned results\noptional field\ndefault value: 0\nif you specify the 10 value, the first ten backlinks in the results array will be omitted and the data will be provided for the successive backlinks"
+                    "minimum": 0
                   },
                   "filters": {
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nUse % with like/not_like to match any string of zero or more characters.\nExamples:\n  Single: [\"1.internal_links_count\",\">\",\"1\"]\n  Combined: [[\"2.referring_pages\",\">\",\"2\"],\"and\",[\"1.backlinks\",\">\",\"10\"]]",
+                    "maxItems": 3,
                     "type": "array",
                     "items": {
                       "anyOf": [
                         {
+                          "minItems": 3,
+                          "maxItems": 3,
                           "type": "array",
                           "items": {
-                            "type": [
-                              "string",
-                              "number",
-                              "boolean"
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
                             ]
-                          },
-                          "minItems": 3,
-                          "maxItems": 3
+                          }
                         },
                         {
                           "type": "string",
@@ -556,10 +588,10 @@
                           ]
                         },
                         {
-                          "type": "array",
-                          "items": {},
                           "minItems": 3,
-                          "maxItems": 3
+                          "maxItems": 3,
+                          "type": "array",
+                          "items": {}
                         },
                         {
                           "anyOf": [
@@ -568,20 +600,20 @@
                             },
                             {
                               "type": "number"
-                            }
+                            },
+                            {}
                           ]
-                        }
+                        },
+                        {}
                       ]
-                    },
-                    "maxItems": 3,
-                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nUse % with like/not_like to match any string of zero or more characters.\nExamples:\n  Single: [\"1.internal_links_count\",\">\",\"1\"]\n  Combined: [[\"2.referring_pages\",\">\",\"2\"],\"and\",[\"1.backlinks\",\">\",\"10\"]]"
+                    }
                   },
                   "order_by": {
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"backlinks,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"backlinks,desc\",\"rank,asc\"]",
                     "type": "array",
                     "items": {
                       "type": "string"
-                    },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"backlinks,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"backlinks,desc\",\"rank,asc\"]"
+                    }
                   }
                 },
                 "required": [
@@ -609,32 +641,40 @@
                     "description": "domain, subdomain or webpage to get backlinks for\n        required field\na domain or a subdomain should be specified without https:// and www.\na page should be specified with absolute URL (including http:// or https://)"
                   },
                   "limit": {
+                    "description": "the maximum number of returned anchors",
+                    "default": 10,
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 1000,
-                    "default": 10,
-                    "description": "the maximum number of returned anchors"
+                    "maximum": 1000
                   },
                   "offset": {
+                    "description": "offset in the results array of returned anchors\noptional field\ndefault value: 0\nif you specify the 10 value, the first ten anchors in the results array will be omitted and the data will be provided for the successive anchors",
                     "type": "number",
-                    "minimum": 0,
-                    "description": "offset in the results array of returned anchors\noptional field\ndefault value: 0\nif you specify the 10 value, the first ten anchors in the results array will be omitted and the data will be provided for the successive anchors"
+                    "minimum": 0
                   },
                   "filters": {
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nUse % with like/not_like to match any string of zero or more characters.\nExamples:\n  Single: [\"referring_links_types.anchors\",\">\",\"1\"]\n  Combined: [[\"broken_pages\",\">\",\"2\"],\"and\",[\"backlinks\",\">\",\"10\"]]",
+                    "maxItems": 3,
                     "type": "array",
                     "items": {
                       "anyOf": [
                         {
+                          "minItems": 3,
+                          "maxItems": 3,
                           "type": "array",
                           "items": {
-                            "type": [
-                              "string",
-                              "number",
-                              "boolean"
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
                             ]
-                          },
-                          "minItems": 3,
-                          "maxItems": 3
+                          }
                         },
                         {
                           "type": "string",
@@ -644,10 +684,10 @@
                           ]
                         },
                         {
-                          "type": "array",
-                          "items": {},
                           "minItems": 3,
-                          "maxItems": 3
+                          "maxItems": 3,
+                          "type": "array",
+                          "items": {}
                         },
                         {
                           "anyOf": [
@@ -656,20 +696,20 @@
                             },
                             {
                               "type": "number"
-                            }
+                            },
+                            {}
                           ]
-                        }
+                        },
+                        {}
                       ]
-                    },
-                    "maxItems": 3,
-                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nUse % with like/not_like to match any string of zero or more characters.\nExamples:\n  Single: [\"referring_links_types.anchors\",\">\",\"1\"]\n  Combined: [[\"broken_pages\",\">\",\"2\"],\"and\",[\"backlinks\",\">\",\"10\"]]"
+                    }
                   },
                   "order_by": {
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"backlinks,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"backlinks,desc\",\"rank,asc\"]",
                     "type": "array",
                     "items": {
                       "type": "string"
-                    },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"backlinks,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"backlinks,desc\",\"rank,asc\"]"
+                    }
                   }
                 },
                 "required": [
@@ -697,32 +737,40 @@
                     "description": "domain, subdomain or webpage to get backlinks for\n        required field\na domain or a subdomain should be specified without https:// and www.\na page should be specified with absolute URL (including http:// or https://)"
                   },
                   "limit": {
+                    "description": "the maximum number of returned pages",
+                    "default": 10,
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 1000,
-                    "default": 10,
-                    "description": "the maximum number of returned pages"
+                    "maximum": 1000
                   },
                   "offset": {
+                    "description": "offset in the results array of returned pages\noptional field\ndefault value: 0\nif you specify the 10 value, the first ten pages in the results array will be omitted and the data will be provided for the successive pages",
                     "type": "number",
-                    "minimum": 0,
-                    "description": "offset in the results array of returned pages\noptional field\ndefault value: 0\nif you specify the 10 value, the first ten pages in the results array will be omitted and the data will be provided for the successive pages"
+                    "minimum": 0
                   },
                   "filters": {
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nUse % with like/not_like to match any string of zero or more characters.\nExamples:\n  Single: [\"meta.internal_links_count\",\">\",\"1\"]\n  Combined: [[\"meta.external_links_count\",\">\",\"2\"],\"and\",[\"backlinks\",\">\",\"10\"]]",
+                    "maxItems": 3,
                     "type": "array",
                     "items": {
                       "anyOf": [
                         {
+                          "minItems": 3,
+                          "maxItems": 3,
                           "type": "array",
                           "items": {
-                            "type": [
-                              "string",
-                              "number",
-                              "boolean"
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
                             ]
-                          },
-                          "minItems": 3,
-                          "maxItems": 3
+                          }
                         },
                         {
                           "type": "string",
@@ -732,10 +780,10 @@
                           ]
                         },
                         {
-                          "type": "array",
-                          "items": {},
                           "minItems": 3,
-                          "maxItems": 3
+                          "maxItems": 3,
+                          "type": "array",
+                          "items": {}
                         },
                         {
                           "anyOf": [
@@ -744,20 +792,20 @@
                             },
                             {
                               "type": "number"
-                            }
+                            },
+                            {}
                           ]
-                        }
+                        },
+                        {}
                       ]
-                    },
-                    "maxItems": 3,
-                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nUse % with like/not_like to match any string of zero or more characters.\nExamples:\n  Single: [\"meta.internal_links_count\",\">\",\"1\"]\n  Combined: [[\"meta.external_links_count\",\">\",\"2\"],\"and\",[\"backlinks\",\">\",\"10\"]]"
+                    }
                   },
                   "order_by": {
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"page_summary.backlinks,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"page_summary.backlinks,desc\",\"page_summary.rank,asc\"]",
                     "type": "array",
                     "items": {
                       "type": "string"
-                    },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"page_summary.backlinks,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"page_summary.backlinks,desc\",\"page_summary.rank,asc\"]"
+                    }
                   }
                 },
                 "required": [
@@ -806,32 +854,40 @@
                     }
                   },
                   "limit": {
+                    "description": "the maximum number of returned results",
+                    "default": 10,
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 1000,
-                    "default": 10,
-                    "description": "the maximum number of returned results"
+                    "maximum": 1000
                   },
                   "offset": {
+                    "description": "offset in the array of returned results\noptional field\ndefault value: 0\nif you specify the 10 value, the first ten backlinks in the results array will be omitted and the data will be provided for the successive backlinks",
                     "type": "number",
-                    "minimum": 0,
-                    "description": "offset in the array of returned results\noptional field\ndefault value: 0\nif you specify the 10 value, the first ten backlinks in the results array will be omitted and the data will be provided for the successive backlinks"
+                    "minimum": 0
                   },
                   "filters": {
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nUse % with like/not_like to match any string of zero or more characters.\nExamples:\n  Single: [\"1.rank\",\">\",\"80\"]\n  Combined: [[\"2.page_from_rank\",\">\",\"55\"],\"and\",[\"1.original\",\"=\",\"true\"]]",
+                    "maxItems": 3,
                     "type": "array",
                     "items": {
                       "anyOf": [
                         {
+                          "minItems": 3,
+                          "maxItems": 3,
                           "type": "array",
                           "items": {
-                            "type": [
-                              "string",
-                              "number",
-                              "boolean"
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
                             ]
-                          },
-                          "minItems": 3,
-                          "maxItems": 3
+                          }
                         },
                         {
                           "type": "string",
@@ -841,10 +897,10 @@
                           ]
                         },
                         {
-                          "type": "array",
-                          "items": {},
                           "minItems": 3,
-                          "maxItems": 3
+                          "maxItems": 3,
+                          "type": "array",
+                          "items": {}
                         },
                         {
                           "anyOf": [
@@ -853,20 +909,20 @@
                             },
                             {
                               "type": "number"
-                            }
+                            },
+                            {}
                           ]
-                        }
+                        },
+                        {}
                       ]
-                    },
-                    "maxItems": 3,
-                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nUse % with like/not_like to match any string of zero or more characters.\nExamples:\n  Single: [\"1.rank\",\">\",\"80\"]\n  Combined: [[\"2.page_from_rank\",\">\",\"55\"],\"and\",[\"1.original\",\"=\",\"true\"]]"
+                    }
                   },
                   "order_by": {
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"rank,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"domain_from_rank,desc\",\"page_from_rank,asc\"]",
                     "type": "array",
                     "items": {
                       "type": "string"
-                    },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"rank,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"domain_from_rank,desc\",\"page_from_rank,asc\"]"
+                    }
                   }
                 },
                 "required": [
@@ -894,32 +950,40 @@
                     "description": "domain, subdomain or webpage to get backlinks for\n        required field\na domain or a subdomain should be specified without https:// and www.\na page should be specified with absolute URL (including http:// or https://)"
                   },
                   "limit": {
+                    "description": "the maximum number of returned pages",
+                    "default": 10,
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 1000,
-                    "default": 10,
-                    "description": "the maximum number of returned pages"
+                    "maximum": 1000
                   },
                   "offset": {
+                    "description": "offset in the results array of returned pages\noptional field\ndefault value: 0\nif you specify the 10 value, the first ten pages in the results array will be omitted and the data will be provided for the successive pages",
                     "type": "number",
-                    "minimum": 0,
-                    "description": "offset in the results array of returned pages\noptional field\ndefault value: 0\nif you specify the 10 value, the first ten pages in the results array will be omitted and the data will be provided for the successive pages"
+                    "minimum": 0
                   },
                   "filters": {
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nUse % with like/not_like to match any string of zero or more characters.\nExamples:\n  Single: [\"meta.internal_links_count\",\">\",\"1\"]\n  Combined: [[\"meta.external_links_count\",\">\",\"2\"],\"and\",[\"backlinks\",\">\",\"10\"]]",
+                    "maxItems": 3,
                     "type": "array",
                     "items": {
                       "anyOf": [
                         {
+                          "minItems": 3,
+                          "maxItems": 3,
                           "type": "array",
                           "items": {
-                            "type": [
-                              "string",
-                              "number",
-                              "boolean"
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
                             ]
-                          },
-                          "minItems": 3,
-                          "maxItems": 3
+                          }
                         },
                         {
                           "type": "string",
@@ -929,10 +993,10 @@
                           ]
                         },
                         {
-                          "type": "array",
-                          "items": {},
                           "minItems": 3,
-                          "maxItems": 3
+                          "maxItems": 3,
+                          "type": "array",
+                          "items": {}
                         },
                         {
                           "anyOf": [
@@ -941,20 +1005,20 @@
                             },
                             {
                               "type": "number"
-                            }
+                            },
+                            {}
                           ]
-                        }
+                        },
+                        {}
                       ]
-                    },
-                    "maxItems": 3,
-                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nUse % with like/not_like to match any string of zero or more characters.\nExamples:\n  Single: [\"meta.internal_links_count\",\">\",\"1\"]\n  Combined: [[\"meta.external_links_count\",\">\",\"2\"],\"and\",[\"backlinks\",\">\",\"10\"]]"
+                    }
                   },
                   "order_by": {
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"page_summary.backlinks,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"page_summary.backlinks,desc\",\"page_summary.rank,asc\"]",
                     "type": "array",
                     "items": {
                       "type": "string"
-                    },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"page_summary.backlinks,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"page_summary.backlinks,desc\",\"page_summary.rank,asc\"]"
+                    }
                   }
                 },
                 "required": [
@@ -982,37 +1046,45 @@
                     "description": "domain, subdomain or webpage to get backlinks for\n        required field\na domain or a subdomain should be specified without https:// and www.\na page should be specified with absolute URL (including http:// or https://)"
                   },
                   "network_address_type": {
-                    "type": "string",
                     "default": "ip",
-                    "description": "indicates the type of network to get data for\noptional field\npossible values: ip, subnet\ndefault value: ip"
+                    "description": "indicates the type of network to get data for\noptional field\npossible values: ip, subnet\ndefault value: ip",
+                    "type": "string"
                   },
                   "limit": {
+                    "description": "the maximum number of returned networks",
+                    "default": 10,
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 1000,
-                    "default": 10,
-                    "description": "the maximum number of returned networks"
+                    "maximum": 1000
                   },
                   "offset": {
+                    "description": "offset in the results array of returned networks\noptional field\ndefault value: 0\nif you specify the 10 value, the first ten domains in the results array will be omitted and the data will be provided for the successive pages",
                     "type": "number",
-                    "minimum": 0,
-                    "description": "offset in the results array of returned networks\noptional field\ndefault value: 0\nif you specify the 10 value, the first ten domains in the results array will be omitted and the data will be provided for the successive pages"
+                    "minimum": 0
                   },
                   "filters": {
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nUse % with like/not_like to match any string of zero or more characters.\nExamples:\n  Single: [\"referring_pages\",\">\",\"1\"]\n  Combined: [[\"referring_pages\",\">\",\"2\"],\"and\",[\"backlinks\",\">\",\"10\"]]",
+                    "maxItems": 3,
                     "type": "array",
                     "items": {
                       "anyOf": [
                         {
+                          "minItems": 3,
+                          "maxItems": 3,
                           "type": "array",
                           "items": {
-                            "type": [
-                              "string",
-                              "number",
-                              "boolean"
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
                             ]
-                          },
-                          "minItems": 3,
-                          "maxItems": 3
+                          }
                         },
                         {
                           "type": "string",
@@ -1022,10 +1094,10 @@
                           ]
                         },
                         {
-                          "type": "array",
-                          "items": {},
                           "minItems": 3,
-                          "maxItems": 3
+                          "maxItems": 3,
+                          "type": "array",
+                          "items": {}
                         },
                         {
                           "anyOf": [
@@ -1034,20 +1106,20 @@
                             },
                             {
                               "type": "number"
-                            }
+                            },
+                            {}
                           ]
-                        }
+                        },
+                        {}
                       ]
-                    },
-                    "maxItems": 3,
-                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, =, <>, in, not_in, like, not_like, ilike, not_ilike, match, not_match\nUse % with like/not_like to match any string of zero or more characters.\nExamples:\n  Single: [\"referring_pages\",\">\",\"1\"]\n  Combined: [[\"referring_pages\",\">\",\"2\"],\"and\",[\"backlinks\",\">\",\"10\"]]"
+                    }
                   },
                   "order_by": {
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"backlinks,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"backlinks,desc\",\"rank,asc\"]",
                     "type": "array",
                     "items": {
                       "type": "string"
-                    },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"backlinks,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"backlinks,desc\",\"rank,asc\"]"
+                    }
                   }
                 },
                 "required": [
@@ -1075,14 +1147,14 @@
                     "description": "domain, subdomain or webpage to get backlinks for\n        required field\na domain or a subdomain should be specified without https:// and www.\na page should be specified with absolute URL (including http:// or https://)"
                   },
                   "include_subdomains": {
-                    "type": "boolean",
+                    "default": true,
                     "description": "indicates if indirect links to the target will be included in the results\nif set to true, the results will include data on indirect links pointing to a page that either redirects to the target, or points to a canonical page\nif set to false, indirect links will be ignored",
-                    "default": true
+                    "type": "boolean"
                   },
                   "exclude_internal_backlinks": {
-                    "type": "boolean",
+                    "default": true,
                     "description": "indicates if internal backlinks from subdomains to the target will be excluded from the results\nif set to true, the results will not include data on internal backlinks from subdomains of the same domain as target\nif set to false, internal links will be included in the results",
-                    "default": true
+                    "type": "boolean"
                   }
                 },
                 "required": [
@@ -1118,9 +1190,9 @@
                     "description": "ending date of the time range\noptional field\nif you don’t specify this field, the today’s date will be used by default\nminimum value shouldn’t preceed the date specified in the date_from\nmaximum value: today’s date\ndate format: \"yyyy-mm-dd\"\nexample:\n\"2021-01-15\""
                   },
                   "group_range": {
-                    "type": "string",
+                    "default": "month",
                     "description": "time range which will be used to group the results\noptional field\ndefault value: month\npossible values: day, week, month, year\nnote: for day, we will return items corresponding to all dates between and including date_from and date_to;\nfor week/month/year, we will return items corresponding to full weeks/months/years, where each item will indicate the last day of the week/month/year\n\nfor example, if you specify:\n\"group_range\": \"month\",\n\"date_from\": \"2022-03-23\",\n\"date_to\": \"2022-05-13\"\nwe will return items falling between 2022-03-01 and 2022-05-31, namely, three items corresponding to the following dates: 2022-03-31, 2022-04-30, 2022-05-31\n\nif there is no data for a certain day/week/month/year, we will return 0",
-                    "default": "month"
+                    "type": "string"
                   }
                 },
                 "required": [
@@ -1156,9 +1228,9 @@
                     "description": "ending date of the time range\noptional field\nif you don’t specify this field, the today’s date will be used by default\nminimum value shouldn’t preceed the date specified in the date_from\nmaximum value: today’s date\ndate format: \"yyyy-mm-dd\"\nexample:\n\"2021-01-15\""
                   },
                   "group_range": {
-                    "type": "string",
+                    "default": "month",
                     "description": "time range which will be used to group the results\noptional field\ndefault value: month\npossible values: day, week, month, year\nnote: for day, we will return items corresponding to all dates between and including date_from and date_to;\nfor week/month/year, we will return items corresponding to full weeks/months/years, where each item will indicate the last day of the week/month/year\n\nfor example, if you specify:\n\"group_range\": \"month\",\n\"date_from\": \"2022-03-23\",\n\"date_to\": \"2022-05-13\"\nwe will return items falling between 2022-03-01 and 2022-05-31, namely, three items corresponding to the following dates: 2022-03-31, 2022-04-30, 2022-05-31\n\nif there is no data for a certain day/week/month/year, we will return 0",
-                    "default": "month"
+                    "type": "string"
                   }
                 },
                 "required": [
@@ -1189,9 +1261,9 @@
                     "description": "domains, subdomains or webpages to get summary data for\nrequired field\na domain or a subdomain should be specified without https:// and www.\na page should be specified with absolute URL (including http:// or https://)\nyou can specify up to 1000 pages, domains, or subdomains in each request.\nnote that the URLs you set in a single request cannot belong to more than 100 different domains."
                   },
                   "include_subdomains": {
-                    "type": "boolean",
+                    "default": true,
                     "description": "indicates if indirect links to the target will be included in the results\nif set to true, the results will include data on indirect links pointing to a page that either redirects to the target, or points to a canonical page\nif set to false, indirect links will be ignored",
-                    "default": true
+                    "type": "boolean"
                   }
                 },
                 "required": [

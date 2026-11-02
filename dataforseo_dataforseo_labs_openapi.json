@@ -27,42 +27,50 @@
                     "description": "domain name or page url\nrequired field\nthe domain name of the target website or URL of the target webpage;\nthe domain name must be specified without https:// or www.;\nthe webpage URL must be specified with https:// or www.\nNote: if you specify the webpage URL without https:// or www., the result will be returned for the entire domain rather than the specific page\n"
                   },
                   "location_name": {
-                    "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'",
+                    "type": "string"
                   },
                   "language_code": {
-                    "type": "string",
                     "default": "en",
-                    "description": "language code\n        required field\n        example:\n        en"
+                    "description": "language code\n        required field\n        example:\n        en",
+                    "type": "string"
                   },
                   "limit": {
+                    "description": "Maximum number of keywords to return",
+                    "default": 10,
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 1000,
-                    "default": 10,
-                    "description": "Maximum number of keywords to return"
+                    "maximum": 1000
                   },
                   "offset": {
+                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords",
                     "type": "number",
-                    "minimum": 0,
-                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords"
+                    "minimum": 0
                   },
                   "filters": {
+                    "description": "Array of filter conditions and logical operators. Each filter condition is an array of [field, operator, value].\n        Maximum 8 filters allowed.\n        Available operators: =, <>, <, <=, >, >=, in, not_in, like, not_like, ilike, not_ilike, regex, not_regex, match, not_match\n        Logical operators: \"and\", \"or\"\n        Examples:\n        Simple filter: [[\"ranked_serp_element.serp_item.rank_group\",\"<=\",10]]\n        With logical operator: [[\"ranked_serp_element.serp_item.rank_group\",\"<=\",10],\"or\",[\"ranked_serp_element.serp_item.type\",\"<>\",\"paid\"]]\n        Complex filter: [[\"keyword_data.keyword_info.search_volume\",\"<>\",0],\"and\",[[\"ranked_serp_element.serp_item.type\",\"<>\",\"paid\"],\"or\",[\"ranked_serp_element.serp_item.is_malicious\",\"=\",false]]]",
+                    "maxItems": 3,
                     "type": "array",
                     "items": {
                       "anyOf": [
                         {
+                          "minItems": 3,
+                          "maxItems": 3,
                           "type": "array",
                           "items": {
-                            "type": [
-                              "string",
-                              "number",
-                              "boolean"
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
                             ]
-                          },
-                          "minItems": 3,
-                          "maxItems": 3
+                          }
                         },
                         {
                           "type": "string",
@@ -72,10 +80,10 @@
                           ]
                         },
                         {
-                          "type": "array",
-                          "items": {},
                           "minItems": 3,
-                          "maxItems": 3
+                          "maxItems": 3,
+                          "type": "array",
+                          "items": {}
                         },
                         {
                           "anyOf": [
@@ -84,31 +92,35 @@
                             },
                             {
                               "type": "number"
-                            }
+                            },
+                            {}
                           ]
-                        }
+                        },
+                        {}
                       ]
-                    },
-                    "maxItems": 3,
-                    "description": "Array of filter conditions and logical operators. Each filter condition is an array of [field, operator, value].\n        Maximum 8 filters allowed.\n        Available operators: =, <>, <, <=, >, >=, in, not_in, like, not_like, ilike, not_ilike, regex, not_regex, match, not_match\n        Logical operators: \"and\", \"or\"\n        Examples:\n        Simple filter: [[\"ranked_serp_element.serp_item.rank_group\",\"<=\",10]]\n        With logical operator: [[\"ranked_serp_element.serp_item.rank_group\",\"<=\",10],\"or\",[\"ranked_serp_element.serp_item.type\",\"<>\",\"paid\"]]\n        Complex filter: [[\"keyword_data.keyword_info.search_volume\",\"<>\",0],\"and\",[[\"ranked_serp_element.serp_item.type\",\"<>\",\"paid\"],\"or\",[\"ranked_serp_element.serp_item.is_malicious\",\"=\",false]]]"
+                    }
                   },
                   "order_by": {
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"keyword_data.keyword_info.competition,desc\"]\ndefault rule:\n[\"ranked_serp_element.serp_item.rank_group,asc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"keyword_data.keyword_info.search_volume,desc\",\"keyword_data.keyword_info.cpc,desc\"]",
                     "type": "array",
                     "items": {
                       "type": "string"
-                    },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"keyword_data.keyword_info.competition,desc\"]\ndefault rule:\n[\"ranked_serp_element.serp_item.rank_group,asc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"keyword_data.keyword_info.search_volume,desc\",\"keyword_data.keyword_info.cpc,desc\"]"
+                    }
                   },
                   "include_subdomains": {
-                    "type": "boolean",
-                    "description": "Include keywords from subdomains"
+                    "description": "Include keywords from subdomains",
+                    "type": "boolean"
                   },
                   "include_clickstream_data": {
-                    "type": "boolean",
                     "default": false,
-                    "description": "Include or exclude data from clickstream-based metrics in the result"
+                    "description": "Include or exclude data from clickstream-based metrics in the result",
+                    "type": "boolean"
                   },
                   "item_types": {
+                    "default": [
+                      "organic"
+                    ],
+                    "description": "display results by item type\nindicates the type of search results included in the response",
                     "type": "array",
                     "items": {
                       "type": "string",
@@ -119,11 +131,7 @@
                         "local_pack",
                         "ai_overview_reference"
                       ]
-                    },
-                    "description": "display results by item type\nindicates the type of search results included in the response",
-                    "default": [
-                      "organic"
-                    ]
+                    }
                   }
                 },
                 "required": [
@@ -151,47 +159,55 @@
                     "description": "target domain"
                   },
                   "location_name": {
-                    "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'",
+                    "type": "string"
                   },
                   "language_code": {
-                    "type": "string",
                     "default": "en",
-                    "description": "language code\n        required field\n        example:\n        en"
+                    "description": "language code\n        required field\n        example:\n        en",
+                    "type": "string"
                   },
                   "ignore_synonyms": {
-                    "type": "boolean",
                     "default": true,
-                    "description": "ignore highly similar keywords, if set to true, results will be more accurate"
+                    "description": "ignore highly similar keywords, if set to true, results will be more accurate",
+                    "type": "boolean"
                   },
                   "limit": {
+                    "description": "Maximum number of keywords to return",
+                    "default": 10,
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 1000,
-                    "default": 10,
-                    "description": "Maximum number of keywords to return"
+                    "maximum": 1000
                   },
                   "offset": {
+                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords",
                     "type": "number",
-                    "minimum": 0,
-                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords"
+                    "minimum": 0
                   },
                   "filters": {
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExamples:\n  Single: [\"metrics.organic.count\", \">\", 50]\n  Combined: [[\"metrics.organic.pos_1\", \"<>\", 0], \"and\", [\"metrics.organic.impressions_etv\", \">=\", \"10\"]]\n  Nested: [[[\"metrics.organic.count\", \">=\", 50], \"and\", [\"metrics.organic.pos_1\", \"in\", [1, 5]]], \"or\", [\"metrics.organic.etv\", \">=\", \"100\"]]",
+                    "maxItems": 3,
                     "type": "array",
                     "items": {
                       "anyOf": [
                         {
+                          "minItems": 3,
+                          "maxItems": 3,
                           "type": "array",
                           "items": {
-                            "type": [
-                              "string",
-                              "number",
-                              "boolean"
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
                             ]
-                          },
-                          "minItems": 3,
-                          "maxItems": 3
+                          }
                         },
                         {
                           "type": "string",
@@ -201,10 +217,10 @@
                           ]
                         },
                         {
-                          "type": "array",
-                          "items": {},
                           "minItems": 3,
-                          "maxItems": 3
+                          "maxItems": 3,
+                          "type": "array",
+                          "items": {}
                         },
                         {
                           "anyOf": [
@@ -213,32 +229,36 @@
                             },
                             {
                               "type": "number"
-                            }
+                            },
+                            {}
                           ]
-                        }
+                        },
+                        {}
                       ]
-                    },
-                    "maxItems": 3,
-                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExamples:\n  Single: [\"metrics.organic.count\", \">\", 50]\n  Combined: [[\"metrics.organic.pos_1\", \"<>\", 0], \"and\", [\"metrics.organic.impressions_etv\", \">=\", \"10\"]]\n  Nested: [[[\"metrics.organic.count\", \">=\", 50], \"and\", [\"metrics.organic.pos_1\", \"in\", [1, 5]]], \"or\", [\"metrics.organic.etv\", \">=\", \"100\"]]"
+                    }
                   },
                   "order_by": {
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\ndefault rule:\n[\"relevance,desc\"]\nexample:\n[\"relevance,desc\",\"keyword_info.search_volume,desc\"]",
                     "type": "array",
                     "items": {
                       "type": "string"
-                    },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\ndefault rule:\n[\"relevance,desc\"]\nexample:\n[\"relevance,desc\",\"keyword_info.search_volume,desc\"]"
+                    }
                   },
                   "exclude_top_domains": {
-                    "type": "boolean",
                     "default": true,
-                    "description": "indicates whether to exclude world's largest websites\n        optional field\n        default value: false\n        set to true if you want to get highly-relevant competitors excluding the top websites"
+                    "description": "indicates whether to exclude world's largest websites\n        optional field\n        default value: false\n        set to true if you want to get highly-relevant competitors excluding the top websites",
+                    "type": "boolean"
                   },
                   "include_clickstream_data": {
-                    "type": "boolean",
                     "default": false,
-                    "description": "Include or exclude data from clickstream-based metrics in the result"
+                    "description": "Include or exclude data from clickstream-based metrics in the result",
+                    "type": "boolean"
                   },
                   "item_types": {
+                    "default": [
+                      "organic"
+                    ],
+                    "description": "display results by item type\nindicates the type of search results included in the response",
                     "type": "array",
                     "items": {
                       "type": "string",
@@ -248,11 +268,7 @@
                         "featured_snippet",
                         "local_pack"
                       ]
-                    },
-                    "description": "display results by item type\nindicates the type of search results included in the response",
-                    "default": [
-                      "organic"
-                    ]
+                    }
                   }
                 },
                 "required": [
@@ -280,19 +296,19 @@
                     "description": "target domain"
                   },
                   "location_name": {
-                    "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'",
+                    "type": "string"
                   },
                   "language_code": {
-                    "type": "string",
                     "default": "en",
-                    "description": "language code\n        required field\n        example:\n        en"
+                    "description": "language code\n        required field\n        example:\n        en",
+                    "type": "string"
                   },
                   "ignore_synonyms": {
-                    "type": "boolean",
                     "default": true,
-                    "description": "ignore highly similar keywords, if set to true, results will be more accurate"
+                    "description": "ignore highly similar keywords, if set to true, results will be more accurate",
+                    "type": "boolean"
                   }
                 },
                 "required": [
@@ -323,42 +339,50 @@
                     "description": "target keywords"
                   },
                   "location_name": {
-                    "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\n  required field\n  only in format \"Country\" (not \"City\" or \"Region\")\n  example:\n  'United Kingdom', 'United States', 'Canada'"
+                    "description": "full name of the location\n  required field\n  only in format \"Country\" (not \"City\" or \"Region\")\n  example:\n  'United Kingdom', 'United States', 'Canada'",
+                    "type": "string"
                   },
                   "language_code": {
-                    "type": "string",
                     "default": "en",
-                    "description": "language code\n        required field\n        example:\n        en"
+                    "description": "language code\n        required field\n        example:\n        en",
+                    "type": "string"
                   },
                   "limit": {
+                    "description": "Maximum number of keywords to return",
+                    "default": 10,
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 1000,
-                    "default": 10,
-                    "description": "Maximum number of keywords to return"
+                    "maximum": 1000
                   },
                   "offset": {
+                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords",
                     "type": "number",
-                    "minimum": 0,
-                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords"
+                    "minimum": 0
                   },
                   "filters": {
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExamples:\n  Single: [\"keyword_info.search_volume\", \">\", 0]\n  Combined: [[\"keyword_info.search_volume\", \"in\", [0, 1000]], \"and\", [\"keyword_info.competition_level\", \"=\", \"LOW\"]]\n  Nested: [[\"keyword_info.search_volume\", \">\", 100], \"and\", [[\"keyword_info.cpc\", \"<\", 0.5], \"or\", [\"keyword_info.high_top_of_page_bid\", \"<=\", 0.5]]]",
+                    "maxItems": 3,
                     "type": "array",
                     "items": {
                       "anyOf": [
                         {
+                          "minItems": 3,
+                          "maxItems": 3,
                           "type": "array",
                           "items": {
-                            "type": [
-                              "string",
-                              "number",
-                              "boolean"
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
                             ]
-                          },
-                          "minItems": 3,
-                          "maxItems": 3
+                          }
                         },
                         {
                           "type": "string",
@@ -368,10 +392,10 @@
                           ]
                         },
                         {
-                          "type": "array",
-                          "items": {},
                           "minItems": 3,
-                          "maxItems": 3
+                          "maxItems": 3,
+                          "type": "array",
+                          "items": {}
                         },
                         {
                           "anyOf": [
@@ -380,25 +404,25 @@
                             },
                             {
                               "type": "number"
-                            }
+                            },
+                            {}
                           ]
-                        }
+                        },
+                        {}
                       ]
-                    },
-                    "maxItems": 3,
-                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExamples:\n  Single: [\"keyword_info.search_volume\", \">\", 0]\n  Combined: [[\"keyword_info.search_volume\", \"in\", [0, 1000]], \"and\", [\"keyword_info.competition_level\", \"=\", \"LOW\"]]\n  Nested: [[\"keyword_info.search_volume\", \">\", 100], \"and\", [[\"keyword_info.cpc\", \"<\", 0.5], \"or\", [\"keyword_info.high_top_of_page_bid\", \"<=\", 0.5]]]"
+                    }
                   },
                   "order_by": {
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\ndefault rule:\n[\"relevance,desc\"]\nrelevance is used as the default sorting rule to provide you with the closest keyword ideas. We recommend using this sorting rule to get highly-relevant search terms. Note that relevance is only our internal system identifier, so it can not be used as a filter, and you will not find this field in the result array. The relevance score is based on a similar principle as used in the Keywords For Keywords endpoint.\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"relevance,desc\",\"keyword_info.search_volume,desc\"]",
                     "type": "array",
                     "items": {
                       "type": "string"
-                    },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\ndefault rule:\n[\"relevance,desc\"]\nrelevance is used as the default sorting rule to provide you with the closest keyword ideas. We recommend using this sorting rule to get highly-relevant search terms. Note that relevance is only our internal system identifier, so it can not be used as a filter, and you will not find this field in the result array. The relevance score is based on a similar principle as used in the Keywords For Keywords endpoint.\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"relevance,desc\",\"keyword_info.search_volume,desc\"]"
+                    }
                   },
                   "include_clickstream_data": {
-                    "type": "boolean",
                     "default": false,
-                    "description": "Include or exclude data from clickstream-based metrics in the result"
+                    "description": "Include or exclude data from clickstream-based metrics in the result",
+                    "type": "boolean"
                   }
                 },
                 "required": [
@@ -426,49 +450,57 @@
                     "description": "target keyword"
                   },
                   "depth": {
+                    "default": 1,
+                    "description": "keyword search depth",
                     "type": "number",
                     "minimum": 0,
-                    "maximum": 4,
-                    "default": 1,
-                    "description": "keyword search depth"
+                    "maximum": 4
                   },
                   "location_name": {
-                    "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'",
+                    "type": "string"
                   },
                   "language_code": {
-                    "type": "string",
                     "default": "en",
-                    "description": "language code\n        required field\n        example:\n        en"
+                    "description": "language code\n        required field\n        example:\n        en",
+                    "type": "string"
                   },
                   "limit": {
+                    "description": "Maximum number of keywords to return",
+                    "default": 10,
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 1000,
-                    "default": 10,
-                    "description": "Maximum number of keywords to return"
+                    "maximum": 1000
                   },
                   "offset": {
+                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords",
                     "type": "number",
-                    "minimum": 0,
-                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords"
+                    "minimum": 0
                   },
                   "filters": {
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExamples:\n  Single: [\"keyword_data.keyword_info.search_volume\", \">\", 0]\n  Combined: [[\"keyword_info.search_volume\", \"in\", [0, 1000]], \"and\", [\"keyword_data.keyword_info.competition_level\", \"=\", \"LOW\"]]\n  Nested: [[\"keyword_data.keyword_info.search_volume\", \">\", 100], \"and\", [[\"keyword_data.keyword_info.cpc\", \"<\", 0.5], \"or\", [\"keyword_data.keyword_info.high_top_of_page_bid\", \"<=\", 0.5]]]",
+                    "maxItems": 3,
                     "type": "array",
                     "items": {
                       "anyOf": [
                         {
+                          "minItems": 3,
+                          "maxItems": 3,
                           "type": "array",
                           "items": {
-                            "type": [
-                              "string",
-                              "number",
-                              "boolean"
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
                             ]
-                          },
-                          "minItems": 3,
-                          "maxItems": 3
+                          }
                         },
                         {
                           "type": "string",
@@ -478,10 +510,10 @@
                           ]
                         },
                         {
-                          "type": "array",
-                          "items": {},
                           "minItems": 3,
-                          "maxItems": 3
+                          "maxItems": 3,
+                          "type": "array",
+                          "items": {}
                         },
                         {
                           "anyOf": [
@@ -490,25 +522,25 @@
                             },
                             {
                               "type": "number"
-                            }
+                            },
+                            {}
                           ]
-                        }
+                        },
+                        {}
                       ]
-                    },
-                    "maxItems": 3,
-                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExamples:\n  Single: [\"keyword_data.keyword_info.search_volume\", \">\", 0]\n  Combined: [[\"keyword_info.search_volume\", \"in\", [0, 1000]], \"and\", [\"keyword_data.keyword_info.competition_level\", \"=\", \"LOW\"]]\n  Nested: [[\"keyword_data.keyword_info.search_volume\", \">\", 100], \"and\", [[\"keyword_data.keyword_info.cpc\", \"<\", 0.5], \"or\", [\"keyword_data.keyword_info.high_top_of_page_bid\", \"<=\", 0.5]]]"
+                    }
                   },
                   "order_by": {
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"keyword_data.keyword_info.competition,desc\"]\ndefault rule:\n[\"keyword_data.keyword_info.search_volume,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"keyword_data.keyword_info.search_volume,desc\",\"keyword_data.keyword_info.cpc,desc\"]",
                     "type": "array",
                     "items": {
                       "type": "string"
-                    },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"keyword_data.keyword_info.competition,desc\"]\ndefault rule:\n[\"keyword_data.keyword_info.search_volume,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"keyword_data.keyword_info.search_volume,desc\",\"keyword_data.keyword_info.cpc,desc\"]"
+                    }
                   },
                   "include_clickstream_data": {
-                    "type": "boolean",
                     "default": false,
-                    "description": "Include or exclude data from clickstream-based metrics in the result"
+                    "description": "Include or exclude data from clickstream-based metrics in the result",
+                    "type": "boolean"
                   }
                 },
                 "required": [
@@ -536,42 +568,50 @@
                     "description": "target keyword"
                   },
                   "location_name": {
-                    "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'",
+                    "type": "string"
                   },
                   "language_code": {
-                    "type": "string",
                     "default": "en",
-                    "description": "language code\n        required field\n        example:\n        en"
+                    "description": "language code\n        required field\n        example:\n        en",
+                    "type": "string"
                   },
                   "limit": {
+                    "description": "Maximum number of keywords to return",
+                    "default": 10,
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 1000,
-                    "default": 10,
-                    "description": "Maximum number of keywords to return"
+                    "maximum": 1000
                   },
                   "offset": {
+                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords",
                     "type": "number",
-                    "minimum": 0,
-                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords"
+                    "minimum": 0
                   },
                   "filters": {
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExamples:\n  Single: [\"keyword_info.search_volume\", \">\", 0]\n  Combined: [[\"keyword_info.search_volume\", \"in\", [0, 1000]], \"and\", [\"keyword_info.competition_level\", \"=\", \"LOW\"]]\n  Nested: [[\"keyword_info.search_volume\", \">\", 100], \"and\", [[\"keyword_info.cpc\", \"<\", 0.5], \"or\", [\"keyword_info.high_top_of_page_bid\", \"<=\", 0.5]]]",
+                    "maxItems": 3,
                     "type": "array",
                     "items": {
                       "anyOf": [
                         {
+                          "minItems": 3,
+                          "maxItems": 3,
                           "type": "array",
                           "items": {
-                            "type": [
-                              "string",
-                              "number",
-                              "boolean"
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
                             ]
-                          },
-                          "minItems": 3,
-                          "maxItems": 3
+                          }
                         },
                         {
                           "type": "string",
@@ -581,10 +621,10 @@
                           ]
                         },
                         {
-                          "type": "array",
-                          "items": {},
                           "minItems": 3,
-                          "maxItems": 3
+                          "maxItems": 3,
+                          "type": "array",
+                          "items": {}
                         },
                         {
                           "anyOf": [
@@ -593,25 +633,25 @@
                             },
                             {
                               "type": "number"
-                            }
+                            },
+                            {}
                           ]
-                        }
+                        },
+                        {}
                       ]
-                    },
-                    "maxItems": 3,
-                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExamples:\n  Single: [\"keyword_info.search_volume\", \">\", 0]\n  Combined: [[\"keyword_info.search_volume\", \"in\", [0, 1000]], \"and\", [\"keyword_info.competition_level\", \"=\", \"LOW\"]]\n  Nested: [[\"keyword_info.search_volume\", \">\", 100], \"and\", [[\"keyword_info.cpc\", \"<\", 0.5], \"or\", [\"keyword_info.high_top_of_page_bid\", \"<=\", 0.5]]]"
+                    }
                   },
                   "order_by": {
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\na comma is used as a separator\nexample:\n[\"keyword_info.competition,desc\"]\ndefault rule:\n[\"keyword_info.search_volume,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"keyword_info.search_volume,desc\",\"keyword_info.cpc,desc\"]",
                     "type": "array",
                     "items": {
                       "type": "string"
-                    },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\na comma is used as a separator\nexample:\n[\"keyword_info.competition,desc\"]\ndefault rule:\n[\"keyword_info.search_volume,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"keyword_info.search_volume,desc\",\"keyword_info.cpc,desc\"]"
+                    }
                   },
                   "include_clickstream_data": {
-                    "type": "boolean",
                     "default": false,
-                    "description": "Include or exclude data from clickstream-based metrics in the result"
+                    "description": "Include or exclude data from clickstream-based metrics in the result",
+                    "type": "boolean"
                   }
                 },
                 "required": [
@@ -639,22 +679,22 @@
                     "description": "target keyword"
                   },
                   "location_name": {
-                    "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'",
+                    "type": "string"
                   },
                   "language_code": {
-                    "type": "string",
                     "default": "en",
-                    "description": "language code\n        required field\n        example:\n        en"
+                    "description": "language code\n        required field\n        example:\n        en",
+                    "type": "string"
                   },
                   "date_from": {
-                    "type": "string",
-                    "description": "starting date of the time range, date format: YYYY-MM-DD"
+                    "description": "starting date of the time range, date format: YYYY-MM-DD",
+                    "type": "string"
                   },
                   "date_to": {
-                    "type": "string",
-                    "description": "ending date of the time range, date format: YYYY-MM-DD"
+                    "description": "ending date of the time range, date format: YYYY-MM-DD",
+                    "type": "string"
                   }
                 },
                 "required": [
@@ -685,42 +725,50 @@
                     "description": "keywords array\nrequired field\nthe results will be based on the keywords you specify in this array\nUTF-8 encoding;\nthe keywords will be converted to lowercase format;\nyou can specify the maximum of 200 keywords"
                   },
                   "location_name": {
-                    "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'",
+                    "type": "string"
                   },
                   "language_code": {
-                    "type": "string",
                     "default": "en",
-                    "description": "language code\n        required field\n        example:\n        en"
+                    "description": "language code\n        required field\n        example:\n        en",
+                    "type": "string"
                   },
                   "limit": {
+                    "description": "Maximum number of keywords to return",
+                    "default": 10,
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 1000,
-                    "default": 10,
-                    "description": "Maximum number of keywords to return"
+                    "maximum": 1000
                   },
                   "offset": {
+                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords",
                     "type": "number",
-                    "minimum": 0,
-                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords"
+                    "minimum": 0
                   },
                   "filters": {
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExamples:\n  Single: [\"median_position\", \"in\", [1, 10]]\n  Combined: [[\"median_position\", \"in\", [1, 10]], \"and\", [\"domain\", \"not_like\", \"%wikipedia.org%\"]]\n  Nested: [[\"domain\", \"not_like\", \"%wikipedia.org%\"], \"and\", [[\"relevant_serp_items\", \">\", 0], \"or\", [\"median_position\", \"in\", [1, 10]]]]",
+                    "maxItems": 3,
                     "type": "array",
                     "items": {
                       "anyOf": [
                         {
+                          "minItems": 3,
+                          "maxItems": 3,
                           "type": "array",
                           "items": {
-                            "type": [
-                              "string",
-                              "number",
-                              "boolean"
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
                             ]
-                          },
-                          "minItems": 3,
-                          "maxItems": 3
+                          }
                         },
                         {
                           "type": "string",
@@ -730,10 +778,10 @@
                           ]
                         },
                         {
-                          "type": "array",
-                          "items": {},
                           "minItems": 3,
-                          "maxItems": 3
+                          "maxItems": 3,
+                          "type": "array",
+                          "items": {}
                         },
                         {
                           "anyOf": [
@@ -742,26 +790,30 @@
                             },
                             {
                               "type": "number"
-                            }
+                            },
+                            {}
                           ]
-                        }
+                        },
+                        {}
                       ]
-                    },
-                    "maxItems": 3,
-                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExamples:\n  Single: [\"median_position\", \"in\", [1, 10]]\n  Combined: [[\"median_position\", \"in\", [1, 10]], \"and\", [\"domain\", \"not_like\", \"%wikipedia.org%\"]]\n  Nested: [[\"domain\", \"not_like\", \"%wikipedia.org%\"], \"and\", [[\"relevant_serp_items\", \">\", 0], \"or\", [\"median_position\", \"in\", [1, 10]]]]"
+                    }
                   },
                   "order_by": {
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nthe comma is used as a separator\nexample:\n[\"avg_position,asc\"]\ndefault rule:\n[\"rating,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"avg_position,asc\",\"etv,desc\"]",
                     "type": "array",
                     "items": {
                       "type": "string"
-                    },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nthe comma is used as a separator\nexample:\n[\"avg_position,asc\"]\ndefault rule:\n[\"rating,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"avg_position,asc\",\"etv,desc\"]"
+                    }
                   },
                   "include_subdomains": {
-                    "type": "boolean",
-                    "description": "Include keywords from subdomains"
+                    "description": "Include keywords from subdomains",
+                    "type": "boolean"
                   },
                   "item_types": {
+                    "default": [
+                      "organic"
+                    ],
+                    "description": "display results by item type\nindicates the type of search results included in the response",
                     "type": "array",
                     "items": {
                       "type": "string",
@@ -771,11 +823,7 @@
                         "featured_snippet",
                         "local_pack"
                       ]
-                    },
-                    "description": "display results by item type\nindicates the type of search results included in the response",
-                    "default": [
-                      "organic"
-                    ]
+                    }
                   }
                 },
                 "required": [
@@ -806,14 +854,14 @@
                     "description": "target keywords\nrequired field\nUTF-8 encoding\nmaximum number of keywords you can specify in this array: 1000"
                   },
                   "location_name": {
-                    "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'",
+                    "type": "string"
                   },
                   "language_code": {
-                    "type": "string",
                     "default": "en",
-                    "description": "language code\n        required field\n        example:\n        en"
+                    "description": "language code\n        required field\n        example:\n        en",
+                    "type": "string"
                   }
                 },
                 "required": [
@@ -841,47 +889,55 @@
                     "description": "target domain"
                   },
                   "location_name": {
-                    "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'",
+                    "type": "string"
                   },
                   "language_code": {
-                    "type": "string",
                     "default": "en",
-                    "description": "language code\n        required field\n        example:\n        en"
+                    "description": "language code\n        required field\n        example:\n        en",
+                    "type": "string"
                   },
                   "ignore_synonyms": {
-                    "type": "boolean",
                     "default": true,
-                    "description": "ignore highly similar keywords, if set to true, results will be more accurate"
+                    "description": "ignore highly similar keywords, if set to true, results will be more accurate",
+                    "type": "boolean"
                   },
                   "limit": {
+                    "description": "Maximum number of keywords to return",
+                    "default": 10,
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 1000,
-                    "default": 10,
-                    "description": "Maximum number of keywords to return"
+                    "maximum": 1000
                   },
                   "offset": {
+                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords",
                     "type": "number",
-                    "minimum": 0,
-                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords"
+                    "minimum": 0
                   },
                   "filters": {
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExamples:\n  Single: [\"metrics.organic.count\", \">\", 50]\n  Combined: [[\"metrics.organic.pos_1\", \"<>\", 0], \"and\", [\"metrics.organic.impressions_etv\", \">=\", \"10\"]]\n  Nested: [[[\"metrics.organic.count\", \">=\", 50], \"and\", [\"metrics.organic.pos_1\", \"in\", [1, 5]]], \"or\", [\"metrics.organic.etv\", \">=\", \"100\"]]",
+                    "maxItems": 3,
                     "type": "array",
                     "items": {
                       "anyOf": [
                         {
+                          "minItems": 3,
+                          "maxItems": 3,
                           "type": "array",
                           "items": {
-                            "type": [
-                              "string",
-                              "number",
-                              "boolean"
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
                             ]
-                          },
-                          "minItems": 3,
-                          "maxItems": 3
+                          }
                         },
                         {
                           "type": "string",
@@ -891,10 +947,10 @@
                           ]
                         },
                         {
-                          "type": "array",
-                          "items": {},
                           "minItems": 3,
-                          "maxItems": 3
+                          "maxItems": 3,
+                          "type": "array",
+                          "items": {}
                         },
                         {
                           "anyOf": [
@@ -903,22 +959,26 @@
                             },
                             {
                               "type": "number"
-                            }
+                            },
+                            {}
                           ]
-                        }
+                        },
+                        {}
                       ]
-                    },
-                    "maxItems": 3,
-                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExamples:\n  Single: [\"metrics.organic.count\", \">\", 50]\n  Combined: [[\"metrics.organic.pos_1\", \"<>\", 0], \"and\", [\"metrics.organic.impressions_etv\", \">=\", \"10\"]]\n  Nested: [[[\"metrics.organic.count\", \">=\", 50], \"and\", [\"metrics.organic.pos_1\", \"in\", [1, 5]]], \"or\", [\"metrics.organic.etv\", \">=\", \"100\"]]"
+                    }
                   },
                   "order_by": {
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to specify a sorting type\nexample:\n[\"metrics.paid.etv,asc\"]\nNote: you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"metrics.organic.etv,desc\",\"metrics.paid.count,asc\"]\ndefault rule:\n[\"metrics.organic.count,desc\"]",
                     "type": "array",
                     "items": {
                       "type": "string"
-                    },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to specify a sorting type\nexample:\n[\"metrics.paid.etv,asc\"]\nNote: you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"metrics.organic.etv,desc\",\"metrics.paid.count,asc\"]\ndefault rule:\n[\"metrics.organic.count,desc\"]"
+                    }
                   },
                   "item_types": {
+                    "default": [
+                      "organic"
+                    ],
+                    "description": "display results by item type\nindicates the type of search results included in the response",
                     "type": "array",
                     "items": {
                       "type": "string",
@@ -928,16 +988,12 @@
                         "featured_snippet",
                         "local_pack"
                       ]
-                    },
-                    "description": "display results by item type\nindicates the type of search results included in the response",
-                    "default": [
-                      "organic"
-                    ]
+                    }
                   },
                   "include_clickstream_data": {
-                    "type": "boolean",
                     "default": false,
-                    "description": "Include or exclude data from clickstream-based metrics in the result"
+                    "description": "Include or exclude data from clickstream-based metrics in the result",
+                    "type": "boolean"
                   }
                 },
                 "required": [
@@ -968,19 +1024,19 @@
                     "description": "keywords\nrequired field\nThe maximum number of keywords you can specify: 700\nThe maximum number of characters for each keyword: 80\nThe maximum number of words for each keyword phrase: 10\nthe specified keywords will be converted to lowercase format, data will be provided in a separate array\nnote that if some of the keywords specified in this array are omitted in the results you receive, then our database doesn't contain such keywords and cannot return data on them\nyou will not be charged for the keywords omitted in the results"
                   },
                   "location_name": {
-                    "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'",
+                    "type": "string"
                   },
                   "language_code": {
-                    "type": "string",
                     "default": "en",
-                    "description": "language code\n        required field\n        example:\n        en"
+                    "description": "language code\n        required field\n        example:\n        en",
+                    "type": "string"
                   },
                   "include_clickstream_data": {
-                    "type": "boolean",
                     "default": false,
-                    "description": "Include or exclude data from clickstream-based metrics in the result"
+                    "description": "Include or exclude data from clickstream-based metrics in the result",
+                    "type": "boolean"
                   }
                 },
                 "required": [
@@ -1004,42 +1060,50 @@
                 "type": "object",
                 "properties": {
                   "location_name": {
-                    "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'",
+                    "type": "string"
                   },
                   "language_code": {
-                    "type": "string",
                     "default": "en",
-                    "description": "language code\n        required field\n        example:\n        en"
+                    "description": "language code\n        required field\n        example:\n        en",
+                    "type": "string"
                   },
                   "limit": {
+                    "description": "Maximum number of keywords to return",
+                    "default": 10,
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 1000,
-                    "default": 10,
-                    "description": "Maximum number of keywords to return"
+                    "maximum": 1000
                   },
                   "offset": {
+                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords",
                     "type": "number",
-                    "minimum": 0,
-                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords"
+                    "minimum": 0
                   },
                   "filters": {
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExamples:\n  Single: [\"keyword_info.search_volume\", \">\", 0]\n  Combined: [[\"keyword_info.search_volume\", \"in\", [0, 1000]], \"and\", [\"keyword_info.competition_level\", \"=\", \"LOW\"]]\n  Nested: [[\"keyword_info.search_volume\", \">\", 100], \"and\", [[\"keyword_info.cpc\", \"<\", 0.5], \"or\", [\"keyword_info.high_top_of_page_bid\", \"<=\", 0.5]]]",
+                    "maxItems": 3,
                     "type": "array",
                     "items": {
                       "anyOf": [
                         {
+                          "minItems": 3,
+                          "maxItems": 3,
                           "type": "array",
                           "items": {
-                            "type": [
-                              "string",
-                              "number",
-                              "boolean"
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
                             ]
-                          },
-                          "minItems": 3,
-                          "maxItems": 3
+                          }
                         },
                         {
                           "type": "string",
@@ -1049,10 +1113,10 @@
                           ]
                         },
                         {
-                          "type": "array",
-                          "items": {},
                           "minItems": 3,
-                          "maxItems": 3
+                          "maxItems": 3,
+                          "type": "array",
+                          "items": {}
                         },
                         {
                           "anyOf": [
@@ -1061,25 +1125,25 @@
                             },
                             {
                               "type": "number"
-                            }
+                            },
+                            {}
                           ]
-                        }
+                        },
+                        {}
                       ]
-                    },
-                    "maxItems": 3,
-                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExamples:\n  Single: [\"keyword_info.search_volume\", \">\", 0]\n  Combined: [[\"keyword_info.search_volume\", \"in\", [0, 1000]], \"and\", [\"keyword_info.competition_level\", \"=\", \"LOW\"]]\n  Nested: [[\"keyword_info.search_volume\", \">\", 100], \"and\", [[\"keyword_info.cpc\", \"<\", 0.5], \"or\", [\"keyword_info.high_top_of_page_bid\", \"<=\", 0.5]]]"
+                    }
                   },
                   "order_by": {
+                    "description": "resuresults sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"keyword_info.competition,desc\"]\ndefault rule:\n[\"keyword_info.search_volume,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"keyword_info.search_volume,desc\",\"keyword_info.cpc,desc\"]",
                     "type": "array",
                     "items": {
                       "type": "string"
-                    },
-                    "description": "resuresults sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting type\nexample:\n[\"keyword_info.competition,desc\"]\ndefault rule:\n[\"keyword_info.search_volume,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"keyword_info.search_volume,desc\",\"keyword_info.cpc,desc\"]"
+                    }
                   },
                   "include_clickstream_data": {
-                    "type": "boolean",
                     "default": false,
-                    "description": "Include or exclude data from clickstream-based metrics in the result"
+                    "description": "Include or exclude data from clickstream-based metrics in the result",
+                    "type": "boolean"
                   }
                 },
                 "required": []
@@ -1108,9 +1172,9 @@
                     "description": "target keywords\nrequired field\nUTF-8 encoding\nmaximum number of keywords you can specify in this array: 1000"
                   },
                   "language_code": {
-                    "type": "string",
                     "default": "en",
-                    "description": "language code\n        required field\n        Note: this endpoint currently supports the following languages only:\nar,\nzh-TW,\ncs,\nda,\nnl,\nen,\nfi,\nfr,\nde,\nhe,\nhi,\nit,\nja,\nko,\nms,\nnb,\npl,\npt,\nro,\nru,\nes,\nsv,\nth,\nuk,\nvi,\nbg,\nhr,\nsr,\nsl,\nbs"
+                    "description": "language code\n        required field\n        Note: this endpoint currently supports the following languages only:\nar,\nzh-TW,\ncs,\nda,\nnl,\nen,\nfi,\nfr,\nde,\nhe,\nhi,\nit,\nja,\nko,\nms,\nnb,\npl,\npt,\nro,\nru,\nes,\nsv,\nth,\nuk,\nvi,\nbg,\nhr,\nsr,\nsl,\nbs",
+                    "type": "string"
                   }
                 },
                 "required": [
@@ -1138,42 +1202,50 @@
                     "description": "target domain"
                   },
                   "location_name": {
-                    "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'",
+                    "type": "string"
                   },
                   "language_code": {
-                    "type": "string",
                     "default": "en",
-                    "description": "language code\n        required field\n        example:\n        en"
+                    "description": "language code\n        required field\n        example:\n        en",
+                    "type": "string"
                   },
                   "limit": {
+                    "description": "Maximum number of keywords to return",
+                    "default": 10,
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 1000,
-                    "default": 10,
-                    "description": "Maximum number of keywords to return"
+                    "maximum": 1000
                   },
                   "offset": {
+                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords",
                     "type": "number",
-                    "minimum": 0,
-                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords"
+                    "minimum": 0
                   },
                   "filters": {
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExamples:\n  Single: [\"keyword_info.search_volume\", \">\", 0]\n  Combined: [[\"keyword_info.search_volume\", \"in\", [0, 1000]], \"and\", [\"keyword_info.competition_level\", \"=\", \"LOW\"]]\n  Nested: [[\"keyword_info.search_volume\", \">\", 100], \"and\", [[\"keyword_info.cpc\", \"<\", 0.5], \"or\", [\"keyword_info.high_top_of_page_bid\", \"<=\", 0.5]]]",
+                    "maxItems": 3,
                     "type": "array",
                     "items": {
                       "anyOf": [
                         {
+                          "minItems": 3,
+                          "maxItems": 3,
                           "type": "array",
                           "items": {
-                            "type": [
-                              "string",
-                              "number",
-                              "boolean"
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
                             ]
-                          },
-                          "minItems": 3,
-                          "maxItems": 3
+                          }
                         },
                         {
                           "type": "string",
@@ -1183,10 +1255,10 @@
                           ]
                         },
                         {
-                          "type": "array",
-                          "items": {},
                           "minItems": 3,
-                          "maxItems": 3
+                          "maxItems": 3,
+                          "type": "array",
+                          "items": {}
                         },
                         {
                           "anyOf": [
@@ -1195,29 +1267,29 @@
                             },
                             {
                               "type": "number"
-                            }
+                            },
+                            {}
                           ]
-                        }
+                        },
+                        {}
                       ]
-                    },
-                    "maxItems": 3,
-                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExamples:\n  Single: [\"keyword_info.search_volume\", \">\", 0]\n  Combined: [[\"keyword_info.search_volume\", \"in\", [0, 1000]], \"and\", [\"keyword_info.competition_level\", \"=\", \"LOW\"]]\n  Nested: [[\"keyword_info.search_volume\", \">\", 100], \"and\", [[\"keyword_info.cpc\", \"<\", 0.5], \"or\", [\"keyword_info.high_top_of_page_bid\", \"<=\", 0.5]]]"
+                    }
                   },
                   "order_by": {
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\ndefault rule:\n[\"relevance,desc\"]\nexample:\n[\"relevance,desc\",\"keyword_info.search_volume,desc\"]",
                     "type": "array",
                     "items": {
                       "type": "string"
-                    },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\ndefault rule:\n[\"relevance,desc\"]\nexample:\n[\"relevance,desc\",\"keyword_info.search_volume,desc\"]"
+                    }
                   },
                   "include_subdomains": {
-                    "type": "boolean",
-                    "description": "Include keywords from subdomains"
+                    "description": "Include keywords from subdomains",
+                    "type": "boolean"
                   },
                   "include_clickstream_data": {
-                    "type": "boolean",
                     "default": false,
-                    "description": "Include or exclude data from clickstream-based metrics in the result"
+                    "description": "Include or exclude data from clickstream-based metrics in the result",
+                    "type": "boolean"
                   }
                 },
                 "required": [
@@ -1249,47 +1321,55 @@
                     "description": "target domain 2 "
                   },
                   "location_name": {
-                    "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'",
+                    "type": "string"
                   },
                   "language_code": {
-                    "type": "string",
                     "default": "en",
-                    "description": "language code\n        required field\n        example:\n        en"
+                    "description": "language code\n        required field\n        example:\n        en",
+                    "type": "string"
                   },
                   "ignore_synonyms": {
-                    "type": "boolean",
                     "default": true,
-                    "description": "ignore highly similar keywords, if set to true, results will be more accurate"
+                    "description": "ignore highly similar keywords, if set to true, results will be more accurate",
+                    "type": "boolean"
                   },
                   "limit": {
+                    "description": "Maximum number of keywords to return",
+                    "default": 10,
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 1000,
-                    "default": 10,
-                    "description": "Maximum number of keywords to return"
+                    "maximum": 1000
                   },
                   "offset": {
+                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords",
                     "type": "number",
-                    "minimum": 0,
-                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords"
+                    "minimum": 0
                   },
                   "filters": {
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExamples:\n  Single: [\"keyword_data.keyword_info.search_volume\", \"in\", [100, 1000]]\n  Combined: [[\"first_domain_serp_element.etv\", \">\", 0], \"and\", [\"first_domain_serp_element.description\", \"like\", \"%goat%\"]]\n  Nested: [[\"keyword_data.keyword_info.search_volume\", \">\", 100], \"and\", [[\"first_domain_serp_element.description\", \"like\", \"%goat%\"], \"or\", [\"second_domain_serp_element.type\", \"=\", \"organic\"]]]",
+                    "maxItems": 3,
                     "type": "array",
                     "items": {
                       "anyOf": [
                         {
+                          "minItems": 3,
+                          "maxItems": 3,
                           "type": "array",
                           "items": {
-                            "type": [
-                              "string",
-                              "number",
-                              "boolean"
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
                             ]
-                          },
-                          "minItems": 3,
-                          "maxItems": 3
+                          }
                         },
                         {
                           "type": "string",
@@ -1299,10 +1379,10 @@
                           ]
                         },
                         {
-                          "type": "array",
-                          "items": {},
                           "minItems": 3,
-                          "maxItems": 3
+                          "maxItems": 3,
+                          "type": "array",
+                          "items": {}
                         },
                         {
                           "anyOf": [
@@ -1311,32 +1391,36 @@
                             },
                             {
                               "type": "number"
-                            }
+                            },
+                            {}
                           ]
-                        }
+                        },
+                        {}
                       ]
-                    },
-                    "maxItems": 3,
-                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExamples:\n  Single: [\"keyword_data.keyword_info.search_volume\", \"in\", [100, 1000]]\n  Combined: [[\"first_domain_serp_element.etv\", \">\", 0], \"and\", [\"first_domain_serp_element.description\", \"like\", \"%goat%\"]]\n  Nested: [[\"keyword_data.keyword_info.search_volume\", \">\", 100], \"and\", [[\"first_domain_serp_element.description\", \"like\", \"%goat%\"], \"or\", [\"second_domain_serp_element.type\", \"=\", \"organic\"]]]"
+                    }
                   },
                   "order_by": {
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\nexample:\n[\"keyword_data.keyword_info.competition,desc\"]\ndefault rule:\n[\"keyword_data.keyword_info.search_volume,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"keyword_data.keyword_info.search_volume,desc\",\"keyword_data.keyword_info.cpc,desc\"]",
                     "type": "array",
                     "items": {
                       "type": "string"
-                    },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\nexample:\n[\"keyword_data.keyword_info.competition,desc\"]\ndefault rule:\n[\"keyword_data.keyword_info.search_volume,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"keyword_data.keyword_info.search_volume,desc\",\"keyword_data.keyword_info.cpc,desc\"]"
+                    }
                   },
                   "intersections": {
-                    "type": "boolean",
+                    "default": true,
                     "description": "domain intersections in SERP\noptional field\nif you set intersections to true, you will get the keywords for which both target domains specified as target1 and target2 have results within the same SERP; the corresponding SERP elements for both domains will be provided in the results array\nNote: this endpoint will not provide results if the number of intersecting keywords exceeds 10 million\nif you specify intersections: false, you will get the keywords for which the domain specified as target1 has results in SERP, and the domain specified as target2 doesn’t;\nthus, the corresponding SERP elements and other data will be provided for the domain specified as target1only\ndefault value: true",
-                    "default": true
+                    "type": "boolean"
                   },
                   "include_clickstream_data": {
-                    "type": "boolean",
                     "default": false,
-                    "description": "Include or exclude data from clickstream-based metrics in the result"
+                    "description": "Include or exclude data from clickstream-based metrics in the result",
+                    "type": "boolean"
                   },
                   "item_types": {
+                    "default": [
+                      "organic"
+                    ],
+                    "description": "display results by item type\nindicates the type of search results included in the response",
                     "type": "array",
                     "items": {
                       "type": "string",
@@ -1346,11 +1430,7 @@
                         "featured_snippet",
                         "local_pack"
                       ]
-                    },
-                    "description": "display results by item type\nindicates the type of search results included in the response",
-                    "default": [
-                      "organic"
-                    ]
+                    }
                   }
                 },
                 "required": [
@@ -1379,24 +1459,32 @@
                     "description": "target domain"
                   },
                   "location_name": {
-                    "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'",
+                    "type": "string"
                   },
                   "language_code": {
-                    "type": "string",
                     "default": "en",
-                    "description": "language code\n        required field\n        example:\n        en"
+                    "description": "language code\n        required field\n        example:\n        en",
+                    "type": "string"
                   },
                   "ignore_synonyms": {
-                    "type": "boolean",
                     "default": true,
-                    "description": "ignore highly similar keywords, if set to true, results will be more accurate"
+                    "description": "ignore highly similar keywords, if set to true, results will be more accurate",
+                    "type": "boolean"
                   },
                   "include_clickstream_data": {
-                    "type": "boolean",
                     "default": false,
-                    "description": "Include or exclude data from clickstream-based metrics in the result"
+                    "description": "Include or exclude data from clickstream-based metrics in the result",
+                    "type": "boolean"
+                  },
+                  "date_from": {
+                    "description": "starting date of the time range\noptional field\nif you don't specify this field, the data will be provided for the previous 6 months\nminimal possible value: 2020-10-01\ndate format: \"yyyy-mm-dd\"\nexample:\n\"2021-01-01\"",
+                    "type": "string"
+                  },
+                  "date_to": {
+                    "description": "ending date of the time range\noptional field\nif you don't specify this field, the today's date will be used by default\ndate format: \"yyyy-mm-dd\"\nexample:\n\"2021-04-01\"",
+                    "type": "string"
                   }
                 },
                 "required": [
@@ -1445,62 +1533,70 @@
                     }
                   },
                   "exclude_pages": {
+                    "description": "URLs of pages you want to exclude\noptional field\nyou can set up to 10 pages in this array\nif you use this array, results will contain the keywords for which URLs from the pages object rank, but URLs from exclude_pages array do not;\nnote that if you specify this field, the results will be based on the keywords any URL from pages ranks for regardless of intersections between them. However, you can set intersection_mode to intersect and results will contain the keywords all URLs from pages rank for in the same SERP and URLs from exclude_pages do not.\nuse a wildcard (‘*’) character to specify the search pattern\nexample:\n\"exclude_pages\": [\n\"https://www.apple.com/iphone/*\",\n\"https://dataforseo.com/apis/*\",\n\"https://www.microsoft.com/en-us/industry/services/\"\n]",
                     "type": "array",
                     "items": {
                       "type": "string"
-                    },
-                    "description": "URLs of pages you want to exclude\noptional field\nyou can set up to 10 pages in this array\nif you use this array, results will contain the keywords for which URLs from the pages object rank, but URLs from exclude_pages array do not;\nnote that if you specify this field, the results will be based on the keywords any URL from pages ranks for regardless of intersections between them. However, you can set intersection_mode to intersect and results will contain the keywords all URLs from pages rank for in the same SERP and URLs from exclude_pages do not.\nuse a wildcard (‘*’) character to specify the search pattern\nexample:\n\"exclude_pages\": [\n\"https://www.apple.com/iphone/*\",\n\"https://dataforseo.com/apis/*\",\n\"https://www.microsoft.com/en-us/industry/services/\"\n]"
+                    }
                   },
                   "intersection_mode": {
+                    "description": "indicates whether to intersect keywords\noptional field\nuse this field to intersect or merge results for the specified URLs\npossible values: union, intersect\n\nunion – results are based on all keywords any URL from pages rank for;\n\nintersect – results are based on the keywords all URLs from pages rank for in the same SERP:\n\nby default, results are based on the intersect mode if you specify only pages array. If you specify exclude_pages as well, results are based on the union mode",
                     "type": "string",
                     "enum": [
                       "union",
                       "intersect"
-                    ],
-                    "description": "indicates whether to intersect keywords\noptional field\nuse this field to intersect or merge results for the specified URLs\npossible values: union, intersect\n\nunion – results are based on all keywords any URL from pages rank for;\n\nintersect – results are based on the keywords all URLs from pages rank for in the same SERP:\n\nby default, results are based on the intersect mode if you specify only pages array. If you specify exclude_pages as well, results are based on the union mode"
+                    ]
                   },
                   "location_name": {
-                    "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'",
+                    "type": "string"
                   },
                   "language_code": {
-                    "type": "string",
                     "default": "en",
-                    "description": "language code\n        required field\n        example:\n        en"
+                    "description": "language code\n        required field\n        example:\n        en",
+                    "type": "string"
                   },
                   "ignore_synonyms": {
-                    "type": "boolean",
                     "default": true,
-                    "description": "ignore highly similar keywords, if set to true, results will be more accurate"
+                    "description": "ignore highly similar keywords, if set to true, results will be more accurate",
+                    "type": "boolean"
                   },
                   "limit": {
+                    "description": "Maximum number of keywords to return",
+                    "default": 10,
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 1000,
-                    "default": 10,
-                    "description": "Maximum number of keywords to return"
+                    "maximum": 1000
                   },
                   "offset": {
+                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords",
                     "type": "number",
-                    "minimum": 0,
-                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords"
+                    "minimum": 0
                   },
                   "filters": {
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExamples:\n  Single: [\"keyword_data.keyword_info.search_volume\", \"in\", [100, 1000]]\n  Combined: [[\"intersection_result.1.etv\", \">\", 0], \"and\", [\"intersection_result.2.description\", \"like\", \"%goat%\"]]\n  Nested: [[\"keyword_data.keyword_info.search_volume\", \">\", 100], \"and\", [[\"intersection_result.1.description\", \"like\", \"%goat%\"], \"or\", [\"intersection_result.2.type\", \"=\", \"organic\"]]]",
+                    "maxItems": 3,
                     "type": "array",
                     "items": {
                       "anyOf": [
                         {
+                          "minItems": 3,
+                          "maxItems": 3,
                           "type": "array",
                           "items": {
-                            "type": [
-                              "string",
-                              "number",
-                              "boolean"
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
                             ]
-                          },
-                          "minItems": 3,
-                          "maxItems": 3
+                          }
                         },
                         {
                           "type": "string",
@@ -1510,10 +1606,10 @@
                           ]
                         },
                         {
-                          "type": "array",
-                          "items": {},
                           "minItems": 3,
-                          "maxItems": 3
+                          "maxItems": 3,
+                          "type": "array",
+                          "items": {}
                         },
                         {
                           "anyOf": [
@@ -1522,27 +1618,31 @@
                             },
                             {
                               "type": "number"
-                            }
+                            },
+                            {}
                           ]
-                        }
+                        },
+                        {}
                       ]
-                    },
-                    "maxItems": 3,
-                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExamples:\n  Single: [\"keyword_data.keyword_info.search_volume\", \"in\", [100, 1000]]\n  Combined: [[\"intersection_result.1.etv\", \">\", 0], \"and\", [\"intersection_result.2.description\", \"like\", \"%goat%\"]]\n  Nested: [[\"keyword_data.keyword_info.search_volume\", \">\", 100], \"and\", [[\"intersection_result.1.description\", \"like\", \"%goat%\"], \"or\", [\"intersection_result.2.type\", \"=\", \"organic\"]]]"
+                    }
                   },
                   "order_by": {
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\nexample:\n[\"keyword_data.keyword_info.competition,desc\"]\ndefault rule:\n[\"keyword_data.keyword_info.search_volume,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"intersection_result.1.rank_group,asc\",\"intersection_result.2.rank_absolute,asc\"]",
                     "type": "array",
                     "items": {
                       "type": "string"
-                    },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\nexample:\n[\"keyword_data.keyword_info.competition,desc\"]\ndefault rule:\n[\"keyword_data.keyword_info.search_volume,desc\"]\nnote that you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"intersection_result.1.rank_group,asc\",\"intersection_result.2.rank_absolute,asc\"]"
+                    }
                   },
                   "include_clickstream_data": {
-                    "type": "boolean",
                     "default": false,
-                    "description": "Include or exclude data from clickstream-based metrics in the result"
+                    "description": "Include or exclude data from clickstream-based metrics in the result",
+                    "type": "boolean"
                   },
                   "item_types": {
+                    "default": [
+                      "organic"
+                    ],
+                    "description": "display results by item type\nindicates the type of search results included in the response",
                     "type": "array",
                     "items": {
                       "type": "string",
@@ -1552,11 +1652,7 @@
                         "featured_snippet",
                         "local_pack"
                       ]
-                    },
-                    "description": "display results by item type\nindicates the type of search results included in the response",
-                    "default": [
-                      "organic"
-                    ]
+                    }
                   }
                 },
                 "required": [
@@ -1587,21 +1683,25 @@
                     "description": "target domains, subdomains, and webpages.\n        you can specify domains, subdomains, and webpages in this field;\ndomains and subdomains should be specified without https:// and www.;\npages should be specified with absolute URL, including https:// and www.;\nyou can set up to 1000 domains, subdomains or webpages"
                   },
                   "location_name": {
-                    "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'",
+                    "type": "string"
                   },
                   "language_code": {
-                    "type": "string",
                     "default": "en",
-                    "description": "language code\n        required field\n        example:\n        en"
+                    "description": "language code\n        required field\n        example:\n        en",
+                    "type": "string"
                   },
                   "ignore_synonyms": {
-                    "type": "boolean",
                     "default": true,
-                    "description": "ignore highly similar keywords, if set to true, results will be more accurate"
+                    "description": "ignore highly similar keywords, if set to true, results will be more accurate",
+                    "type": "boolean"
                   },
                   "item_types": {
+                    "default": [
+                      "organic"
+                    ],
+                    "description": "display results by item type\nindicates the type of search results included in the response",
                     "type": "array",
                     "items": {
                       "type": "string",
@@ -1611,11 +1711,7 @@
                         "featured_snippet",
                         "local_pack"
                       ]
-                    },
-                    "description": "display results by item type\nindicates the type of search results included in the response",
-                    "default": [
-                      "organic"
-                    ]
+                    }
                   }
                 },
                 "required": [
@@ -1652,14 +1748,14 @@
                     "description": "keywords\nrequired field\nThe maximum number of keywords you can specify: 700\nThe maximum number of characters for each keyword: 80\nThe maximum number of words for each keyword phrase: 10\nthe specified keywords will be converted to lowercase format, data will be provided in a separate array\nnote that if some of the keywords specified in this array are omitted in the results you receive, then our database doesn't contain such keywords and cannot return data on them\nyou will not be charged for the keywords omitted in the results"
                   },
                   "location_name": {
-                    "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'",
+                    "type": "string"
                   },
                   "language_code": {
-                    "type": "string",
                     "default": "en",
-                    "description": "language code\n        required field\n        example:\n        en"
+                    "description": "language code\n        required field\n        example:\n        en",
+                    "type": "string"
                   }
                 },
                 "required": [
@@ -1687,47 +1783,55 @@
                     "description": "target domain"
                   },
                   "location_name": {
-                    "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'"
+                    "description": "full name of the location\nrequired field\nonly in format \"Country\" (not \"City\" or \"Region\")\nexample:\n'United Kingdom', 'United States', 'Canada'",
+                    "type": "string"
                   },
                   "language_code": {
-                    "type": "string",
                     "default": "en",
-                    "description": "language code\n        required field\n        example:\n        en"
+                    "description": "language code\n        required field\n        example:\n        en",
+                    "type": "string"
                   },
                   "ignore_synonyms": {
-                    "type": "boolean",
                     "default": true,
-                    "description": "ignore highly similar keywords, if set to true, results will be more accurate"
+                    "description": "ignore highly similar keywords, if set to true, results will be more accurate",
+                    "type": "boolean"
                   },
                   "limit": {
+                    "description": "Maximum number of keywords to return",
+                    "default": 10,
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 1000,
-                    "default": 10,
-                    "description": "Maximum number of keywords to return"
+                    "maximum": 1000
                   },
                   "offset": {
+                    "description": "offset in the results array of returned keywords\n            optional field\n            default value: 0\n            if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords",
                     "type": "number",
-                    "minimum": 0,
-                    "description": "offset in the results array of returned keywords\n            optional field\n            default value: 0\n            if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords"
+                    "minimum": 0
                   },
                   "filters": {
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExamples:\n  Single: [\"metrics.organic.count\", \">\", 50]\n  Combined: [[\"metrics.organic.pos_1\", \"<>\", 0], \"and\", [\"metrics.organic.impressions_etv\", \">=\", \"10\"]]\n  Nested: [[[\"metrics.organic.count\", \">=\", 50], \"and\", [\"metrics.organic.pos_1\", \"in\", [1, 5]]], \"or\", [\"metrics.organic.etv\", \">=\", \"100\"]]",
+                    "maxItems": 3,
                     "type": "array",
                     "items": {
                       "anyOf": [
                         {
+                          "minItems": 3,
+                          "maxItems": 3,
                           "type": "array",
                           "items": {
-                            "type": [
-                              "string",
-                              "number",
-                              "boolean"
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
                             ]
-                          },
-                          "minItems": 3,
-                          "maxItems": 3
+                          }
                         },
                         {
                           "type": "string",
@@ -1737,10 +1841,10 @@
                           ]
                         },
                         {
-                          "type": "array",
-                          "items": {},
                           "minItems": 3,
-                          "maxItems": 3
+                          "maxItems": 3,
+                          "type": "array",
+                          "items": {}
                         },
                         {
                           "anyOf": [
@@ -1749,27 +1853,31 @@
                             },
                             {
                               "type": "number"
-                            }
+                            },
+                            {}
                           ]
-                        }
+                        },
+                        {}
                       ]
-                    },
-                    "maxItems": 3,
-                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExamples:\n  Single: [\"metrics.organic.count\", \">\", 50]\n  Combined: [[\"metrics.organic.pos_1\", \"<>\", 0], \"and\", [\"metrics.organic.impressions_etv\", \">=\", \"10\"]]\n  Nested: [[[\"metrics.organic.count\", \">=\", 50], \"and\", [\"metrics.organic.pos_1\", \"in\", [1, 5]]], \"or\", [\"metrics.organic.etv\", \">=\", \"100\"]]"
+                    }
                   },
                   "order_by": {
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to specify a sorting type\nexample:\n[\"metrics.paid.etv,asc\"]\nNote: you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"metrics.organic.etv,desc\",\"metrics.paid.count,asc\"]\ndefault rule:\n[\"metrics.organic.count,desc\"]",
                     "type": "array",
                     "items": {
                       "type": "string"
-                    },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to specify a sorting type\nexample:\n[\"metrics.paid.etv,asc\"]\nNote: you can set no more than three sorting rules in a single request\nyou should use a comma to separate several sorting rules\nexample:\n[\"metrics.organic.etv,desc\",\"metrics.paid.count,asc\"]\ndefault rule:\n[\"metrics.organic.count,desc\"]"
+                    }
                   },
                   "exclude_top_domains": {
-                    "type": "boolean",
                     "default": true,
-                    "description": "indicates whether to exclude world’s largest websites\noptional field\ndefault value: false\nset to true if you want to get highly-relevant competitors excluding the top websites"
+                    "description": "indicates whether to exclude world’s largest websites\noptional field\ndefault value: false\nset to true if you want to get highly-relevant competitors excluding the top websites",
+                    "type": "boolean"
                   },
                   "item_types": {
+                    "default": [
+                      "organic"
+                    ],
+                    "description": "display results by item type\nindicates the type of search results included in the response",
                     "type": "array",
                     "items": {
                       "type": "string",
@@ -1779,16 +1887,12 @@
                         "featured_snippet",
                         "local_pack"
                       ]
-                    },
-                    "description": "display results by item type\nindicates the type of search results included in the response",
-                    "default": [
-                      "organic"
-                    ]
+                    }
                   },
                   "include_clickstream_data": {
-                    "type": "boolean",
                     "default": false,
-                    "description": "Include or exclude data from clickstream-based metrics in the result"
+                    "description": "Include or exclude data from clickstream-based metrics in the result",
+                    "type": "boolean"
                   }
                 },
                 "required": [
@@ -1812,60 +1916,68 @@
                 "type": "object",
                 "properties": {
                   "asins": {
+                    "minItems": 1,
+                    "maxItems": 20,
                     "type": "array",
                     "items": {
                       "type": "string"
                     },
-                    "minItems": 1,
-                    "maxItems": 20,
                     "description": "target product ASINs\nrequired field\nproduct IDs of the products for which you need to find keyword intersections\nthe maximum number of ASINs you can specify is 20\nexample: [\"B09172433Z\", \"B07GBZ4Q68\"]"
                   },
                   "location_name": {
-                    "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field if location_code is not specified\nNote: this endpoint currently supports the US, Egypt, Saudi Arabia, and the United Arab Emirates locations only\nexample: 'United States'"
+                    "description": "full name of the location\nrequired field if location_code is not specified\nNote: this endpoint currently supports the US, Egypt, Saudi Arabia, and the United Arab Emirates locations only\nexample: 'United States'",
+                    "type": "string"
                   },
                   "language_code": {
-                    "type": "string",
                     "default": "en",
-                    "description": "language code\n        required field if language_name is not specified\n        example:\n        en"
+                    "description": "language code\n        required field if language_name is not specified\n        example:\n        en",
+                    "type": "string"
                   },
                   "limit": {
+                    "description": "Maximum number of keywords to return",
+                    "default": 10,
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 1000,
-                    "default": 10,
-                    "description": "Maximum number of keywords to return"
+                    "maximum": 1000
                   },
                   "offset": {
+                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords",
                     "type": "number",
-                    "minimum": 0,
-                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords"
+                    "minimum": 0
                   },
                   "intersection_mode": {
+                    "description": "mode for finding asin intersections\noptional field\npossible values: union, intersect\ndefault value: intersect",
+                    "default": "intersect",
                     "type": "string",
                     "enum": [
                       "union",
                       "intersect"
-                    ],
-                    "default": "intersect",
-                    "description": "mode for finding asin intersections\noptional field\npossible values: union, intersect\ndefault value: intersect"
+                    ]
                   },
                   "filters": {
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExample: [\"avg_position\", \"<\", 10]",
+                    "maxItems": 3,
                     "type": "array",
                     "items": {
                       "anyOf": [
                         {
+                          "minItems": 3,
+                          "maxItems": 3,
                           "type": "array",
                           "items": {
-                            "type": [
-                              "string",
-                              "number",
-                              "boolean"
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
                             ]
-                          },
-                          "minItems": 3,
-                          "maxItems": 3
+                          }
                         },
                         {
                           "type": "string",
@@ -1875,10 +1987,10 @@
                           ]
                         },
                         {
-                          "type": "array",
-                          "items": {},
                           "minItems": 3,
-                          "maxItems": 3
+                          "maxItems": 3,
+                          "type": "array",
+                          "items": {}
                         },
                         {
                           "anyOf": [
@@ -1887,20 +1999,20 @@
                             },
                             {
                               "type": "number"
-                            }
+                            },
+                            {}
                           ]
-                        }
+                        },
+                        {}
                       ]
-                    },
-                    "maxItems": 3,
-                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExample: [\"avg_position\", \"<\", 10]"
+                    }
                   },
                   "order_by": {
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\nexample:\n[\"sum_position,desc\"]\ndefault rule:\n[\"intersections,desc\"]\nnote that you can set no more than three sorting rules in a single request\nexample:\n[\"intersections,desc\",\"avg_position,asc\"]",
                     "type": "array",
                     "items": {
                       "type": "string"
-                    },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\nexample:\n[\"sum_position,desc\"]\ndefault rule:\n[\"intersections,desc\"]\nnote that you can set no more than three sorting rules in a single request\nexample:\n[\"intersections,desc\",\"avg_position,asc\"]"
+                    }
                   }
                 },
                 "required": [
@@ -1928,42 +2040,50 @@
                     "description": "product ID\nrequired field\nunique product identifier (ASIN) on Amazon"
                   },
                   "location_name": {
-                    "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field if location_code is not specified\nNote: this endpoint currently supports the US, Egypt, Saudi Arabia, and the United Arab Emirates locations only\nexample: 'United States'"
+                    "description": "full name of the location\nrequired field if location_code is not specified\nNote: this endpoint currently supports the US, Egypt, Saudi Arabia, and the United Arab Emirates locations only\nexample: 'United States'",
+                    "type": "string"
                   },
                   "language_code": {
-                    "type": "string",
                     "default": "en",
-                    "description": "language code\n        required field if language_name is not specified\n        example:\n        en"
+                    "description": "language code\n        required field if language_name is not specified\n        example:\n        en",
+                    "type": "string"
                   },
                   "limit": {
+                    "description": "Maximum number of product competitors to return",
+                    "default": 10,
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 1000,
-                    "default": 10,
-                    "description": "Maximum number of product competitors to return"
+                    "maximum": 1000
                   },
                   "offset": {
+                    "description": "offset in the results array of returned product competitors\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten product competitors in the results array will be omitted and the data will be provided for the successive product competitors",
                     "type": "number",
-                    "minimum": 0,
-                    "description": "offset in the results array of returned product competitors\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten product competitors in the results array will be omitted and the data will be provided for the successive product competitors"
+                    "minimum": 0
                   },
                   "filters": {
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExample: [\"full_metrics.amazon_serp.pos_1\", \">\", 20]",
+                    "maxItems": 3,
                     "type": "array",
                     "items": {
                       "anyOf": [
                         {
+                          "minItems": 3,
+                          "maxItems": 3,
                           "type": "array",
                           "items": {
-                            "type": [
-                              "string",
-                              "number",
-                              "boolean"
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
                             ]
-                          },
-                          "minItems": 3,
-                          "maxItems": 3
+                          }
                         },
                         {
                           "type": "string",
@@ -1973,10 +2093,10 @@
                           ]
                         },
                         {
-                          "type": "array",
-                          "items": {},
                           "minItems": 3,
-                          "maxItems": 3
+                          "maxItems": 3,
+                          "type": "array",
+                          "items": {}
                         },
                         {
                           "anyOf": [
@@ -1985,20 +2105,20 @@
                             },
                             {
                               "type": "number"
-                            }
+                            },
+                            {}
                           ]
-                        }
+                        },
+                        {}
                       ]
-                    },
-                    "maxItems": 3,
-                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, match, not_match, ilike, not_ilike, like, not_like\nUse % with like/not_like/ilike/not_ilike as a wildcard.\nExample: [\"full_metrics.amazon_serp.pos_1\", \">\", 20]"
+                    }
                   },
                   "order_by": {
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\nexample:\n[\"full_metrics.amazon_serp.pos_1,desc\"]\ndefault rule:\n[\"ranked_serp_element.serp_item.rank_group,asc\"]\nnote that you can set no more than three sorting rules in a single request\nexample:\n[\"full_metrics.amazon_serp.pos_1,desc\",\"avg_position,desc\"]",
                     "type": "array",
                     "items": {
                       "type": "string"
-                    },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\nexample:\n[\"full_metrics.amazon_serp.pos_1,desc\"]\ndefault rule:\n[\"ranked_serp_element.serp_item.rank_group,asc\"]\nnote that you can set no more than three sorting rules in a single request\nexample:\n[\"full_metrics.amazon_serp.pos_1,desc\",\"avg_position,desc\"]"
+                    }
                   }
                 },
                 "required": [
@@ -2026,42 +2146,50 @@
                     "description": "product ID\nrequired field\nunique product identifier (ASIN) on Amazon"
                   },
                   "location_name": {
-                    "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field if location_code is not specified\nNote: this endpoint currently supports the US, Egypt, Saudi Arabia, and the United Arab Emirates locations only\nexample: 'United States'"
+                    "description": "full name of the location\nrequired field if location_code is not specified\nNote: this endpoint currently supports the US, Egypt, Saudi Arabia, and the United Arab Emirates locations only\nexample: 'United States'",
+                    "type": "string"
                   },
                   "language_code": {
-                    "type": "string",
                     "default": "en",
-                    "description": "language code\n        required field if language_name is not specified\n        example:\n        en"
+                    "description": "language code\n        required field if language_name is not specified\n        example:\n        en",
+                    "type": "string"
                   },
                   "limit": {
+                    "description": "Maximum number of keywords to return",
+                    "default": 10,
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 1000,
-                    "default": 10,
-                    "description": "Maximum number of keywords to return"
+                    "maximum": 1000
                   },
                   "offset": {
+                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords",
                     "type": "number",
-                    "minimum": 0,
-                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords"
+                    "minimum": 0
                   },
                   "filters": {
+                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, like, not_like, match, not_match\nUse % with like/not_like as a wildcard.\nExample: [\"keyword_data.keyword_info.search_volume\", \"in\", [100, 1000]]",
+                    "maxItems": 3,
                     "type": "array",
                     "items": {
                       "anyOf": [
                         {
+                          "minItems": 3,
+                          "maxItems": 3,
                           "type": "array",
                           "items": {
-                            "type": [
-                              "string",
-                              "number",
-                              "boolean"
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
                             ]
-                          },
-                          "minItems": 3,
-                          "maxItems": 3
+                          }
                         },
                         {
                           "type": "string",
@@ -2071,10 +2199,10 @@
                           ]
                         },
                         {
-                          "type": "array",
-                          "items": {},
                           "minItems": 3,
-                          "maxItems": 3
+                          "maxItems": 3,
+                          "type": "array",
+                          "items": {}
                         },
                         {
                           "anyOf": [
@@ -2083,20 +2211,20 @@
                             },
                             {
                               "type": "number"
-                            }
+                            },
+                            {}
                           ]
-                        }
+                        },
+                        {}
                       ]
-                    },
-                    "maxItems": 3,
-                    "description": "Array-based filter expression. A single condition is a 3-element array: [field, operator, value]. Combine conditions with [\"and\"|\"or\"] between them: [condition, \"and\", condition]. Max 8 filters.\nOperators: regex, not_regex, <, <=, >, >=, =, <>, in, not_in, like, not_like, match, not_match\nUse % with like/not_like as a wildcard.\nExample: [\"keyword_data.keyword_info.search_volume\", \"in\", [100, 1000]]"
+                    }
                   },
                   "order_by": {
+                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\nexample:\n[\"keyword_data.keyword_info.competition,desc\"]\ndefault rule:\n[\"ranked_serp_element.serp_item.rank_group,asc\"]\nnote that you can set no more than three sorting rules in a single request\nexample:\n[\"keyword_data.keyword_info.search_volume,desc\",\"keyword_data.keyword_info.cpc,desc\"]",
                     "type": "array",
                     "items": {
                       "type": "string"
-                    },
-                    "description": "results sorting rules\noptional field\nyou can use the same values as in the filters array to sort the results\npossible sorting types:\nasc – results will be sorted in the ascending order\ndesc – results will be sorted in the descending order\nyou should use a comma to set up a sorting parameter\nexample:\n[\"keyword_data.keyword_info.competition,desc\"]\ndefault rule:\n[\"ranked_serp_element.serp_item.rank_group,asc\"]\nnote that you can set no more than three sorting rules in a single request\nexample:\n[\"keyword_data.keyword_info.search_volume,desc\",\"keyword_data.keyword_info.cpc,desc\"]"
+                    }
                   }
                 },
                 "required": [
@@ -2120,23 +2248,23 @@
                 "type": "object",
                 "properties": {
                   "keywords": {
+                    "minItems": 1,
+                    "maxItems": 1000,
                     "type": "array",
                     "items": {
                       "type": "string"
                     },
-                    "minItems": 1,
-                    "maxItems": 1000,
                     "description": "target keywords\nrequired field\nUTF-8 encoding\nmaximum number of keywords you can specify in this array: 1000\nthe keywords will be converted to lowercase format"
                   },
                   "location_name": {
-                    "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field if location_code is not specified\nexample: 'United States'"
+                    "description": "full name of the location\nrequired field if location_code is not specified\nexample: 'United States'",
+                    "type": "string"
                   },
                   "language_code": {
-                    "type": "string",
                     "default": "en",
-                    "description": "language code\n        required field if language_name is not specified\n        example:\n        en"
+                    "description": "language code\n        required field if language_name is not specified\n        example:\n        en",
+                    "type": "string"
                   }
                 },
                 "required": [
@@ -2164,38 +2292,38 @@
                     "description": "target keyword\nrequired field\nUTF-8 encoding\nthe keyword should be specified in the lowercase format"
                   },
                   "depth": {
+                    "default": 1,
+                    "description": "keyword search depth\noptional field\ndefault value: 1\nyou can specify a level from 0 to 4\nestimated number of keywords for each level (maximum):\n0 – the keyword set in the keyword field\n1 – 6 keywords\n2 – 42 keywords\n3 – 258 keywords\n4 – 1554 keywords",
                     "type": "number",
                     "minimum": 0,
-                    "maximum": 4,
-                    "default": 1,
-                    "description": "keyword search depth\noptional field\ndefault value: 1\nyou can specify a level from 0 to 4\nestimated number of keywords for each level (maximum):\n0 – the keyword set in the keyword field\n1 – 6 keywords\n2 – 42 keywords\n3 – 258 keywords\n4 – 1554 keywords"
+                    "maximum": 4
                   },
                   "location_name": {
-                    "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field if location_code is not specified\nNote: this endpoint currently supports the US, Egypt, Saudi Arabia, and the United Arab Emirates locations only\nexample: 'United States'"
+                    "description": "full name of the location\nrequired field if location_code is not specified\nNote: this endpoint currently supports the US, Egypt, Saudi Arabia, and the United Arab Emirates locations only\nexample: 'United States'",
+                    "type": "string"
                   },
                   "language_code": {
-                    "type": "string",
                     "default": "en",
-                    "description": "language code\n        required field if language_name is not specified\n        example:\n        en"
+                    "description": "language code\n        required field if language_name is not specified\n        example:\n        en",
+                    "type": "string"
                   },
                   "include_seed_keyword": {
-                    "type": "boolean",
+                    "description": "include data for the seed keyword\noptional field\nif set to true, data for the seed keyword specified in the keyword field will be provided in the seed_keyword_data array of the response\ndefault value: false",
                     "default": false,
-                    "description": "include data for the seed keyword\noptional field\nif set to true, data for the seed keyword specified in the keyword field will be provided in the seed_keyword_data array of the response\ndefault value: false"
+                    "type": "boolean"
                   },
                   "limit": {
+                    "description": "Maximum number of keywords to return",
+                    "default": 10,
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 1000,
-                    "default": 10,
-                    "description": "Maximum number of keywords to return"
+                    "maximum": 1000
                   },
                   "offset": {
+                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords",
                     "type": "number",
-                    "minimum": 0,
-                    "description": "offset in the results array of returned keywords\n        optional field\n        default value: 0\n        if you specify the 10 value, the first ten keywords in the results array will be omitted and the data will be provided for the successive keywords"
+                    "minimum": 0
                   }
                 },
                 "required": [
@@ -2219,23 +2347,23 @@
                 "type": "object",
                 "properties": {
                   "asins": {
+                    "minItems": 1,
+                    "maxItems": 1000,
                     "type": "array",
                     "items": {
                       "type": "string"
                     },
-                    "minItems": 1,
-                    "maxItems": 1000,
                     "description": "product IDs to compare\nrequired field\nproduct IDs to receive ranking data for\nthe maximum number of ASINs you can specify in this array is 1000\nNote: all letters in ASIN code must be specified in uppercase format\nexample: [\"B001TJ3HUG\", \"B01LW2SL7R\"]"
                   },
                   "location_name": {
-                    "type": "string",
                     "default": "United States",
-                    "description": "full name of the location\nrequired field if location_code is not specified\nNote: this endpoint currently supports the US, Egypt, Saudi Arabia, and the United Arab Emirates locations only\nexample: 'United States'"
+                    "description": "full name of the location\nrequired field if location_code is not specified\nNote: this endpoint currently supports the US, Egypt, Saudi Arabia, and the United Arab Emirates locations only\nexample: 'United States'",
+                    "type": "string"
                   },
                   "language_code": {
-                    "type": "string",
                     "default": "en",
-                    "description": "language code\n        required field if language_name is not specified\n        example:\n        en"
+                    "description": "language code\n        required field if language_name is not specified\n        example:\n        en",
+                    "type": "string"
                   }
                 },
                 "required": [
